@@ -1,0 +1,6 @@
+<h1> Lot </h1>
+
+<%= link_to 'Edit lot', edit_lot_path(@lot) %>
+<%= link_to 'Delete lot', lot_path(@lot),method: :delete %>
+<h2> <%= @lot.name %> </h2>
+<p> <%= @lot.description %> </p>

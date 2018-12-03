@@ -1,0 +1,22 @@
+<%= form_for @lot do |f|%>
+    
+    <div class='form-control'>
+        <%= f.label :name %>  
+        <%= f.text_field :name %>
+    <div>
+
+    <div class='form-control'>
+        <%= f.label :description %>  
+        <%= f.text_field :description, size:'50x30' %>
+    <div>
+
+    <div class='form-control'>
+        <%= f.label :start_price %> 
+        <%= f.number_field :start_price, in: 0.0..1000000.0, step: 0.1 %>
+    <div>
+
+    <div class='form-control'>
+        <%= f.submit "Create lot" %>
+    <div>
+
+<% end %>
