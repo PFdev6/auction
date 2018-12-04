@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_194101) do
+ActiveRecord::Schema.define(version: 2018_12_04_223605) do
 
-  create_table "lots", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.decimal "start_price"
+# Could not dump table "lots" because of following StandardError
+#   Unknown type '' for column 'main_image'
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "lot_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["lot_id"], name: "index_taggings_on_lot_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
 end

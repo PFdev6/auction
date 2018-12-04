@@ -1,6 +1,18 @@
-<h1> Lot </h1>
-
-<%= link_to 'Edit lot', edit_lot_path(@lot) %>
-<%= link_to 'Delete lot', lot_path(@lot),method: :delete %>
-<h2> <%= @lot.name %> </h2>
-<p> <%= @lot.description %> </p>
+<article class="lot">
+  <section class="lot-head">
+      <%= image_tag @lot.main_image.url(:medium) %>
+    <h1><%= @lot.name %></h1>
+    <small>
+      <p class="card-text">  Start price: <%= @lot.start_price %> BYN </p>
+      <time>Time of creation: <%= @lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %> </time>
+      |
+      <%= link_to 'Edit', edit_lot_path(@lot) %>
+      |
+      <%= link_to 'Delete', lot_path(@lot), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </small>
+  </section>
+ <h2> Description </h2>
+  <section class="lot-body">
+    <%= @lot.description %>
+  </section>
+</article>

@@ -16,16 +16,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Hidden brand</a>
+    <a class="navbar-brand" href="<%=lots_path%>">All lot</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="<%=new_lot_path%>">New lot <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -34,9 +28,18 @@
     </form>
   </div>
 </nav>
-
-    <%= link_to 'All lot', lots_path%>
-    <%= link_to 'New lot', new_lot_path%>
+    
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-12">
+          <% flash.each do |name, message| %>
+            <div class="alert alert-<%= name %>">
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
