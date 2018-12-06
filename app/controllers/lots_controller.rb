@@ -1,3 +1,5 @@
+require "net/http"
+require "uri"
 class LotsController < ApplicationController
 
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
@@ -11,14 +13,19 @@ class LotsController < ApplicationController
 	end
 
 	def new 
-		@lot = current_user.lots.build 
+		@lot = current_user.lots.build
 	end
 
 	def create 
-		@lot  = current_user.lots.build(lot_parms)
+		@lot = current_user.lots.build(lot_parms)
 		if @lot.valid? && @lot.lot_end_date.to_date > (Time.now + 600).to_date  
 			@lot.save
-			redirect_to @lot, success: 'Lot successfully created'
+			# if @lot.isplayedout?
+			# 	uri = URI.parse('localhost:3000/session_lots?=')#need correct
+			# 	response = Net::HTTP.post_form(uri, {user: @lot.user, lot: @lot, current_price: @lot.start_price})
+			# else
+				redirect_to @lot, success: 'Lot successfully created'
+			#end
 		else 
 			render 'new',  danger: 'Lot didn\'t created'
 		end
@@ -29,7 +36,7 @@ class LotsController < ApplicationController
 
 	def destroy 
 		@lot.destroy
-		redirect_to  lots_path, success: 'Lot successfully destroyed'
+		redirect_to lots_path, success: 'Lot successfully destroyed'
 	end
 
 	def update 
@@ -47,6 +54,6 @@ class LotsController < ApplicationController
 	end
 
 	def lot_parms
-		params.require(:lot).permit(:name, :description, :start_price, :main_image, :all_tags, :lot_end_date)
+		params.require(:lot).permit(:name, :description, :start_price, :main_image, :isplayedout, :session_lot, :all_tags, :lot_end_date)
 	end
 end

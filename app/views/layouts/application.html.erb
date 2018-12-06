@@ -19,18 +19,20 @@
     <a class="navbar-brand" href="<%=lots_path%>"> Main </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <% if user_signed_in?%>
-        <a class="nav-link" href="<%=user_path(current_user)%>"> My lot <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="<%=new_lot_path%>"> New lot <span class="sr-only">(current)</span></a>
-    </ul>
-        <%= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'nav-link' %>
+        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_path(current_user)%>"><%= t('main.user') %><span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=session_lots_path%>"> <%= t('maiд.all_played_lots') %> <span class="sr-only">(current)</span></a></li>
+        </ul>
+        <%= link_to t('main.logout'), destroy_user_session_path, :method => :delete, class: 'nav-item active mr-sm-2 badge badge-info' %>
       <% else %>
-    </ul> 
-        <a class="nav-link" href="<%=new_user_registration_path%>"> Sign Up <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="<%=new_user_session_path%>"> Sign In <span class="sr-only">(current)</span></a>
+        </ul> 
+        <a class="badge badge-info mr-sm-2" href="<%=new_user_registration_path%>"><%= t('main.signup') %> <span class="sr-only">(current)</span></a>
+        <a class="badge badge-info mr-sm-2" href="<%=new_user_session_path%>"> <%= t('main.signin') %><span class="sr-only">(current)</span></a>
+        <%= link_to "By Facebook",  users_omniauth_callbacks_facebook_path(:facebook)%>
       <% end %>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
@@ -47,17 +49,14 @@
 
 
       <div class="row">
-        <div class="col-lg-2"> Tags:
-            <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
-            <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-            <%end%>
+        <div class="col-lg-2"> <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>
+          <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
+          <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-secondary' %>
+          <%end%>
         </div>
-
-        <div class="col-lg">
-        <%= yield %>
-        </div>
-      <div>
-      </div>
+        <div class="col">
+          <%= yield %>
+        <div>
     </div>
   
   </body>

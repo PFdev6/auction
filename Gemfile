@@ -46,7 +46,11 @@ gem 'will_paginate-bootstrap'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'devise'
+gem 'simple_form'
+gem 'date_wrapper'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem "paperclip", "~> 6.0.0"
 

@@ -30,4 +30,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  main: 
+    logout: "Log out"
+    signup: "Sign up"
+    signin: "Sign in"
+    user: "My profile"
+    new_lot: "New lot"
+    lot_session: "Lot sessions"
+  tags: "Tags: "
+  lot:
+    by: "by: "
+    descpription: "Description"
+    start_price: "Start price: "
+    time_created: "Time of creation: "
+    end_date: "End date"
+    byn: "BYN"
+    edit: "Edit"
+    delete: "delete"

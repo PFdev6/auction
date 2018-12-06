@@ -3,17 +3,17 @@
       <%= image_tag @lot.main_image.url(:medium) %>
     <h1><%= @lot.name %></h1>
     <small>
-      <p class="card-text">  Start price: <%= @lot.start_price %> BYN </p>
-      <time>Time of creation: <%= @lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %> </time>
+      <p class="card-text"> <%= t('lot.start_price') %>  <%= @lot.start_price %> BYN </p>
+      <time> <%= t('lot.time_created') %>  <%= @lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %> </time>
       <% if @lot.user == current_user%>
         |
-        <%= link_to 'Edit', edit_lot_path(@lot) %>
+        <%= link_to  t('lot.edit'), edit_lot_path(@lot) %>
         |
-        <%= link_to 'Delete', lot_path(@lot), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to  t('lot.delete'), lot_path(@lot), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </small>
   </section>
- <h2> Description </h2>
+ <h2>  <%= t('lot.description') %> </h2>
   <section class="lot-body">
     <%= @lot.description %>
   </section>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_231144) do
+ActiveRecord::Schema.define(version: 2018_12_06_182530) do
 
   create_table "lots", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 2018_12_05_231144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.boolean "isplayedout"
+    t.integer "session_lot_id"
+    t.index ["session_lot_id"], name: "index_lots_on_session_lot_id"
+  end
+
+  create_table "session_lots", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "current_price"
+    t.integer "id_user_winner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "lot_id"
+    t.index ["lot_id"], name: "index_session_lots_on_lot_id"
+    t.index ["user_id"], name: "index_session_lots_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -49,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_231144) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "isadmin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

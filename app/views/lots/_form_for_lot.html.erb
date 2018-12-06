@@ -9,42 +9,24 @@
   </div>
 <% end %>
 
-<%= form_for @lot do |f| %>
+<%= simple_form_for @lot do |f| %>
 
-    <div class='form-group'>
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
-    </div>
+    <%= f.input :name %>
 
-    <div class='form-group'>
-        <%= f.label :description %>
-        <%= f.text_area :description, class: 'form-control' %>
-    </div>
+    <%= f.input :description, as: :text %>
 
+    <%= f.input :lot_end_date, as: :datetime, wrapper: :date, input_html: {value: ' '} %>
+  
+    <%= f.input :start_price, as: :float, input_html: { min: '0', step: '0.1' } %>
 
-    <div class='form-group'">
-      <%= f.label 'Lot end time' %>
-      <%= f.datetime_select :lot_end_date, class: 'form-control' %>
-    <div>
+    <%= f.input :main_image, as: :file%>
 
-    <div class='form-group'>
-        <%= f.label :start_price %> 
-        <%= f.number_field :start_price, in: 0.0..1000000.0, step: 0.1,  class: 'form-control' %>
-    <div>
+    <%= f.input :all_tags %>
 
-    <div class='form-group'>
-      <%= f.file_field :main_image, class: 'form_control' %>
-    <div>
+    <%= f.input :isplayedout, as: :boolean, checked_value: true, unchecked_value: false %>
 
-    <div class='form-group'>
-        <%= f.label :all_tags %>
-        <%= f.text_field :all_tags, class: 'form-control' %>
-    </div>
+    <%= f.button :submit, post: 'session_lots#create' %>
 
-
-    <div class='form-group'>
-        <%= f.submit 'Save', class: 'btn btn-primary' %>
-        <%= link_to 'Back', :back, class: 'btn btn-outline-secondary' %>
-    </div>
-
+    <%= link_to 'Back', :back, class: 'btn btn-outline-secondary' %>
+  
 <% end %>
