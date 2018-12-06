@@ -5,10 +5,12 @@
     <small>
       <p class="card-text">  Start price: <%= @lot.start_price %> BYN </p>
       <time>Time of creation: <%= @lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %> </time>
-      |
-      <%= link_to 'Edit', edit_lot_path(@lot) %>
-      |
-      <%= link_to 'Delete', lot_path(@lot), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% if @lot.user == current_user%>
+        |
+        <%= link_to 'Edit', edit_lot_path(@lot) %>
+        |
+        <%= link_to 'Delete', lot_path(@lot), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </small>
   </section>
  <h2> Description </h2>

@@ -1,5 +1,7 @@
-<h2> All lots </h2>
 
-<%= render @lots %>
+<div class="card-columns">
+    <%= render @lots %>
+</div>
+<%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
 
-<%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'%>
+

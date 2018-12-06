@@ -35,10 +35,17 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+gem 'font-awesome-rails'
+
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+
 gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
+gem 'devise'
 
 
 gem "paperclip", "~> 6.0.0"

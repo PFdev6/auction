@@ -1,0 +1,12 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <% if @tag.nil? %>
+        <p class="lead"> No lots with this tag </p>
+    <% else %>
+        <h2 class="display-4"> Tag: <%= @tag.name %> </h2>
+        <div class="card-columns">
+         <%= render @tag.lots %>
+        <div>
+    <%end%>
+  </div>
+</div>

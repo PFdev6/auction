@@ -1,21 +1,23 @@
 class LotsController < ApplicationController
+
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
+	before_action :authenticate_user!, except: [:index, :show]
 
 	def index 
-		@lots = Lot.paginate(:page => params[:page], :per_page => 2)
+		@lots = Lot.paginate(:page => params[:page], :per_page => 20)
 	end
 
 	def show 
 	end
 
 	def new 
-		@lot = Lot.new 
+		@lot = current_user.lots.build 
 	end
 
 	def create 
-		@lot  = Lot.new(lot_parms)
-		p @lot.valid?
-		if @lot.save
+		@lot  = current_user.lots.build(lot_parms)
+		if @lot.valid? && @lot.lot_end_date.to_date > (Time.now + 600).to_date  
+			@lot.save
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
 			render 'new',  danger: 'Lot didn\'t created'
@@ -45,6 +47,6 @@ class LotsController < ApplicationController
 	end
 
 	def lot_parms
-		params.require(:lot).permit(:name, :description, :start_price, :main_image, :all_tags)
+		params.require(:lot).permit(:name, :description, :start_price, :main_image, :all_tags, :lot_end_date)
 	end
 end

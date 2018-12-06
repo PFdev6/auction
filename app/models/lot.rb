@@ -1,9 +1,10 @@
 class Lot < ApplicationRecord
+  belongs_to :user
   has_many :taggings
-  has_many :tags, through: :taggings   
-  has_attached_file :main_image, styles: { medium: '400x200>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_many :tags, through: :taggings
+  has_attached_file :main_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
  	validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
-  validates :name, :description, :start_price,:main_image, presence: true 
+  validates :name, :description, :start_price, :main_image, :lot_end_date, presence: true 
 
   def all_tags
     self.tags.map(&:name).join(', ')
