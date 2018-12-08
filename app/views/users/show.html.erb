@@ -1,3 +1,11 @@
-<div class="card-columns">
-    <%= render @user.lots %>
-</div>
+ <% if @lot.nil?%>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+            Emprty lotsdddddddddddddddddddddddddddddddd
+      </div>
+    </div>
+<% else %>
+    <div class="card-columns">
+       <%= render @user.lots %>
+    </div>
+<% end %>

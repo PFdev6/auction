@@ -9,21 +9,21 @@
   </div>
 <% end %>
 
-<%= simple_form_for @lot do |f| %>
+<%= bootstrap_form_for @lot do |f| %>
 
-    <%= f.input :name %>
+    <%= f.text_field :name %>
 
-    <%= f.input :description, as: :text %>
+    <%= f.text_area :description %>
 
-    <%= f.input :lot_end_date, as: :datetime, wrapper: :date, input_html: {value: ' '} %>
+    <%= f.datetime_select :lot_end_date,  wrapper: :date, input_html: {value: ' '} %>
   
-    <%= f.input :start_price, as: :float, input_html: { min: '0', step: '0.1' } %>
+    <%= f.number_field :start_price,  min: '0', step: '0.1'  %>
 
-    <%= f.input :main_image, as: :file%>
+    <%= f.file_field :main_image %>
 
-    <%= f.input :all_tags %>
+    <%= f.text_field :all_tags %>
 
-    <%= f.input :isplayedout, as: :boolean, checked_value: true, unchecked_value: false %>
+    <%= f.check_box :isplayedout, checked_value: true, unchecked_value: false %>
 
     <%= f.button :submit, post: 'session_lots#create' %>
 
