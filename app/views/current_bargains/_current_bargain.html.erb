@@ -1,0 +1,14 @@
+<div class="card border-info mb-1 ">
+ <%= image_tag current_bargain.lot.main_image.url(:medium), class: 'card-img-top'  %>
+  <div class="card-header"><%= current_bargain.lot.name %></div>
+  <div class="card-body">
+    <p class="card-text">  <%= t('lot.start_price') %>  <%= current_bargain.lot.start_price %> <%= t('lot.byn') %> </p>
+    <p class="card-text">  <%= t('lot.time_created') %> <%= current_bargain.lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %></p>
+    <p class="card-text">  <%= t('lot.end_date') %> <%= current_bargain.lot.lot_end_date.to_time.strftime('%I:%M %m/%d/%Y')  %></p>
+    <a href="<%=current_bargain_path(current_bargain)%>" class="btn btn-primary"> Description </a>
+  </div>
+   <div class="card-footer text-muted">
+      <p> <%= t('lot.by') %><%=current_bargain.lot.user.email %> </p>
+      <%= raw current_bargain.lot.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'badge badge-secondary' }.join(' ') %>
+  </div>
+</div>

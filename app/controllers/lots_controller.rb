@@ -1,5 +1,3 @@
-require "net/http"
-require "uri"
 class LotsController < ApplicationController
 
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
@@ -20,12 +18,7 @@ class LotsController < ApplicationController
 		@lot = current_user.lots.build(lot_parms)
 		if @lot.valid? && @lot.lot_end_date.to_date > (Time.now + 600).to_date  
 			@lot.save
-			# if @lot.isplayedout?
-			# 	uri = URI.parse('localhost:3000/session_lots?=')#need correct
-			# 	response = Net::HTTP.post_form(uri, {user: @lot.user, lot: @lot, current_price: @lot.start_price})
-			# else
-				redirect_to @lot, success: 'Lot successfully created'
-			#end
+			redirect_to @lot, success: 'Lot successfully created'
 		else 
 			render 'new',  danger: 'Lot didn\'t created'
 		end

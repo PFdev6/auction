@@ -8,10 +8,9 @@
         <li class="list-group-item">Likes: <%= user.likes%></li>
          <% if user == current_user %>
          <li class="list-group-item">
-            <%= link_to  t('user.edit'), edit_user_path(@user) %>
+            <%= link_to  t('user.edit'), edit_user_path(user) %>
         </li>
          <% end %>
     </ul>
-   
   </div>
 </div>

@@ -46,6 +46,7 @@ gem 'will_paginate-bootstrap'
 gem "bootstrap_form", ">= 4.0.0"
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
+gem 'ancestry'
 gem 'devise'
 gem 'simple_form'
 gem 'execjs'

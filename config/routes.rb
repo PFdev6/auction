@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :lots
   resources :tags
   resources :users
-  resources :session_lots
+  resources :current_bargains
 end
