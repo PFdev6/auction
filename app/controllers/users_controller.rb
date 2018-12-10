@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	
 	def show
-		@user = current_user
+		@user = User.find(params[:id])
 		@user.lots = Lot.where(user_id: @user.id)
 	end
 

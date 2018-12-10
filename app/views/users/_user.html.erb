@@ -6,7 +6,7 @@
         <li class="list-group-item">Name: <%= user.first_name%> <%= user.second_name%></li>
         <li class="list-group-item">About user: <%= user.about_users%></li>
         <li class="list-group-item">Likes: <%= user.likes%></li>
-         <% if user == current_user %>
+         <% if current_user == user %>
          <li class="list-group-item">
             <%= link_to  t('user.edit'), edit_user_path(user) %>
         </li>

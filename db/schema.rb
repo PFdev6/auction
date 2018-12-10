@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_211653) do
+ActiveRecord::Schema.define(version: 2018_12_10_004430) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "msg"
+    t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comments_on_comment_id"
   end
 
   create_table "current_bargains", force: :cascade do |t|
@@ -43,6 +51,13 @@ ActiveRecord::Schema.define(version: 2018_12_08_211653) do
     t.boolean "isplayedout"
     t.integer "session_lot_id"
     t.index ["session_lot_id"], name: "index_lots_on_session_lot_id"
+  end
+
+  create_table "main_news", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

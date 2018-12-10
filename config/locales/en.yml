@@ -47,3 +47,6 @@ en:
     byn: "BYN"
     edit: "Edit"
     delete: "delete"
+    success: "success"
+    stopped: "stopped"
+    expired: "expired"

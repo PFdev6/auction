@@ -1,13 +1,18 @@
 class CurrentBargainsController < ApplicationController
-	
+  before_action :cur_bargain, only: [:edit, :update, :show]
+  
   def index 
 		@current_bargain = CurrentBargain.all
 	end
 
+  def show
+  
+  end
+
   private
 
   def cur_bargain 
-    @current_bargain  = Current_bargain.find(params[:id])
+    @current_bargain  = CurrentBargain.find(params[:id])
   end
   
   def current_bargain

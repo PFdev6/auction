@@ -6,4 +6,5 @@ module LotsHelper
       yield(tag, classes[index.round])
     end
   end
+
 end

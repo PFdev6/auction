@@ -3,7 +3,7 @@
     <% if @tag.nil? %>
         <p class="lead"> No lots with this tag </p>
     <% else %>
-        <h2 class="display-4"> Tag: <%= @tag.name %> </h2>
+        <h2 class="display-3"> Tag: <%= @tag.name %> </h2>
         <div class="card-columns">
          <%= render @tag.lots %>
         <div>

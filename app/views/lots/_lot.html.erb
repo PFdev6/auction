@@ -1,7 +1,16 @@
 
 <div class="card border-info mb-1 ">
  <%= image_tag lot.main_image.url(:medium), class: 'card-img-top'  %>
-  <div class="card-header"><%= lot.name %></div>
+  <div class="card-header">
+    <%= lot.name %>
+     <% if !lot.isplayedout? %>
+        <span class="badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
+    <% elsif Time.now < lot.lot_end_date%>
+        <span class="badge badge-pill badge-success"> <%= t('lot.success') %> </span>
+    <% else Time.now >= lot.lot_end_date%>
+        <span class="badge badge-pill badge-danger"><%= t('lot.expired')%></span>    
+    <% end %>
+  </div>
   <div class="card-body">
     <p class="card-text">  <%= t('lot.start_price') %>  <%= lot.start_price %> <%= t('lot.byn') %> </p>
     <p class="card-text">  <%= t('lot.time_created') %> <%= lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %></p>
