@@ -48,16 +48,21 @@
 
 
       <div class="row">
-        <div class="col-lg-2"> <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>
+        <div class="col-lg-0"> <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>
           <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
           <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-secondary' %>
           <%end%>
+          <ul class="list-group">
+            <li class="list-group-item active"><%= link_to t('main.lots'),lots_path, class: 'nav-item active mr-sm-2 badge badge-info' %></li>
+          </ul>
         </div>
+        <div class="col-lg-8">
           <%= yield %>
-            <div class="col-lg-1"">
-              <% if user_signed_in?%>
-                <%= render current_user %>
-              <% end %>
+        </div>
+        <div class="col-lg-1">
+          <% if user_signed_in?%>
+              <%= render current_user %>
+          <% end %>
           </div>  
     </div>
   

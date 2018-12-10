@@ -1,3 +1,5 @@
 class Comment < ApplicationRecord
-  belongs_to :comment
+  has_ancestry
+  belongs_to :user
+  belongs_to :commentable, :polymorphic => true
 end

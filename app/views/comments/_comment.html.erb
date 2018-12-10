@@ -1,0 +1,15 @@
+<div class="media-body alert alert-info">
+    <h4 class="media-heading">
+        <%= comment.user.nickname %>
+    </h4>
+    <i>
+        <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
+    </i>
+    <p>
+        <%= simple_format comment.msg %>
+    </p>
+    <div class="actions">
+      <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new], :parent_id => comment) %>
+    </div>
+    <%= nested_comments comment.children %>
+</div>

@@ -10,19 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_004430) do
-
-  create_table "categories", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_12_10_180958) do
 
   create_table "comments", force: :cascade do |t|
-    t.string "msg"
-    t.integer "comment_id"
+    t.text "msg"
+    t.integer "user_id"
+    t.integer "commentable_id"
+    t.string "commentable_type"
+    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_comments_on_comment_id"
+    t.index ["ancestry"], name: "index_comments_on_ancestry"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "current_bargains", force: :cascade do |t|
@@ -32,6 +31,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lot_id"
+    t.integer "comment_id"
+    t.index ["comment_id"], name: "index_current_bargains_on_comment_id"
     t.index ["lot_id"], name: "index_current_bargains_on_lot_id"
     t.index ["user_id"], name: "index_current_bargains_on_user_id"
   end
