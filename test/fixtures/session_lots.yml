@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  current_price: 9.99
+  id_user_winner: 1
+
+two:
+  user: two
+  current_price: 9.99
+  id_user_winner: 1

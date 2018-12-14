@@ -1,0 +1,9 @@
+<div class="col-lg-8">
+    <a href="<%=main_news_path(main_news)%>" class="list-group-item"> <%= main_news.title%> </a>
+</div>
+<div class="col-lg-2">
+ <%= main_news.created_at.to_time.strftime('%I:%M %m/%d/%Y')%> 
+</div>
+<div class="col-lg-2"> 
+    <%= main_news.user.nickname%> 
+</div>

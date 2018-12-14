@@ -1,0 +1,35 @@
+<% if @lot.errors.any? %>
+  <div class="alert alert-danger">
+    <h5> Errors </h5>
+    <ul>
+      <% @lot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= bootstrap_form_for @lot do |f| %>
+
+    <%= f.text_field :name %>
+
+    <%= f.text_area :description %>
+
+    <%= f.datetime_select :lot_end_date,  wrapper: :date, input_html: {value: ' '} %>
+  
+    <%= f.number_field :start_price,  min: '0', step: '0.1'  %>
+    
+    <%= f.file_field :files, multiple: true %>
+
+    <%= f.text_field :all_tags %>
+    
+    <% if current_user.isadmin? %>
+      <%= f.check_box :isplayedout, checked_value: true, unchecked_value: false %>
+    <% end %>
+    
+    <%= f.button :submit %>
+
+    <%= link_to 'Back', :back, class: 'btn btn-outline-secondary' %>
+  
+<% end %>
+

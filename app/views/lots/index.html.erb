@@ -1,0 +1,7 @@
+<div class="col-lg-9">
+    <div class="card-columns">
+     <%= render @lots %>
+    </div>
+    <%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
+</div>
+

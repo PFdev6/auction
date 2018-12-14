@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<% if can? :create, @main_news%>
+  <%= link_to t('main.create_news'), new_main_news_path, class: "badge badge-dark" %>
+<%end%>
+ <div class="row" style="width: 150%;" >
+  <%= render @main_news %>
+ </div>
+
+<br>

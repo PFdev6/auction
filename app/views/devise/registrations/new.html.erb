@@ -1,0 +1,38 @@
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <h2><%= t('main.signup') %></h2>
+  
+  <%= devise_error_messages! %>
+  <div class="field">
+    <%= f.text_field :nickname %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "new-password", help: "Must be at least 6 characters long" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :first_name %>
+    <%= f.text_field :second_name %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :about_users, placeholder: "Describe about you..." %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>

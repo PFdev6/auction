@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<%= image_tag @current_bargain.lot.main_image.url(:medium) %>
+		</div>
+		<div class="row-col">
+			<div class="col">
+				<%= t('current_bargain.potential_winner')%>:
+				<% if @current_bargain.id_user_winner %>
+					<%= @current_bargain.id_user_winner.nickname %>
+				<% else %>
+					<%= t('current_bargain.no_winner_yet')%>
+				<% end %></div>
+			<div class="col">
+				<%= t('lot.start_price')%> <%= @current_bargain.lot.start_price %>
+			</div>
+		</div>
+		<div class="col">
+			<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'badge badge-secondary' %>
+		</div>
+		<div class="col">
+			<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'badge badge-secondary' %>
+		</div>
+		<div class="col-row">
+			<label class="col-2 "> <%=t('lot.add') %></label>
+			<div class="col">
+				<input class="form-control" type="number" value="1">
+			</div>
+		</div> 
+	</div>
+	<br/>
+	<div class="col">
+		<h2> <%= t('current_bargain.comments')%>: </h2>
+		<%= render "comments/form" %>
+		<%= nested_comments @comments %>
+	</div> 
+</div>
