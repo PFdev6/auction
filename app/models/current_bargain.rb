@@ -6,7 +6,8 @@ class CurrentBargain < ApplicationRecord
   
   after_find do
     if Time.now >= self.lot.lot_end_date && self.id_user_winner.nil?
-      self.destoy
+      self.lot.isplayedout = false;
+      self.destroy
     end
   end
 end

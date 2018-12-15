@@ -1,0 +1,18 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+	<% get_imgdescr(@lot).each_with_index do |img, ind| %>
+		<li data-target="#carouselExampleIndicators" data-slide-to="<%= ind + 1 %>"></li>
+	<% end %>
+  	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<%= image_tag @lot.main_image(:medium), class: 'd-block w-100',width:'500', height:'340' %>
+		</div>
+		<%get_imgdescr(@lot).each do |img| %>
+			<div class="carousel-item">
+				<%= image_tag img.url(:medium), class: 'd-block w-100',width:'500', height:'340' %>
+			</div>
+		<% end %>
+	</div>
+</div>

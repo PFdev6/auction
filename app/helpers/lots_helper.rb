@@ -6,4 +6,11 @@ module LotsHelper
       yield(tag, classes[index.round])
     end
   end
+
+  def get_imgdescr(lot)
+    imgs = []
+    imgs.push(lot.first_additional_image) if lot.first_additional_image.file?
+    imgs.push(lot.second_additional_image) if lot.second_additional_image.file?
+    imgs
+  end
 end

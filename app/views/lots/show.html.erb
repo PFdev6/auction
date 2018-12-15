@@ -1,48 +1,32 @@
-<article class="lot">
-  <section class="lot-head">
-    <%= image_tag @lot.main_image.url(:medium) %>
-    <h1> <%= @lot.name %> </h1>
-    <small>
-      <% if @lot.isplayedout? %>
-         <%= link_to  t('lot.link_to_baragain'), current_bargains_path(@lot) %>
-      <% end %>
-      <p class="card-text"> <%= t('lot.start_price') %>  <%= @lot.start_price %> BYN </p>
-      <time> <%= t('lot.time_created') %>  <%= @lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %> </time>
-      <% if can? :edit, @lot %>
-        <%= link_to  t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
-        |
-        <%= link_to  t('lot.delete'), lot_path(@lot),class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </small>
-  </section>
- <h2> <%= t('lot.description') %> </h2>
-  <section class="lot-body">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <%= image_tag @lot.main_image.url(:medium), class: 'd-block w-100' %>
-        </div>
-        <div class="carousel-item">
-           <%= image_tag @lot.first_additional_image.url(:medium), class: 'd-block w-100'  %>
-        </div>
-        <div class="carousel-item">
-           <%= image_tag @lot.second_additional_image.url(:medium), class: 'd-block w-100'  %>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="alert alert-dark" role="alert">
+        <span class="badge"> <%= @lot.name %> </span>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+      <small>
+        <% if @lot.isplayedout? %>
+          <%= link_to  t('lot.link_to_baragain'), current_bargains_path(@lot.id) %>
+        <% end %>
+        <p class="card-text"> <%= t('lot.start_price') %>  <span class="badge badge-pill badge-success"> <%= @lot.start_price %> <%= t('lot.byn') %> </span> </p>
+        <time> <%= t('lot.time_created') %> <span class="badge badge-light"> <%= @lot.created_at.to_time.strftime('%I:%M %m/%d/%Y')  %> </span>  </time>
+        <% if can? :edit, @lot %>
+          <%= link_to  t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
+          |
+          <%= link_to  t('lot.delete'), lot_path(@lot),class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </small>
+    </div>
+    <div class="col-lg-6">
+      <%= render 'lot_carousel' %>
+      </div>
   </div>
-    <%= @lot.description %>
-  </section>
-</article>
+  <div class="row">
+    <div class="col-lg-5">
+      <h2> 
+        <span class="badge"> <%= t('lot.description') %> </span>
+      </h2>
+        <span class="badge"> <%= @lot.description %> </span>
+    </div>
+  </div>
+</div>
