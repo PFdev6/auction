@@ -2,7 +2,7 @@
 <% if can? :create, @main_news%>
   <%= link_to t('main.create_news'), new_main_news_path, class: "badge badge-dark" %>
 <%end%>
- <div class="row" style="width: 150%;" >
+ <div class="row" >
   <%= render @main_news %>
  </div>
 

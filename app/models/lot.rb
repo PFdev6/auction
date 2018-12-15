@@ -3,7 +3,6 @@ class Lot < ApplicationRecord
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name, :description, :start_price, :lot_end_date, presence: true 
-  attr_accessor :array_files
   has_attached_file :main_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
@@ -14,7 +13,7 @@ class Lot < ApplicationRecord
  	validates_attachment_content_type :second_additional_image, content_type: /\Aimage\/.*\z/
 
   before_destroy do
-    CurrentBargain.where(lot_id: self).destroy
+    CurrentBargain.where(lot_id: self).delete_all
   end
 
   after_save do
@@ -22,14 +21,17 @@ class Lot < ApplicationRecord
     if current_bargain.size == 0 && self.isplayedout?
        CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price)   
     else 
-      if current_bargain 
+      if current_bargain && !self.isplayedout?
         current_bargain.destroy_all
       end
     end
   end
 
   def files=(array_files = [])
-    #self.update(main_image: array_files[0], first_additional_image:  array_files[1], second_additional_image: array_files[2])
+  end
+
+  def load_imgs(files)
+    self.update(main_image: files[0], first_additional_image: files[1], second_additional_image: files[2])
   end
 
   def all_tags
