@@ -47,6 +47,8 @@ gem "bootstrap_form", ">= 4.0.0"
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'ancestry'
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
+gem 'omniauth-facebook'
 gem 'devise'
 gem 'simple_form'
 gem 'execjs'
