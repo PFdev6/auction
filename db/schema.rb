@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_003029) do
+ActiveRecord::Schema.define(version: 2018_12_16_004012) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -62,8 +62,7 @@ ActiveRecord::Schema.define(version: 2018_12_14_003029) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.boolean "isplayedout"
-    t.integer "session_lot_id"
+    t.boolean "isplayedout", default: true
     t.string "first_additional_image_file_name"
     t.string "first_additional_image_content_type"
     t.integer "first_additional_image_file_size"
@@ -72,7 +71,8 @@ ActiveRecord::Schema.define(version: 2018_12_14_003029) do
     t.string "second_additional_image_content_type"
     t.integer "second_additional_image_file_size"
     t.datetime "second_additional_image_updated_at"
-    t.index ["session_lot_id"], name: "index_lots_on_session_lot_id"
+    t.integer "current_bargain_id"
+    t.index ["current_bargain_id"], name: "index_lots_on_current_bargain_id"
   end
 
   create_table "main_news", force: :cascade do |t|
