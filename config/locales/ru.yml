@@ -19,3 +19,4 @@ ru:
     success: "в процессе"
     stopped: "остановлен"
     expired: "закончен"
+  date.order: ""
