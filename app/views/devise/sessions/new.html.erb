@@ -1,5 +1,10 @@
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <h2>Log in</h2>
+  <h1 class="badge "><%= t('main.signin') %></h1>
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'badge badge-pill' %>
+    <% end -%>
+  <% end -%>
   <div class="field">
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

@@ -1,0 +1,21 @@
+ru:
+  main: 
+    logout: "Выйти"
+    signup: "Sign up"
+    signin: "Войти"
+    user: "Мой профиль"
+    new_lot: "Новый лот"
+    lot_session: "Текущие розыгрыши"
+  tags: "Теги: "
+  lot:
+    by: "Кем: "
+    descpription: "Описание"
+    start_price: "Начальная цена: "
+    time_created: "Время создания: "
+    end_date: "Время окончания"
+    byn: "белорусских рублей"
+    edit: "Изменить"
+    delete: "Удалить"
+    success: "в процессе"
+    stopped: "остановлен"
+    expired: "закончен"

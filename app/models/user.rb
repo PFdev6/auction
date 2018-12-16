@@ -6,6 +6,12 @@ class User < ApplicationRecord
   has_many :lots, dependent: :destroy
   has_many :main_news, dependent: :destroy
   
+  after_save do
+    if self.local == 'ru'
+      I18n.locale = :ru
+    end    
+  end
+
   def self.from_omniauth(auth)
     user = User.where(provider: auth.provider, uid: auth.uid).first
     if user.present?
