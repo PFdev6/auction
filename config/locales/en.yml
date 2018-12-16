@@ -33,7 +33,7 @@ en:
   main: 
     logout: "Log out"
     signup: "Sign up"
-    signin: "Sign in"
+    signin: "Log in"
     user: "My profile"
     new_lot: "New lot"
     lot_session: "Lot sessions"

@@ -19,7 +19,7 @@ class Lot < ApplicationRecord
   after_save do
     current_bargain =  CurrentBargain.where(lot_id: self)
     if current_bargain.size == 0 && self.isplayedout?
-       CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price)   
+       self.update(current_bargain: CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price))   
     else 
       if current_bargain && !self.isplayedout?
         current_bargain.destroy_all
