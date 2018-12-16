@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
+    return I18n.locale if current_user.nil? 
     if current_user.local == 'ru'
       I18n.locale = :ru
     else 

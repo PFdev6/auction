@@ -40,6 +40,7 @@ gem 'material_icons'
 gem 'activeadmin'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'cancancan', '~> 2.0'
+
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 
@@ -55,7 +56,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'execjs'
 gem 'date_wrapper'
-
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
 
 gem "paperclip", "~> 6.0.0"
 
