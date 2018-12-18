@@ -4,7 +4,7 @@ class LotsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index 
-		@lots = Lot.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+		@lots = Lot.includes(:user, :tags).paginate(page: params[:page], per_page: 10).order(created_at: :desc)
 	end
 
 	def show 
@@ -18,7 +18,7 @@ class LotsController < ApplicationController
 	  @lot = current_user.lots.build(lot_parms)
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
-		if check_file_count(files) && @lot.valid? && @lot.lot_end_date.to_date > (Time.now + 600).to_date  
+		if check_file_count(files) && @lot.valid? && @lot.check_time?  
 			@lot.save
       @lot.load_imgs(files)
 			redirect_to @lot, success: 'Lot successfully created'
@@ -38,16 +38,17 @@ class LotsController < ApplicationController
   def update 
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
-    if @lot.update_attributes(lot_parms) && check_file_count(files)
+    if @lot.update_attributes(lot_parms) && check_file_count(files) &&  @lot.check_time?
       @lot.load_imgs(files)
 			redirect_to @lot, success: 'Lot successfully updated'
-    else
+		else
+			flash[:notice] = t('main.change_end_date') if !@lot.check_time?
 			render 'edit', danger: 'Lot didn\'t updated'
 		end
 	end
 
 	private 
-  
+	
   def check_file_count(files)
     if files.size > 3 || files.size == 0 
       flash[:notice] =  'Should be from 1 to 3 images'

@@ -30,12 +30,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  successfully_created_comment: "Successfully created comment"
+  error_adding_comment: "Error adding comment"
+  leave_comment: "Leave a comment..."
   main: 
+    ok: "OK"
     logout: "Log out"
     signup: "Sign up"
     signin: "Log in"
     user: "My profile"
     new_lot: "New lot"
+    change_end_date: "change end date"
     lot_session: "Lot sessions"
   tags: "Tags: "
   lot:

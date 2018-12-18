@@ -14,10 +14,10 @@ class CommentsController < ApplicationController
 		@comment.user = current_user
 		
 		if @comment.save
-      flash[:notice] = "Successfully created comment."
+      flash[:notice] = t 'successfully_created_comment'
       redirect_to @commentable
     else
-      flash[:error] = "Error adding comment."
+      flash[:error] = t 'error_adding_comment'
     end
   end
  

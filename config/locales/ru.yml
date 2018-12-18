@@ -1,8 +1,12 @@
 ru:
+  successfully_created_comment: "Комментарий успешно создан"
+  error_adding_comment: "Ошибка при создании комментария"
+  leave_comment: "Оставьте комментарий..."
   main: 
     logout: "Выйти"
     signup: "Sign up"
     signin: "Войти"
+    change_end_date: "Измените время окончание лота"
     user: "Мой профиль"
     new_lot: "Новый лот"
     lot_session: "Текущие розыгрыши"

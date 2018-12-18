@@ -3,12 +3,13 @@ class CurrentBargainsController < ApplicationController
   before_action :comments, :only => [:show]
 
   def index 
-    @current_bargain = CurrentBargain.all.order(created_at: :desc)
+    # Library.where(size: 'large').includes(:books)
+    @current_bargain = CurrentBargain.all.includes(:lot).order(created_at: :desc)
 	end
 
   def comments
     @commentable = find_commentable
-    @comments = @commentable.comments.arrange(:order => :created_at)
+    @comments = @commentable.comments.includes(:user).arrange(:order => :created_at)
     @comment = Comment.new
   end
 
@@ -18,7 +19,7 @@ class CurrentBargainsController < ApplicationController
   end
 
   def cur_bargain 
-    @current_bargain  = CurrentBargain.find(params[:id])
+    @current_bargain = CurrentBargain.find(params[:id])
   end
   
   def current_bargain

@@ -1,8 +1,8 @@
  <%= bootstrap_form_for [@commentable, @comment] do |f| %>
   <%= f.hidden_field :parent_id %>
-      <p>
+    <p>
       <%= f.text_area :msg, hide_label: true, placeholder: "Leave a comment..." %>
-        <br/>
-       <%= f.button :submit %>
-        </p>
+      <br/>
+      <%= f.submit t('main.ok') %>
+    </p>
 <% end %>

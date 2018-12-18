@@ -7,11 +7,11 @@
   	</ol>
 	<div class="carousel-inner">
 		<div class="carousel-item active">
-			<%= image_tag @lot.main_image(:medium), class: 'd-block w-100',width:'500', height:'340' %>
+			<%= image_tag @lot.main_image(:medium), class: 'd-block w-100',width:'400', height:'270' %>
 		</div>
 		<%get_imgdescr(@lot).each do |img| %>
 			<div class="carousel-item">
-				<%= image_tag img.url(:medium), class: 'd-block w-100',width:'500', height:'340' %>
+				<%= image_tag img.url(:medium), class: 'd-block w-100',width:'400', height:'270' %>
 			</div>
 		<% end %>
 	</div>

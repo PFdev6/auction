@@ -27,6 +27,13 @@ class Lot < ApplicationRecord
     end
   end
 
+  def check_time?
+    if self.lot_end_date >= Time.now.utc
+      return true
+    end
+    false
+  end
+
   def files=(array_files = [])
   end
 

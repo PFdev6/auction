@@ -2,7 +2,7 @@ class MainNewsController < ApplicationController
   before_action :set_main_news, only: [:show, :edit, :update, :destroy]
 
   def index
-    @main_news = MainNews.all.order(created_at: :desc)
+    @main_news = MainNews.all.includes(:user).order(created_at: :desc)
   end
 
   def show
