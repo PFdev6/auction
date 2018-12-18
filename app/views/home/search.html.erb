@@ -1,0 +1,14 @@
+<% if @searching.present? %>
+ 	<p> <%= t('result')%> </p>
+      <% @searching.results.each do |result|%>
+				<h2> <%= result[:hint][:title]%> </h2>
+				<p>  <%= result[:hint][:preview]%> </p>
+				<br/>
+				<h3> <%= result[:hint][:type]%> </h3>
+				<br/>
+				<% link_to 'More', search_result_link(result)%>
+			<% end %>
+<% end %>
+<% unless @searching.present? %>
+	<p> Ups </p>
+<% end %>

@@ -4,7 +4,7 @@ class LotsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index 
-		@lots = Lot.paginate(:page => params[:page], :per_page => 6).order(created_at: :desc)
+		@lots = Lot.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
 	end
 
 	def show 

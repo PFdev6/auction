@@ -30,10 +30,10 @@
         <a class="badge badge-info mr-sm-2" href="<%=new_user_registration_path%>"><%= t('main.signup') %> <span class="sr-only">(current)</span></a>
         <a class="badge badge-info mr-sm-2" href="<%=new_user_session_path%>"> <%= t('main.signin') %><span class="sr-only">(current)</span></a>
       <% end %>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <%= form_tag('/search', method: :get) do |f| %>
+      <%= text_field_tag(:query) %>
+      <%= submit_tag("Search") %>
+    <% end %>
   </div>
 </nav>
     <div class="container main">
@@ -46,7 +46,6 @@
           <% end %>
         </div>
       <div> 
-
 
       <div class="row">
         <div class="col-lg-0"> <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>

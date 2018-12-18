@@ -27,7 +27,7 @@ class Search
 	def run_elastic(search_word, page, per_page)
 		Elasticsearch::Model
 			.search(search_query(search_word), MODELS_TO_SEARCH)
-			.paginate(page: page, per_page: per_page)
+		#	.paginate(page:params[:page], per_page: per_page) need orrect
 	end
 
 	def save_data(data)

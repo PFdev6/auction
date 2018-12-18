@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :current_bargains, only: [:show, :index, :destroy] do 
     resources :comments
   end
+  get '/search' => 'home#search'
 end
