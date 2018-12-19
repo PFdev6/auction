@@ -7,6 +7,9 @@ class CurrentBargainsController < ApplicationController
     @current_bargain = CurrentBargain.all.includes(:lot).order(created_at: :desc)
 	end
 
+  def show
+  end
+
   def comments
     @commentable = find_commentable
     @comments = @commentable.comments.includes(:user).arrange(:order => :created_at)

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find(params[:id])
-		@user.lots = Lot.where(user_id: @user.id)
+		@user.lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
 	end
 
 	def edit
