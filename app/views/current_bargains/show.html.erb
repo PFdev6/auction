@@ -1,41 +1,46 @@
 <div class="container">
 	<div class="row">
-		<div class="col">
+		<div class="col-4">
 			<%= image_tag @current_bargain.lot.main_image.url(:medium) %>
 		</div>
-		<div class="row">
-			<div class="col">
+		<div class="col-8 row">
+			<div class="col-4">
 				<%= t('current_bargain.potential_winner')%>:
 				<% if @current_bargain.id_user_winner %>
-					<%= @current_bargain.id_user_winner.nickname %>
+					<%=  User.find_by(id:@current_bargain.id_user_winner).nickname %>
 				<% else %>
 					<%= t('current_bargain.no_winner_yet')%>
 				<% end %></div>
-			<div class="col">
+			<div class="col-4">
 				<%= t('lot.start_price')%> <%= @current_bargain.lot.start_price %>
 			</div>
-		</div>
-		<div class="col">
-			<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'badge badge-secondary' %>
-		</div>
-		<div class="col">
-			<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'badge badge-secondary' %>
-		</div>
-		<% if current_user != @current_bargain.user %>
-			<div class="col">
-				<label class="col-2 "> <%=t('lot.add') %></label>
-				<div class="col">
-					<input class="form-control" type="number" value="1">
-				</div>
-			</div> 
-		<% end %>
-	</div>
-		<div class ="row">
-			<%= t('current_bargain.bidders')%>
-			<% @current_bargain.users.each do |user| %>
-				<%= link_to user.nickname, user_path(user), class: 'badge badge-secondary' %>	
+			<div class="col-4">
+				<%= t('lot.current_price')%> <%= @current_bargain.current_price %>
+			</div>
+			<div class="col-2">
+				<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'badge badge-secondary' %>
+			</div>
+			<div class="col-1">
+				<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'badge badge-secondary' %>
+			</div>
+			<% if current_user != @current_bargain.user %>
+				<div class="col-2">
+					<%= bootstrap_form_for(@current_bargain)  do |f| %>
+    				<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
+						<%= f.submit "Add" %>
+					<% end %>
+				</div> 
 			<% end %>
+			<div class ="">
+				<%= t('current_bargain.bidders')%>
+				<ul>
+					<% @current_bargain.users.each do |user| %>
+						<li> <%= link_to user.nickname, user_path(user), class: 'badge badge-secondary' %> </li>	
+					<% end %>
+				</ul>
 		</div>
+		</div>
+	</div>
 	<br/>
 	<div class="col">
 		<h2> <%= t('current_bargain.comments')%>: </h2>

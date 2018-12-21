@@ -2,7 +2,7 @@ class Lot < ApplicationRecord
   belongs_to :user
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
-  validates :name, :description, :start_price, :lot_end_date, presence: true 
+  validates :name,:autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
   has_attached_file :main_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
@@ -19,7 +19,8 @@ class Lot < ApplicationRecord
   after_save do
     current_bargain =  CurrentBargain.where(lot_id: self)
     if current_bargain.size == 0 && self.isplayedout?
-       self.update(current_bargain_id: CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price))   
+       self.update(current_bargain_id: CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price))
+       DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0])   
     else 
       if current_bargain && !self.isplayedout?
         current_bargain.destroy_all
@@ -38,7 +39,9 @@ class Lot < ApplicationRecord
   end
 
   def load_imgs(files)
-    self.update(main_image: files[0], first_additional_image: files[1], second_additional_image: files[2])
+    if(files)
+      self.update(main_image: files[0], first_additional_image: files[1], second_additional_image: files[2])
+    end
   end
 
   def all_tags

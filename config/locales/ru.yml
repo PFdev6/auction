@@ -1,4 +1,5 @@
 ru:
+  complete: "Успешно"
   successfully_created_comment: "Комментарий успешно создан"
   error_adding_comment: "Ошибка при создании комментария"
   leave_comment: "Оставьте комментарий..."

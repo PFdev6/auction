@@ -15,7 +15,7 @@ class LotsController < ApplicationController
 	end
 
 	def create 
-	  @lot = current_user.lots.build(lot_parms)
+	  @lot = current_user.lots.build(lot_params)
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
 		if check_file_count(files) && @lot.valid? && @lot.check_time?  
@@ -38,7 +38,7 @@ class LotsController < ApplicationController
   def update 
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
-    if @lot.update_attributes(lot_parms) && check_file_count(files) &&  @lot.check_time?
+    if @lot.update_attributes(lot_params) &&  @lot.check_time?
       @lot.load_imgs(files)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
@@ -48,7 +48,6 @@ class LotsController < ApplicationController
 	end
 
 	private 
-	
   def check_file_count(files)
     if files.size > 3 || files.size == 0 
       flash[:notice] =  'Should be from 1 to 3 images'
@@ -62,8 +61,8 @@ class LotsController < ApplicationController
 		@lot = Lot.find(params[:id])
 	end
 
-	def lot_parms
-		params.require(:lot).permit(:name, :description, :start_price, :isplayedout, :session_lot, :all_tags, :lot_end_date)
+	def lot_params
+		params.require(:lot).permit(:name, :description,:autopurchase_price, :start_price, :session_lot, :all_tags, :lot_end_date)
 	end
 
 end

@@ -4,7 +4,6 @@ class User < ApplicationRecord
   validates :nickname, :email, :first_name, :second_name, presence: true   
   devise :database_authenticatable, :omniauthable, :recoverable, :rememberable, :registerable, :trackable, :validatable
   has_many :lots, dependent: :destroy
-  has_many :current_bargains
   has_many :main_news, dependent: :destroy
 
   def self.from_omniauth(auth)

@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :current_bargains, only: [:show, :index, :destroy] do 
+  resources :current_bargains, only: [:show, :index, :destroy, :edit] do 
     resources :comments
+    patch '/' => 'current_bargains#update'
   end
+ 
   get '/search' => 'home#search'
 end
