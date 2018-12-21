@@ -17,6 +17,7 @@ ru:
     descpription: "Описание"
     start_price: "Начальная цена: "
     time_created: "Время создания: "
+    autopurchase_price: "Цена автовыкупа: "
     end_date: "Время окончания"
     byn: "белорусских рублей"
     edit: "Изменить"

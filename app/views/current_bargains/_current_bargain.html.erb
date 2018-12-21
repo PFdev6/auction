@@ -5,6 +5,9 @@
     <p class="card-text">  
        <span class="badge badge-pill badge-success"> <%= t('lot.current_price') %>  <%= current_bargain.current_price %> <%= t('lot.byn') %> </span> 
     </p>
+    <p class="card-text"> 
+     <span class="badge"> <%= t('lot.autopurchase_price') %> </span> <span class="badge badge-pill badge-success"> <%= current_bargain.lot.autopurchase_price %> <%= t('lot.byn') %> </span>
+    </p>
     <p class="card-text">  
       <span class="badge"> <%= t('lot.time_created') %> </span> <span class="badge badge-warning"> <%= current_bargain.lot.created_at.to_time.strftime('%R %d/%m/%Y')  %> </span>
     </p>
