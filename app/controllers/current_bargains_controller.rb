@@ -17,10 +17,13 @@ class CurrentBargainsController < ApplicationController
   end
 
   def update
-    @current_bargain = CurrentBargain.find(params[:current_bargain_id])
     new_price = request.parameters[:current_bargain][:current_price].to_i
-    flash[:notice] = @current_bargain.new_price_for_bargain(new_price, current_user)
-    redirect_to @current_bargain
+    result = UpdateCurrentBargain.call(
+                              params: [new_price: new_price, current_bargain_id: params[:current_bargain_id]],
+                              user: current_user
+                              )
+    #flash[:notice] = @current_bargain.new_price_for_bargain(new_price, current_user)
+    redirect_to result.current_bargain
   end
 
   def edit
