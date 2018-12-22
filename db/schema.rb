@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_224637) do
+ActiveRecord::Schema.define(version: 2018_12_21_180751) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2018_12_20_224637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.boolean "isplayedout", default: true
+    t.boolean "inprocess", default: true
     t.string "first_additional_image_file_name"
     t.string "first_additional_image_content_type"
     t.integer "first_additional_image_file_size"

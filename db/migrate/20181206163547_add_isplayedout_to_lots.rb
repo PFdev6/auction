@@ -1,5 +1,5 @@
-class AddIsplayedoutToLots < ActiveRecord::Migration[5.2]
+class AddinprocessToLots < ActiveRecord::Migration[5.2]
   def change
-    add_column :lots, :isplayedout, :boolean, :default => true
+    add_column :lots, :inprocess, :boolean, :default => true
   end
 end

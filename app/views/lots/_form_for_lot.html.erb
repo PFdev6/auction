@@ -27,7 +27,7 @@
     <%= f.text_field :all_tags %>
     
     <% if current_user.isadmin? %>
-      <%= f.check_box :isplayedout, checked_value: true, unchecked_value: false %>
+      <%= f.check_box :inprocess, checked_value: true, unchecked_value: false %>
     <% end %>
     
     <div class="actions">

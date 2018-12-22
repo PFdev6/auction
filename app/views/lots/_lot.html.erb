@@ -3,7 +3,7 @@
  <%= image_tag lot.main_image.url(:medium), class: 'card-img-top'  %>
   <div class="card-header">
     <%= lot.name %>
-     <% if !lot.isplayedout? %>
+     <% if !lot.inprocess? %>
         <span class="badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
     <% elsif Time.now < lot.lot_end_date%>
         <span class="badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>

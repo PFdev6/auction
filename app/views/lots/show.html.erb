@@ -5,14 +5,14 @@
         <li class="breadcrumb-item active"><%= @lot.name %> </li>
       </ol>
       <small>
-        <% if @lot.isplayedout? %>
-          <%= link_to  t('lot.link_to_baragain'), current_bargains_path(@lot.id) %>
+        <% if @lot.inprocess? %>
+          <%= link_to  t('lot.link_to_baragain'), current_bargains_path(@lot) %>
         <% end %>
         <p class="card-text"> <%= t('lot.start_price') %>  <span class="badge badge-pill badge-success"> <%= @lot.start_price %> <%= t('lot.byn') %> </span> </p>
         <time> <%= t('lot.time_created') %> <span class="badge badge-light"> <%= @lot.created_at.to_time.strftime('%R %d/%m/%Y')  %> </span>  </time>
         <% if can? :edit, @lot %>
           <%= link_to  t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
-          |r
+          |
           <%= link_to  t('lot.delete'), lot_path(@lot),class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
       </small>

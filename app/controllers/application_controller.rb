@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if current_user.local == 'ru'
       I18n.locale = :ru
     else 
-      I18n.locale = I18n.default_locale
+      I18n.locale = :en
     end
   end
 

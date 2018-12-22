@@ -1,37 +1,33 @@
 <div class="container">
 	<div class="row">
-		<div class="col-4">
+		<div class="col-5">
 			<%= image_tag @current_bargain.lot.main_image.url(:medium) %>
 		</div>
-		<div class="col-8 row">
-			<div class="col-4 badge">
+		<div class="col-7 row">
+			<div class="col-8 badge">
 				<%= t('current_bargain.potential_winner')%>:
 					<% if @current_bargain.id_user_winner %>
-				<%=  User.find_by(id:@current_bargain.id_user_winner).nickname %>
+						<%= link_to t('check'), user_path(@current_bargain.id_user_winner) %> 
 					<% else %>
 				<%= t('current_bargain.no_winner_yet')%>
 					<% end %>
+				<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'badge badge-secondary' %>
+				<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'badge badge-secondary' %>
 			</div>
-			<ul class="col-4 badge" >
+			<ul class="col-2 badge" >
 				<li> 	<%= t('lot.start_price')%> <%= @current_bargain.lot.start_price %> </li>	
 				<li> 	<%= t('lot.autopurchase_price')%> <%= @current_bargain.lot.autopurchase_price %> </li>	
 				<li> 	<%= t('lot.current_price')%> <%= @current_bargain.current_price %> </li>	
 			</ul>
-			<div class="col-2">
-				<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'badge badge-secondary' %>
-			</div>
-			<div class="col-2">
-				<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'badge badge-secondary' %>
-			</div>
-			<% if current_user != @current_bargain.user %>
-				<div class="col-2 badge">
+			<% if current_user != @current_bargain.user && @current_bargain.played_out %>
+				<div class="badge col-12 row">
 					<%= bootstrap_form_for(@current_bargain)  do |f| %>
     				<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
 						<%= f.submit "Add" %>
 					<% end %>
 				</div> 
 			<% end %>
-			<div class ="badge">
+			<div class ="col-10 badge">
 				<%= t('current_bargain.bidders')%>
 				<ul>
 					<% @current_bargain.users.each do |user| %>
