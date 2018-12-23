@@ -1,7 +1,8 @@
 <div class="container">
+	</br>
 	<div class="row">
 		<div class="col-5">
-			<%= image_tag @current_bargain.lot.main_image.url(:medium) %>
+			<%= image_tag @current_bargain.lot.main_image.url(:medium), class: 'rounded' %>
 		</div>
 		<div class="col-7 row">
 			<div class="col-8 badge">
@@ -20,23 +21,17 @@
 				<li> 	<%= t('lot.current_price')%> <%= @current_bargain.current_price %> </li>	
 			</ul>
 			<div class="badge col-12 row">
-				<% if current_user != @current_bargain.user && @current_bargain.played_out%>
+			
+				<% if can? :update, @current_bargain %>
 					<%= bootstrap_form_for(@current_bargain)  do |f| %>
 						<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
 						<%= f.submit "Add" %>
 					<% end %>
-				<%else%>
-					<%= link_to t('Winner'), user_path(@current_bargain.id_user_winner) %> 
+				<%elsif !@current_bargain.played_out%> 
+						<%= get_winner_info(@current_bargain.id_user_winner)%>
 				<% end %>
 			</div>
-			<div class ="col-10 badge">
-				<%= t('current_bargain.bidders')%>
-				<ul>
-					<% @current_bargain.users.each do |user| %>
-						<li> <%= link_to user.nickname, user_path(user) %> </li>	
-					<% end %>
-				</ul>
-			</div>
+			<%= render 'users_clicked_add'%>
 		</div>
 	</div>
 	<br/>

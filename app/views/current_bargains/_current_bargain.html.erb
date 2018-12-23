@@ -16,8 +16,7 @@
     </p>
     <a href="<%=current_bargain_path(current_bargain)%>" class="btn btn-info"> <%=t('current_bargain.open')%> </a>
   </div>
-   <div class="card-footer text-muted">
+    <div class="card-footer text-muted">
       <p> <%= t('lot.by') %><%=current_bargain.lot.user.email %> </p>
-      <%= raw current_bargain.lot.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'badge badge-secondary' }.join(' ') %>
-  </div>
+   </div>
 </div>

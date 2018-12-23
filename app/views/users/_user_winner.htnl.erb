@@ -1,0 +1,4 @@
+<div class="alert alert-success" role="alert"> 
+  <%= image_tag user.avatar.url(:thumb), width:'50', height:'50' %>
+  <strong><%= link_to t('Winner'), user_path(user) %>!</strong>
+</div>
