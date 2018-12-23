@@ -6,7 +6,7 @@
       </ol>
       <small>
         <% if @lot.inprocess? %>
-          <%= link_to  t('lot.link_to_baragain'), current_bargains_path(@lot) %>
+          <%= link_to  t('lot.link_to_baragain'), current_bargain_path(@lot.current_bargain) %>
         <% end %>
         <p class="card-text"> <%= t('lot.start_price') %>  <span class="badge badge-pill badge-success"> <%= @lot.start_price %> <%= t('lot.byn') %> </span> </p>
         <time> <%= t('lot.time_created') %> <span class="badge badge-light"> <%= @lot.created_at.to_time.strftime('%R %d/%m/%Y')  %> </span>  </time>

@@ -8,7 +8,8 @@
     <% elsif Time.now < lot.lot_end_date%>
         <span class="badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>
     <% else Time.now >= lot.lot_end_date%>
-        <span class="badge badge-pill badge-danger"><%= t('lot.expired')%></span>    
+        <span class="badge badge-pill badge-danger"><%= t('lot.expired')%></span> 
+        <%= link_to  t('Winner'), user_path(lot.current_bargain.id_user_winner), class: "badge badge-dark"  %>
     <% end %>
   </div>
   <div class="card-body">

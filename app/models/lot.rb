@@ -1,5 +1,6 @@
 class Lot < ApplicationRecord
   belongs_to :user
+  has_one :current_bargain, dependent: :delete
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name,:autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
@@ -19,7 +20,8 @@ class Lot < ApplicationRecord
   after_save do
     current_bargain =  CurrentBargain.where(lot_id: self)
     if current_bargain.size == 0 && self.inprocess?
-       self.update(current_bargain_id: CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price))
+       bargain_id = CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price).id
+       self.update(current_bargain_id: bargain_id)
        DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0])   
     else 
       if current_bargain && !self.inprocess?

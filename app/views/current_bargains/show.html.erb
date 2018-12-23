@@ -7,7 +7,7 @@
 			<div class="col-8 badge">
 				<%= t('current_bargain.potential_winner')%>:
 					<% if @current_bargain.id_user_winner %>
-						<%= link_to t('check'), user_path(@current_bargain.id_user_winner) %> 
+						<%= link_to t('click'), user_path(@current_bargain.id_user_winner) %> 
 					<% else %>
 				<%= t('current_bargain.no_winner_yet')%>
 					<% end %>
@@ -19,14 +19,16 @@
 				<li> 	<%= t('lot.autopurchase_price')%> <%= @current_bargain.lot.autopurchase_price %> </li>	
 				<li> 	<%= t('lot.current_price')%> <%= @current_bargain.current_price %> </li>	
 			</ul>
-			<% if current_user != @current_bargain.user && @current_bargain.played_out %>
-				<div class="badge col-12 row">
+			<div class="badge col-12 row">
+				<% if current_user != @current_bargain.user && @current_bargain.played_out%>
 					<%= bootstrap_form_for(@current_bargain)  do |f| %>
-    				<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
+						<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
 						<%= f.submit "Add" %>
 					<% end %>
-				</div> 
-			<% end %>
+				<%else%>
+					<%= link_to t('Winner'), user_path(@current_bargain.id_user_winner) %> 
+				<% end %>
+			</div>
 			<div class ="col-10 badge">
 				<%= t('current_bargain.bidders')%>
 				<ul>

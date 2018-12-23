@@ -37,9 +37,8 @@ class LotsController < ApplicationController
 
   def update 
     files = request.parameters[:lot][:files]
-    files = [] if files.nil?
     if @lot.update_attributes(lot_params) &&  @lot.check_time?
-      @lot.load_imgs(files)
+      @lot.load_imgs(files) if !files.nil?
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
 			flash[:notice] = t('main.change_end_date') if !@lot.check_time?

@@ -20,7 +20,7 @@ module Auction
     # the framework and any gems in your application.
     # Where the I18n library should search for translation files
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
-    
+    config.active_job.queue_adapter = :delayed_job
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :ru]
   end
