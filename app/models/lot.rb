@@ -24,7 +24,7 @@ class Lot < ApplicationRecord
        self.update(current_bargain_id: bargain_id)
        DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0])   
     else 
-      if current_bargain && !self.inprocess?
+      if current_bargain && !self.inprocess
         current_bargain.destroy_all
       end
     end

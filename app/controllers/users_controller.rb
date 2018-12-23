@@ -2,14 +2,14 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find(params[:id])
-		@user.lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
+		@user.lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
 	end
 
 	def edit
 	end
 
-	def winlots
-		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user)
+	def win_lots
+		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
 	end
 
 	def update 

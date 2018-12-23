@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :lots
   resources :tags, only:[:show, :destroy]
   resources :users do
-    get "winlots"
+    get "win_lots"
   end
 
   mount Ckeditor::Engine => '/ckeditor'

@@ -25,7 +25,8 @@ class DeterminingTheWinnerJob < ApplicationJob
 
   def add_time?(current_bargain)
     five_second_to = current_bargain.lot.lot_end_date - 5
-    puts five_second_to + 'five second'
+    puts five_second_to
+    puts 'fivesecond'
     if(current_bargain.lot.lot_end_date < current_bargain.updated_at && current_bargain.updated_at <  five_second_to + 5)
       return true
     end

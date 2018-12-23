@@ -21,6 +21,8 @@ module Auction
     # Where the I18n library should search for translation files
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
     config.active_job.queue_adapter = :delayed_job
+    config.time_zone = 'Minsk'
+    config.active_record.default_timezone = :local
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :ru]
   end
