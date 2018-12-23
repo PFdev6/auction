@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :main_news
   resources :lots
   resources :tags, only:[:show, :destroy]
-  resources :users
+  resources :users do
+    get "winlots"
+  end
+
   mount Ckeditor::Engine => '/ckeditor'
   ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

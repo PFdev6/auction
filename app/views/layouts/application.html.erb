@@ -23,6 +23,7 @@
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_path(current_user)%>"><%= t('main.user') %><span class="sr-only">(current)</span></a></li>
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a></li>
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=current_bargains_path%>"> <%= t('main.all_played_lots') %> <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_winlots_path(current_user)%>"> <%= t('main.win_lots') %> <span class="sr-only">(current)</span></a></li>
         </ul>
         <%= link_to t('main.logout'), destroy_user_session_path, :method => :delete, class: 'nav-item active mr-sm-2 badge badge-info' %>
       <% else %>

@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 	def edit
 	end
 
+	def winlots
+		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user)
+	end
 
 	def update 
 		@user = current_user
