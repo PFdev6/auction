@@ -14,13 +14,19 @@ class DeterminingTheWinnerJob < ApplicationJob
       if(current_bargain.id_user_winner.nil?)
         puts 'destroy'
         current_bargain.destroy
-      elsif(add_time?(current_bargain))
+        Message.create(msg: 'No winner ', user_id: current_bargain.user.id)
+      elsif(add_time?(current_bargain))      
         puts current_bargain.lot.lot_end_date 'lot'
         current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1000)
         puts current_bargain.lot.lot_end_date 'lot +1000'
         DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain)   
+        Message.create(msg: 'Add time for lot', user_id: current_bargain.user.id)
+        current_bargain.users do |user|
+          Message.create(msg: 'Add time for lot', user_id: user.id)
+        end
       else
         current_bargain.update_attributes(played_out: true)
+        Message.create(msg: 'Lot was played put', user_id: current_bargain.user.id)
         #msg!!!!
       end
     end

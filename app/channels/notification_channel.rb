@@ -8,6 +8,6 @@ class NotificationChannel < ApplicationCable::Channel
   end
 
   def notify(data)
-    Message.create msg: data['message']
+    Message.create msg: data['message']#, user: current_user 
   end
 end
