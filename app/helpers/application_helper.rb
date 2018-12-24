@@ -9,4 +9,5 @@ module ApplicationHelper
 		# 	news_path(result[:record_id])
 		end
 	end
+
 end
