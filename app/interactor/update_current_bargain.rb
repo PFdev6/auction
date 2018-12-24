@@ -9,7 +9,7 @@ class UpdateCurrentBargain
     CurrentBargain.transaction do
       current_price = current_bargain.current_price
       if(new_price >= current_bargain.lot.autopurchase_price)
-        current_bargain.update_attributes(current_price: new_price, id_user_winner: user.id, played_out: :false)        
+        current_bargain.update_attributes(current_price: new_price, id_user_winner: user.id, played_out: :true)        
       elsif(new_price > current_price)
         current_bargain.update_attributes(current_price: new_price, id_user_winner: user.id)
         current_bargain.users << user

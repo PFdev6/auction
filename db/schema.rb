@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_224725) do
+ActiveRecord::Schema.define(version: 2018_12_23_223441) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 2018_12_22_224725) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_main_news_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "msg"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|

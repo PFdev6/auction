@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :danger
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
+  before_action :get_messages
+
+  def get_messages
+		@messages = Message.all.order(created_at: :desc)
+	end
+
 
   def set_locale
     return I18n.locale if current_user.nil? 
@@ -14,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
   end

@@ -24,7 +24,19 @@
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a></li>
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=current_bargains_path%>"> <%= t('main.all_played_lots') %> <span class="sr-only">(current)</span></a></li>
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_win_lots_path(current_user)%>"> <%= t('main.win_lots') %> <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-item active mr-sm-2 badge badge-info nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= t 'main.notification'%>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div id="messages">            
+              <%= render @messages %>
+            </div>
+          </div>
+        </li>
         </ul>
+
+
         <%= link_to t('main.logout'), destroy_user_session_path, :method => :delete, class: 'nav-item active mr-sm-2 badge badge-info' %>
       <% else %>
         </ul> 

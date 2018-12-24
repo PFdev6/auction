@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	
+	before_action :get_messages
 	def show
 		@user = User.find(params[:id])
 		@user.lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
