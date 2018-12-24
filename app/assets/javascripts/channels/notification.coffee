@@ -5,11 +5,14 @@ App.notification = App.cable.subscriptions.create "NotificationChannel",
   disconnected: ->
     # Called when the subscription has been terminated by the server
 
-  received: (data) ->
+  received: (data)  ->
+    console.log data
     $('#messages').prepend data
-    n = $('#messages').children().length
-    $('#count_notification').text n
-    return 
+    console.log  $('#messages').children().length
+    $('#count_notification').text $('#messages').children().length
+    
     # Called when there's incoming data on the websocket for this channel
-  notify: (message) ->
-    @perform 'notify', message: message
+
+  notify: (message, user) ->
+    console.log message, user    
+    @perform 'notify', message: message, user: user

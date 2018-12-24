@@ -3,9 +3,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
   before_action :get_messages
+  
 
   def get_messages
-		@messages = Message.all.order(created_at: :desc)
+    if(current_user)
+      @messages = Message.where(user_id: current_user.id).order(created_at: :desc)
+    end
 	end
 
 

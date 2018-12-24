@@ -19,7 +19,8 @@ class LotsController < ApplicationController
     files = [] if files.nil?
 		if check_file_count(files) && @lot.valid? && @lot.check_time?  
 			@lot.save
-      @lot.load_imgs(files)
+			@lot.load_imgs(files)
+			Message.create(msg:"NEW LOT", user_id: current_user.id)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
 			render 'new',  danger: 'Lot didn\'t created'

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'lots#index'
   resources :main_news
   resources :lots
+  resources :messages, only:[:destroy]
   resources :tags, only:[:show, :destroy]
   resources :users do
     get "win_lots"

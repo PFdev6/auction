@@ -3,6 +3,12 @@ ru:
   successfully_created_comment: "Комментарий успешно создан"
   error_adding_comment: "Ошибка при создании комментария"
   leave_comment: "Оставьте комментарий..."
+  notification: 
+    add_time: 'Было добавлено 20 минут' 
+    user winner: 'Вы победили'
+    user loser: 'Ваша ставка не прошла' 
+    no_winner: 'Нет ставок'
+    played_out: 'Played Out'
   main: 
     logout: "Выйти"
     signup: "Sign up"

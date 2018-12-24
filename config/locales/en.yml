@@ -34,6 +34,12 @@ en:
   error_adding_comment: "Error adding comment"
   leave_comment: "Leave a comment..."
   complete: "Complete"
+  notification: 
+    add_time: '20 minutes was added'
+    user winner: 'You won'
+    user loser: 'Your bid failed'
+    no_winner: 'No bet'
+    played_out: 'Played Out'
   main: 
     ok: "OK"
     logout: "Log Out"
