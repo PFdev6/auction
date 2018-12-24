@@ -29,10 +29,8 @@
              <span id="count_notification" class="badge badge-light"></span>
             <%= t 'main.notification'%>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <div id="messages">            
-              <%= render @messages %>
-            </div>
+          <div class="dropdown-menu badge-dark" id="messages" >  
+            <%= render @messages %>
           </div>
         </li>
         </ul>

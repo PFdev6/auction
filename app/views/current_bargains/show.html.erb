@@ -23,7 +23,7 @@
 				<li> 	<%= t('lot.current_price')%> <%= @current_bargain.current_price %> </li>	
 			</ul>
 			<div class="badge col-12 row">
-				<% if can? :update, @current_bargain && !@current_bargain.played_out  %>
+				<% if current_user != @current_bargain.user  && !@current_bargain.played_out  %>
 					<%= bootstrap_form_for(@current_bargain)  do |f| %>
 						<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
 						<%= f.submit "Add" %>

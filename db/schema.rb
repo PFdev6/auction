@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_23_223441) do
+ActiveRecord::Schema.define(version: 2018_12_24_204541) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -46,7 +46,9 @@ ActiveRecord::Schema.define(version: 2018_12_23_223441) do
     t.integer "lot_id"
     t.integer "comment_id"
     t.boolean "played_out", default: false
+    t.integer "delayed_job_id"
     t.index ["comment_id"], name: "index_current_bargains_on_comment_id"
+    t.index ["delayed_job_id"], name: "index_current_bargains_on_delayed_job_id"
     t.index ["lot_id"], name: "index_current_bargains_on_lot_id"
     t.index ["user_id"], name: "index_current_bargains_on_user_id"
   end

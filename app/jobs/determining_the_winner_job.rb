@@ -3,8 +3,8 @@ class DeterminingTheWinnerJob < ApplicationJob
   def perform(current_bargain)
     puts '-----------------------------------------------------'
     determine_winner(current_bargain)
+    puts self.job_id
     puts '-----------------------------------------------------'
-    self.destroy
   end
 
   private 
@@ -13,28 +13,32 @@ class DeterminingTheWinnerJob < ApplicationJob
     CurrentBargain.transaction do
       if(current_bargain.id_user_winner.nil?)
         puts 'destroy'
+        Message.create(msg: 'No bet', user_id: current_bargain.user.id)
         current_bargain.destroy
-        Message.create(msg: t('notification.no_winner'), user_id: current_bargain.user.id)
+        return
       elsif(add_time?(current_bargain))      
+        puts 'add time'
         puts current_bargain.lot.lot_end_date 'lot'
-        current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1000)
+        current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1200)
         puts current_bargain.lot.lot_end_date 'lot +1000'
         DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain)   
-        Message.create(msg: t('notification.add_time'), user_id: current_bargain.user.id)
-      
+        Message.create(msg: '20 minutes was added', user_id: current_bargain.user.id)
         current_bargain.users do |user|
-          Message.create(msg: t('notification.add_time'), user_id: user.id)
+          puts user.name
+          Message.create(msg: '20 minutes was added', user_id: user.id)
         end
-      
+        return
       else
+        puts 'played out'
         current_bargain.update_attributes(played_out: true)
-        Message.create(msg: t('notification.played_out'), user_id: current_bargain.user.id)
+        Message.create(msg: 'Played Out', user_id: current_bargain.user.id)
         #msg!!!!
         current_bargain.users do |user|
-          Message.create(msg: t('notification.no_winner'), user_id: user.id)
+          Message.create(msg: 'Your bid failed', user_id: user.id)
         end
         winner = User.find_by(id: current_bargain.id_user_winner)
-        Message.create(msg: t('notification.no_winner'), user_id: winner.id)
+        Message.create(msg: 'You win', user_id: winner.id)
+        return
       end
     end
   end 

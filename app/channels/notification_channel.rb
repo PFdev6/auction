@@ -8,8 +8,7 @@ class NotificationChannel < ApplicationCable::Channel
   end
 
   def notify(data)
-    puts data
-    Message.create(msg: data['message'], user_id: data['user']) 
+    #Message.create(msg: data['message'], user_id: data['user']) 
     ActionCable.server.broadcast 'notification_#{current_user.id}_channel', data
   end
 end

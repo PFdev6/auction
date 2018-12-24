@@ -21,8 +21,9 @@ class Lot < ApplicationRecord
     current_bargain =  CurrentBargain.where(lot_id: self)
     if current_bargain.size == 0 && self.inprocess?
        bargain_id = CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price).id
+       id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0]).provider_job_id
        self.update(current_bargain_id: bargain_id)
-       DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0])   
+       current_bargain[0].update_attributes(delayed_job_id: id_job) 
     else 
       if current_bargain && !self.inprocess
         current_bargain.destroy_all

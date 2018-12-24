@@ -1,6 +1,6 @@
-<div id="message">
-  <a class="dropdown-item col-12" href="#"> 
-    <%= message.msg %>
-       <%= link_to  t('lot.delete'), message_path(message),class: "badge badge-dark",  method: :delete %>  
-  </a>
-</div>
+<div id="message" class="alert-secondary border border-warning"> 
+  <div class="row badge">
+    <span class="col-7"> <%= message.msg %> </span>
+    <span class="col-5"> <%= link_to  t('lot.delete'), message_path(message),class: "badge badge-dark",  method: :delete %>  </span>
+  </div>
+</div >
