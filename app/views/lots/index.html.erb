@@ -1,6 +1,6 @@
 <div class="col-lg-9">
     <%= render 'filter' %>
-    <br/>
+    <%= link_to t('advanced_search'), new_filter_lot_path, class:'badge'%>
     <div class="card-columns">
      <%= render @lots %>
     </div>

@@ -25,7 +25,7 @@ class Lot < ApplicationRecord
        self.update(current_bargain_id: bargain_id)
        current_bargain[0].update_attributes(delayed_job_id: id_job) 
     else 
-      if current_bargain && !self.inprocess
+      if !current_bargain.played_out && !self.inprocess
         current_bargain.destroy_all
       end
     end
