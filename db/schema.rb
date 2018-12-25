@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_204541) do
+ActiveRecord::Schema.define(version: 2018_12_24_235138) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 2018_12_24_204541) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "filter_lots", force: :cascade do |t|
+    t.string "user_name"
+    t.decimal "autopurchase_price"
+    t.decimal "start_price"
+    t.boolean "played_out"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lots", force: :cascade do |t|

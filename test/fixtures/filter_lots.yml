@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_name: MyString
+  autopurchase_price: 9.99
+  start_price: 9.99
+
+two:
+  user_name: MyString
+  autopurchase_price: 9.99
+  start_price: 9.99

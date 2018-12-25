@@ -3,7 +3,7 @@ class LotsController < ApplicationController
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
 	def index 
-		@lots = Lot.includes(:current_bargain, :user, :tags, :taggings).paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+		@lots = Lot.includes(:current_bargain, :user, :tags, :taggings).where(["name LIKE ?","%#{params[:search]}%"]).paginate(page: params[:page], per_page: 10).order(created_at: :desc)
 	end
 
 	def show 

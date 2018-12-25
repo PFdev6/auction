@@ -1,0 +1,2 @@
+class FilterLot < ApplicationRecord
+end
