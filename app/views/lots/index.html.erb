@@ -1,9 +1,10 @@
-<div class="col-lg-9">
-    <%= render 'filter' %>
-    <%= link_to t('advanced_search'), new_filter_lot_path, class:'badge'%>
-    <div class="card-columns">
-     <%= render @lots %>
-    </div>
-    <%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
+<div class="col-lg-8">
+	<div class="card-columns">
+		<%= render @lots %>
+	</div>
+	<%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
+</div>
+<div class= "col-lg-3">
+	<%= render 'filter' %>
 </div>
 

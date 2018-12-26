@@ -7,7 +7,7 @@
     
     <%= f.number_field :autopurchase_price,  min: 0, max: '10000000', step: '0.1'  %>
 
-    <%= f.check_box :played_out, checked_value: true, unchecked_value: false %>
+    <%= f.check_box :played_outc, checked_value: true, unchecked_value: false %>
 
     <%= f.submit t('main.ok') %>
     <%= link_to t('back'), :back, class: 'btn btn-outline-secondary' %>
