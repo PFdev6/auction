@@ -1,10 +1,11 @@
-<div class="col-lg-8">
-	<div class="card-columns">
-		<%= render @lots %>
+<div class= "row">
+	<div class="col-lg-9">
+		<div class="card-columns">
+			<%= render @lots %>
+		</div>
+		<%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
 	</div>
-	<%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
+	<div class= "col-lg-3">
+		<%= render 'filter' %>
+	</div>
 </div>
-<div class= "col-lg-3">
-	<%= render 'filter' %>
-</div>
-

@@ -20,8 +20,5 @@ Rails.application.routes.draw do
  
   get '/search' => 'home#search'
 
-  get '/lots' => 'home#search'
-
-
   mount ActionCable.server => '/cable'
 end

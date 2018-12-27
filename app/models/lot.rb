@@ -1,4 +1,5 @@
 class Lot < ApplicationRecord
+  
   belongs_to :user
   has_one :current_bargain, dependent: :delete
   has_many :taggings, dependent: :delete_all
@@ -13,6 +14,10 @@ class Lot < ApplicationRecord
   has_attached_file :second_additional_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
  	validates_attachment_content_type :second_additional_image, content_type: /\Aimage\/.*\z/
 
+  searchkick
+  scope :search_import, -> { includes(:tags, :user, :current_bargain) }
+ 
+
   before_destroy do
     CurrentBargain.where(lot_id: self).delete_all
   end
@@ -25,9 +30,9 @@ class Lot < ApplicationRecord
        self.update(current_bargain_id: bargain_id)
        current_bargain[0].update_attributes(delayed_job_id: id_job) 
     else 
-      if !current_bargain.played_out && !self.inprocess
-        current_bargain.destroy_all
-      end
+      # if !current_bargain.played_out && !self.inprocess
+      #   current_bargain.destroy_all
+      # end
     end
   end
 
