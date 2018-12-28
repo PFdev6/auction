@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :users do
     get "win_lots"
   end
-
+  authenticated :user, -> user { user.isadmin? } do
+    mount Delayed::Web::Engine, at: '/jobs'
+  end
   mount Ckeditor::Engine => '/ckeditor'
   ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

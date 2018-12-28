@@ -29,12 +29,11 @@
              <span id="count_notification" class="badge badge-light"></span>
             <%= t 'main.notification'%>
           </a>
-          <div class="dropdown-menu badge-dark" id="messages" >  
+          <div class="dropdown-menu badge-dark" id="messages"  style="height: 500%; overflow-x: hidden; overflow-y: scroll;">  
             <%= render @messages %>
           </div>
         </li>
         </ul>
-
 
         <%= link_to t('main.logout'), destroy_user_session_path, :method => :delete, class: 'nav-item active mr-sm-2 badge badge-info' %>
       <% else %>
@@ -52,20 +51,19 @@
       <div class="row">
         <div class="col-md-12" id="flashmsg"> 
           <% flash.each do |name, message| %>
-            <div class="alert alert-<%= name %>">
+            <div class="alert">
               <%= message %>
             </div>
           <% end %>
         </div>
       <div> 
 
-      <div class="row">
-        <div class="col-lg-0"> <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>
-          <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
+      <div class="container">
+        <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>
+        <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
           <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-secondary' %>
-          <%end%>
-          <%= yield %>
+        <%end%>
+        <%= yield %>
       </div>
-  
   </body>
 </html>

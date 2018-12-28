@@ -1,10 +1,12 @@
 class DeterminingTheWinnerJob < ApplicationJob
   queue_as :default
   def perform(current_bargain)
-    puts '-----------------------------------------------------'
+    p '-----------------------------------------------------'
     determine_winner(current_bargain)
-    puts self.job_id
-    puts '-----------------------------------------------------'
+    p self.job_id
+    p '-----------------------------------------------------'
+    
+    
   end
 
   private 
@@ -52,4 +54,5 @@ class DeterminingTheWinnerJob < ApplicationJob
     end
     return false
   end 
+
 end

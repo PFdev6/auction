@@ -1,6 +1,6 @@
-<div class="media-body alert alert-info">
+<div class="media-body alert rounded border border-info">
   <h4 class="media-heading">
-    <div class="row">
+    <div class="row rounded border border-secondary">
       <div class="col-lg-2">
         <%= image_tag comment.user.avatar.url(:thumb), width:'50', height:'50' %>
       </div>
@@ -10,9 +10,10 @@
     </div>
   </h4>
     <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
-  <p>
-    <%= simple_format comment.msg %>
-  </p>
+  <div class="rounded border border-secondary">
+      <%= simple_format comment.msg %>
+  </div>
+  <hr>
   <div class="actions">
     <%= link_to t('Reply'), new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class: "badge badge-secondary" %>
   </div>

@@ -25,7 +25,7 @@
 
   <div class="field">
     <%= f.text_field :first_name %>
-    <%= f.text_field :second_name %>
+    <%= f.text_field :second_name, label: t('last_name') %>
   </div>
 
   <div class="field">
@@ -43,9 +43,11 @@
         <option value="ru">ru</option>
       </select>
   </div>
+  
+  <br/>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn btn-success' %>
     <%= render "devise/shared/links" %>
   </div>
 <% end %>

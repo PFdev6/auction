@@ -3,11 +3,11 @@
  <%= image_tag lot.main_image.url(:medium), class: 'card-img-top'  %>
   <div class="card-header">
     <%= lot.name %>
-     <% if !lot.inprocess? %>
+     <% if stopped?(lot) %>
         <span class="badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
-    <% elsif Time.now < lot.lot_end_date%>
+    <% elsif process?(lot) %>
         <span class="badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>
-    <% else Time.now >= lot.lot_end_date%>
+    <% elsif expired?(lot)%>
         <span class="badge badge-pill badge-danger"><%= t('lot.expired')%></span> 
         <%= get_link_winner(lot.current_bargain) %>
     <% end %>

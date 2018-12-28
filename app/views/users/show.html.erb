@@ -6,10 +6,12 @@
 	</div>
 <% else %>
 		<div class="row">
-			<div class="card-columns col-lg-8">
-				<%= render @user.lots %>
+			<div class="col-lg-9">
+				<div class="card-columns"> 
+					<%= render @user.lots %>
+				</div>
 			</div>
-			<div class="col">
+			<div class="col-lg-3">
 				<%= render @user%>
 			</div>
 		</div>
