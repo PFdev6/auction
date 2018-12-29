@@ -75,6 +75,7 @@ GEM
       sass (>= 3.5.2)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
+    bootstrap-toggle-rails (2.2.1.0)
     bootstrap_form (4.0.0)
       rails (>= 5.0)
     builder (3.2.3)
@@ -368,6 +369,7 @@ DEPENDENCIES
   ancestry
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.3)
+  bootstrap-toggle-rails
   bootstrap_form (>= 4.0.0)
   bullet
   byebug

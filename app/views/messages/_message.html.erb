@@ -1,6 +1,9 @@
 <div id="message" class="alert-secondary border border-warning"> 
   <div class="row badge">
-    <span class="col-7"> <%= message.msg %> </span>
-    <span class="col-5"> <%= link_to  t('lot.delete'), message_path(message),class: "badge badge-dark",  method: :delete %>  </span>
+    <span class="col-4"> <%= message.msg %> </span>
+    <span class="col-4"> <%= link_to  t('lot.delete'), message_path(message),class: "badge badge-dark",  method: :delete %>  </span>
+    <% if message.msg == 'You win' %>
+    <span class="col-4"> <%= link_to "Like The Lot Organizer", user_like_it_path(like_to(message)), class:'badge border border-danger' %>  </span>
+    <% end %>
   </div>
 </div >

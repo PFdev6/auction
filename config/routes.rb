@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :tags, only:[:show, :destroy]
   resources :users do
     get "win_lots"
+    get "like_it"
   end
   authenticated :user, -> user { user.isadmin? } do
     mount Delayed::Web::Engine, at: '/jobs'

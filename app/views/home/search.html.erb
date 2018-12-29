@@ -1,13 +1,19 @@
-<% if @searching.present? %>
- 	<div class='row'>
-		<%= render @searching[:lots] %>
-	</div>
-	<div class='row'>
-		<%= render @searching[:current_bargains] %>
-	</div>
- 	<div class='row'> 	
-		<%= render @searching[:main_news] %>
-	</div>
-<% else %>
-	<h1> Ups </h1>
-<% end %>
+<div class=" alert border border-success col-lg-12 w-500 m-3">
+	<% if @searching.present? %>
+		<h1> <%= t 'result' %>: <%= params[:query] %> </h1>
+		<%if @searching[0].results.length != 0 %>
+			<%= get_links_mainnews(@searching[0].results)%>
+		<% end %>
+		<%if @searching[1].results.length != 0 %>
+			<%= get_links_lots(@searching[1].results)%>
+		<% end %>
+		<%if @searching[2].results.length != 0 %>
+			<%= get_links_burgains(@searching[2].results)%>
+		<% end %>
+		<%if @searching[0].results.length == 0 && @searching[1].results.length == 0 && @searching[2].results.length == 0 %>
+			<h1> Ups </h1>
+		<% end%>
+	<% else %>
+		<h1> Ups!!! </h1>	
+	<% end %>
+</div>

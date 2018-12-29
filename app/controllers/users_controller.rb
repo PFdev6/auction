@@ -12,6 +12,11 @@ class UsersController < ApplicationController
 		@current_bargain = CurrentBargain.where(id_user_winner: current_user, played_out: true)
 	end
 
+	def like_it
+		user = User.find_by(id: params[:user_id])
+		user.update_attributes(likes:user.likes+1)
+	end
+
 	def update 
 		@user = current_user
 		if @user.update_attributes(user_parms)

@@ -57,11 +57,11 @@ class LotsController < ApplicationController
   end
 
 	def current_lot
-		@lot = Lot.find(params[:id])
+		@lot = Lot.includes(:current_bargain, :user).where(params[:id]).first
 	end
 
 	def lot_params
-		params.require(:lot).permit(:name, :description,:autopurchase_price, :start_price, :session_lot, :all_tags, :lot_end_date)
+		params.require(:lot).permit(:name, :description, :autopurchase_price, :start_price, :session_lot, :all_tags, :lot_end_date)
 	end
 
 end
