@@ -5,13 +5,13 @@ class Lot < ApplicationRecord
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name,:autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
-  has_attached_file :main_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :main_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
-  has_attached_file :first_additional_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :first_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :first_additional_image, content_type: /\Aimage\/.*\z/ 
   
-  has_attached_file :second_additional_image, styles: { medium: '300x500', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :second_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
  	validates_attachment_content_type :second_additional_image, content_type: /\Aimage\/.*\z/
 
   searchkick word_start: [:name, :user, :description], word_middle:[:name, :user, :description]

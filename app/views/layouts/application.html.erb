@@ -30,7 +30,7 @@
             <%= t 'main.notification'%>
           </a>
           <div class="dropdown-menu badge-dark" id="messages"  style="height: 500%; overflow-x: hidden; overflow-y: scroll;">  
-            <%= render @messages %>
+            <%= render @messages.includes(:current_bargain) %>
           </div>
         </li>
         </ul>

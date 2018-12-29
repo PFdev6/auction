@@ -3,10 +3,10 @@
     <span class="col-4"> <%= message.msg %> </span>
     <span class="col-4 badge border border-danger">  <%= fa_icon 'trash' %> <%= link_to  t('lot.delete'), message_path(message),  method: :delete %>  </span>
     <% if message.current_bargain_id.present? %>
-      <span class="col-2"> <%= link_to  t('bargain'), current_bargain_path(CurrentBargain.find_by(id:message.current_bargain_id)), class: "badge badge-dark"%>  </span>    
+      <span class="col-2"> <%= link_to  t('bargain'), current_bargain_path(message.current_bargain), class: "badge badge-dark"%>  </span>    
     <% end %>
     <% if message.msg == 'You win' %>
-      <span class="col-2">  <%= fa_icon 'thumbs-up' %> <%= link_to "Like The Lot Organizer", user_like_it_path(like_to(message)), class:'badge border border-danger' %>  </span>
+      <span class="col-2">  <%= fa_icon 'thumbs-up' %> <%= link_to "Like The Lot Organizer", user_like_it_path(message.current_bargain.user), class:'badge border border-danger' %>  </span>
     <% end %>
   </div>
 </div >

@@ -8,6 +8,7 @@ class CurrentBargain < ApplicationRecord
       description: lot.description
     }
   end
+  has_many :messages
   belongs_to :user
   has_many :users
   has_one :delayed_job, :dependent => :destroy

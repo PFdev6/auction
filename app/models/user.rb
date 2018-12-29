@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :confirmable, :database_authenticatable, :omniauthable, :recoverable, :rememberable, :registerable, :trackable, :validatable
   has_many :lots, dependent: :destroy
   has_many :main_news, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   def self.from_omniauth(auth)
     user = self.where(provider: auth.provider, uid: auth.uid).first

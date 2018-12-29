@@ -35,7 +35,7 @@ class CurrentBargainsController < ApplicationController
   end
 
   def cur_bargain 
-    @current_bargain = CurrentBargain.includes(:lot).find(params[:id])
+    @current_bargain = CurrentBargain.find(params[:id])
   end
   
   def current_bargain

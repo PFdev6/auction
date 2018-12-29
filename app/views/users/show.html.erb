@@ -1,18 +1,18 @@
 <% if @user.lots.nil?%>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-					<%= t('user.lots_empty')%>
+			<%= t('user.lots_empty')%>
 		</div>
 	</div>
 <% else %>
-		<div class="row">
-			<div class="col-lg-9">
-				<div class="card-columns"> 
-					<%= render @user.lots %>
-				</div>
-			</div>
-			<div class="col-lg-3">
-				<%= render @user%>
+	<div class="row">
+		<div class="col-lg-9">
+			<div class="card-columns"> 
+				<%= render @user.lots %>
 			</div>
 		</div>
+		<div class="col-lg-3">
+			<%= render @user%>
+		</div>
+	</div>
 <% end %>

@@ -1,31 +1,28 @@
 <div class="container">
-	</br>
-	<div class="row">
-			<div class="col-lg-5 rounded border border-danger">
-				<%= image_tag @current_bargain.lot.main_image.url(:medium), class: 'rounded' %>
-			</div>
-
-		<div class="col-lg-1">
+	<div class="row p-4">
+		<div class="col-lg-4 p-1 rounded border border-danger">
+			<%= image_tag @current_bargain.lot.main_image.url, class: 'rounded' %>
 		</div>
-		<div class="col-lg-6 border border-primary rounded row">
-			<div class="col-lg-8 badge">
-				<% if !@current_bargain.played_out %>
-					<%= t('current_bargain.potential_winner')%>:
-						<% if @current_bargain.id_user_winner%>
-							<%= link_to t('click'), user_path(@current_bargain.id_user_winner) %> 
-						<% else %>
-							<%= t('current_bargain.no_winner_yet')%>
-						<% end %>
-				<% end %>
-				<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'btn badge-secondary' %>
-				<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'btn badge-secondary' %>
+
+		<div class="col-lg-7 m-1 border border-primary rounded">
+			<div class="col-lg-7 border border-success rounded badge">
+					<% if !@current_bargain.played_out %>
+						<%= t('current_bargain.potential_winner')%>:
+							<% if @current_bargain.id_user_winner%>
+								<%= link_to t('click'), user_path(@current_bargain.id_user_winner) %> 
+							<% else %>
+								<%= t('current_bargain.no_winner_yet')%>
+							<% end %>
+					<% end %>
+				<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'm-1 border border-danger rounded '%>
+				<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'm-1 border border-danger rounded '%>
 			</div>
-			<ul class="col-2 badge" >
+			<ul class="col-lg-4 badge m-2" >
 				<li> 	<%= t('lot.start_price')%> <%= @current_bargain.lot.start_price %> </li>	
 				<li> 	<%= t('lot.autopurchase_price')%> <%= @current_bargain.lot.autopurchase_price %> </li>	
 				<li> 	<%= t('lot.current_price')%> <%= @current_bargain.current_price %> </li>	
 			</ul>
-			<div class="badge col-12">
+			<div class="badge col-lg-12">
 				<% if current_user != @current_bargain.user  && !@current_bargain.played_out  %>
 					<%= bootstrap_form_for(@current_bargain)  do |f| %>
 						<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	

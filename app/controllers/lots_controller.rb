@@ -2,8 +2,9 @@ class LotsController < ApplicationController
 
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
+
 	def index 
-		@lots = Lot.includes(:current_bargain, :user, :tags, :taggings).where(["name LIKE ?","%#{params[:search]}%"]).paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+		@lots = Lot.includes(:current_bargain, :user, :tags, :taggings).where(["name LIKE ?","%#{params[:search]}%"]).paginate(page: params[:page], per_page: 8).order(created_at: :desc)
 	end
 
 	def show 
@@ -20,7 +21,6 @@ class LotsController < ApplicationController
 		if check_file_count(files) && @lot.valid? && @lot.check_time?  
 			@lot.save
 			@lot.load_imgs(files)
-			Message.create(msg:"NEW LOT", user_id: current_user.id)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
 			render 'new',  danger: 'Lot didn\'t created'
@@ -57,7 +57,7 @@ class LotsController < ApplicationController
   end
 
 	def current_lot
-		@lot = Lot.includes(:current_bargain, :user).where(params[:id]).first
+		@lot = Lot.find(params[:id])
 	end
 
 	def lot_params
