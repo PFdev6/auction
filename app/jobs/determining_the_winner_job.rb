@@ -18,25 +18,25 @@ class DeterminingTheWinnerJob < ApplicationJob
       elsif(add_time?(current_bargain))      
         puts 'add time'
         puts current_bargain.lot.lot_end_date 'lot'
-        current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1200)
+        current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1800)
         puts current_bargain.lot.lot_end_date 'lot +1000'
         DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain)   
-        Message.create(msg: '20 minutes was added',  user: current_bargain.user, current_bargain: current_bargain)
-        current_bargain.users do |user|
+        Message.create(msg: '30 minutes was added',  user: current_bargain.user, current_bargain: current_bargain)
+        current_bargain.users.each do |user|
           puts user.name
-          Message.create(msg: '20 minutes was added', user: user, current_bargain: current_bargain)
+          Message.create(msg: '30 minutes was added', user: user, current_bargain: current_bargain)
         end
         return
       else
         puts 'played out'
         current_bargain.update_attributes(played_out: true)
         Message.create(msg: 'Played Out', user: current_bargain.user, current_bargain: current_bargain)
-        #msg!!!!
-        current_bargain.users do |user|
-          Message.create(msg: 'Your bid failed', user: user, current_bargain: current_bargain)
-        end
         winner = User.find_by(id: current_bargain.id_user_winner)
         Message.create(msg: 'You win', user: winner, current_bargain: current_bargain)
+
+        current_bargain.users.each do |user|
+          Message.create(msg: 'Your bid failed', user: user, current_bargain: current_bargain) if user != winner
+        end
         return
       end
     end
