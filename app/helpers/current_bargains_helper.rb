@@ -9,4 +9,9 @@ module CurrentBargainsHelper
       concat content_tag(:div,link, class: 'col-4')
     end
   end
+
+  def stopped?(lot)
+    return false if lot.inprocess
+    true
+  end
 end

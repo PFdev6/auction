@@ -1,18 +1,23 @@
+<% if stopped?( @current_bargain.lot)%>
+	<div class="alert alert-danger">
+		<strong><%= t('lot.stopped')%></strong>
+	</div>
+<% end %>
+
 <div class="container">
 	<div class="row p-4">
 		<div class="col-lg-4 p-1 rounded border border-danger">
 			<%= image_tag @current_bargain.lot.main_image.url, class: 'rounded' %>
 		</div>
-
 		<div class="col-lg-7 m-1 border border-primary rounded">
 			<div class="col-lg-7 border border-success rounded badge">
 					<% if !@current_bargain.played_out %>
 						<%= t('current_bargain.potential_winner')%>:
-							<% if @current_bargain.id_user_winner%>
-								<%= link_to t('click'), user_path(@current_bargain.id_user_winner) %> 
-							<% else %>
-								<%= t('current_bargain.no_winner_yet')%>
-							<% end %>
+						<% if @current_bargain.id_user_winner%>
+							<%= link_to t('click'), user_path(@current_bargain.id_user_winner) %> 
+						<% else %>
+							<%= t('current_bargain.no_winner_yet')%>
+						<% end %>
 					<% end %>
 				<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'm-1 border border-danger rounded '%>
 				<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'm-1 border border-danger rounded '%>

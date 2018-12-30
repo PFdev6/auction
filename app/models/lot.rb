@@ -29,18 +29,23 @@ class Lot < ApplicationRecord
   end
 
   after_save do
-    current_bargain =  CurrentBargain.where(lot_id: self)
+    current_bargain = CurrentBargain.where(lot_id: self)
     if current_bargain.size == 0 && self.inprocess?
-       bargain_id = CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price).id
-       id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0]).provider_job_id
-       self.update(current_bargain_id: bargain_id)
-       current_bargain[0].update_attributes(delayed_job_id: id_job) 
+      clear_job(current_bargain[0])
+      bargain_id = CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price).id
+      id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain[0].lot.lot_end_date).perform_later(current_bargain[0]).provider_job_id
+      self.update(current_bargain_id: bargain_id)
+      current_bargain[0].update_attributes(delayed_job_id: id_job) 
     else 
-      # if !current_bargain.played_out && !self.inprocess
-      #   current_bargain.destroy_all
-      # end
+      clear_job(current_bargain[0])
     end
   end
+
+  def clear_job(bargain)
+    job = Delayed::Job.find_by(id: bargain.delayed_job_id)
+    job.destroy if job.present?
+    bargain.update_attributes(delayed_job_id: nil) 
+  end 
 
   def check_time?
     if self.lot_end_date >= Time.now.utc

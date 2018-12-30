@@ -12,9 +12,8 @@ class DeterminingTheWinnerJob < ApplicationJob
     current_bargain = CurrentBargain.find_by(id: current_bargain)
     CurrentBargain.transaction do
       if(current_bargain.id_user_winner.nil?)
-        puts 'destroy'
+        puts 'end time'
         Message.create(msg: 'No bet', user: current_bargain.user, current_bargain: current_bargain)
-        current_bargain.destroy # dont destroy
         return
       elsif(add_time?(current_bargain))      
         puts 'add time'

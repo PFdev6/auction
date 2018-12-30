@@ -36,7 +36,9 @@ class LotsController < ApplicationController
 	end
 
   def update 
-    files = request.parameters[:lot][:files]
+		files = request.parameters[:lot][:files]
+		check_inprocces
+
     if @lot.update_attributes(lot_params) &&  @lot.check_time?
       @lot.load_imgs(files) if !files.nil?
 			redirect_to @lot, success: 'Lot successfully updated'
@@ -47,6 +49,15 @@ class LotsController < ApplicationController
 	end
 
 	private 
+
+	def check_inprocces
+		if params[:lot][:inprocess].to_i == 0  
+			@lot.update_attributes(inprocess: false) 
+		else
+			@lot.update_attributes(inprocess: true) 		
+		end
+	end
+
   def check_file_count(files)
     if files.size > 3 || files.size == 0 
       flash[:notice] =  'Should be from 1 to 3 images'
