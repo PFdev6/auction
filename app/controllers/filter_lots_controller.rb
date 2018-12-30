@@ -16,6 +16,6 @@ class FilterLotsController < ApplicationController
 	private 
   
   def filter_params
-		params.require(:filter_lot).permit(:user_name, :played_out, :autopurchase_price, :start_price)
+		params.require(:filter_lot).permit(:user_name, :played_out, :autopurchase_price, :start_price, :new_lots)
 	end 
 end

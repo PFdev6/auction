@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-	before_action :found_user, only: [:like_it, :show]
+	before_action :found_user, only: [:show]
 	
 	def show
-		@user.lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
+		@user.lots = Lot.includes(:tags, :taggings, :lot, :current_bargain).where(user_id: @user.id)
 	end
 
 	def edit
 	end
-	
+
 	def win_lots
 		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
 	end
