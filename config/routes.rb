@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :messages, only:[:destroy]
   resources :tags, only:[:show, :destroy]
   resources :users do
-    get "win_lots"
-    get "like_it"
+    get 'win_lots'
+    member do
+      patch 'like_it'
+    end
   end
   authenticated :user, -> user { user.isadmin? } do
     mount Delayed::Web::Engine, at: '/jobs'

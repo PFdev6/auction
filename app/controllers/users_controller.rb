@@ -8,13 +8,17 @@ class UsersController < ApplicationController
 	def edit
 	end
 
-	def win_lots
-		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
-	end
 
 	def like_it
-		user = User.find_by(id: params[:user_id])
-		user.update_attributes(likes:user.likes+1)
+		user = User.find_by(id: params[:id])
+		user.update_attributes(likes: user.likes+1)
+		redirect_to root_path
+	end
+
+
+
+	def win_lots
+		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
 	end
 
 	def update 

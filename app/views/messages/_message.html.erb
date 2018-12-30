@@ -6,7 +6,7 @@
       <span class="col-2"> <%= link_to  t('bargain'), current_bargain_path(message.current_bargain), class: "badge badge-dark"%>  </span>    
     <% end %>
     <% if message.msg == 'You win' %>
-      <span class="col-2">  <%= fa_icon 'thumbs-up' %> <%= link_to "Like The Lot Organizer", user_like_it_path(message.current_bargain.user), class:'badge border border-danger' %>  </span>
+      <span class="col-2">  <%= fa_icon 'thumbs-up' %> <%= link_to "Like The Lot Organizer", like_it_user_path(message.current_bargain.user), method: :patch, class:'badge border border-danger' %>  </span>
     <% end %>
   </div>
 </div >
