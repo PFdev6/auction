@@ -1,11 +1,12 @@
 class Lot < ApplicationRecord
-  
+  include Clearable, Checkable
+
   belongs_to :user
   has_one :current_bargain, dependent: :delete
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name,:autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
-  has_attached_file :main_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :main_image, styles: { medium: '300x400>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
   has_attached_file :first_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
@@ -46,20 +47,6 @@ class Lot < ApplicationRecord
     else 
       clear_job(current_bargain)
     end
-  end
-
-  def clear_job(bargain)
-    return if bargain.nil?
-    job = Delayed::Job.find_by(id: bargain.delayed_job_id)
-    job.destroy if job.present?
-    bargain.update_attributes(delayed_job_id: nil) 
-  end 
-
-  def check_time?
-    if self.lot_end_date >= Time.now.utc
-      return true
-    end
-    false
   end
 
   def files=(array_files = [])

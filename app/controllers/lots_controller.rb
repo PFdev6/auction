@@ -1,4 +1,5 @@
 class LotsController < ApplicationController
+	include Checkable
 
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
@@ -18,7 +19,7 @@ class LotsController < ApplicationController
 	  @lot = current_user.lots.build(lot_params)
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
-		if check_file_count(files) && @lot.valid? && @lot.check_time?  
+		if create_lot?(files, @lot)
 			@lot.save
 			@lot.load_imgs(files)
 			redirect_to @lot, success: 'Lot successfully created'
@@ -38,7 +39,6 @@ class LotsController < ApplicationController
   def update 
 		files = request.parameters[:lot][:files]
 		check_inprocces(@lot)
-
     if @lot.update_attributes(lot_params) &&  @lot.check_time?
       @lot.load_imgs(files) if !files.nil?
 			redirect_to @lot, success: 'Lot successfully updated'
@@ -49,23 +49,6 @@ class LotsController < ApplicationController
 	end
 
 	private 
-
-	def check_inprocces(lot)
-		if params[:lot][:inprocess].to_i == 0  
-			lot.update_attributes(inprocess: false) 
-		else
-			lot.update_attributes(inprocess: true) 		
-		end
-	end
-
-  def check_file_count(files)
-    if files.size > 3 || files.size == 0 
-      flash[:notice] =  'Should be from 1 to 3 images'
-      false
-    else 
-      true
-    end      
-  end
 
 	def current_lot
 		@lot = Lot.find(params[:id])
