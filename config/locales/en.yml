@@ -34,13 +34,19 @@ en:
   error_adding_comment: "Error adding comment"
   leave_comment: "Leave a comment..."
   complete: "Complete"
+  user: 
+    account: 'Account'
+    fullname: 'Full Name'
+    about_user: 'About User'
   notification: 
     add_time: '20 minutes was added'
-    user winner: 'You won'
-    user loser: 'Your bid failed'
-    no_winner: 'No bet'
+    user winner: 'You Won'
+    user loser: 'Your Bid Failed'
+    no_winner: 'No Bet'
     played_out: 'Played Out'
   main: 
+    win_lots: 'Win Lots'
+    notification: 'Notifications'
     ok: "OK"
     logout: "Log Out"
     signup: "Sign Up"
@@ -61,7 +67,7 @@ en:
     end_date: "End date"
     byn: "BYN"
     edit: "Edit"
-    delete: "delete"
-    success: "in process"
-    stopped: "stopped"
-    expired: "expired"
+    delete: "Delete"
+    success: "In Process"
+    stopped: "Stopped"
+    expired: "Expired"

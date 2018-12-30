@@ -1,27 +1,47 @@
 ru:
+  Reply: "Ответить"
+  title: "Заголовок"
+  news: "Новости"
   complete: "Успешно"
   successfully_created_comment: "Комментарий успешно создан"
   error_adding_comment: "Ошибка при создании комментария"
   leave_comment: "Оставьте комментарий..."
+  user: 
+    edit: "Изменить"
+    account: "Аккаунт"
+    fullname: "Полное имя"
+    about_user: "О пользователе"
   notification: 
-    add_time: 'Было добавлено 20 минут' 
-    user winner: 'Вы победили'
+    add_time: "Было добавлено 20 минут" 
+    user winner: "Вы победили"
     user loser: 'Ваша ставка не прошла' 
-    no_winner: 'Нет ставок'
-    played_out: 'Played Out'
+    no_winner: "Нет ставок"
+    played_out: "Разыгран"
   main: 
+    create_news: "Создать Новость"
+    main_page: "Главная страница"
+    win_lots: "Выигрышные лоты"
+    notification: "Уведомления"
     logout: "Выйти"
     signup: "Sign up"
     signin: "Войти"
-    all_played_lots: "Разыгрываемые лоты"
-    change_end_date: "Измените время окончание лота"
-    user: "Мой профиль"
-    new_lot: "Новый лот"
-    lot_session: "Текущие розыгрыши"
+    all_played_lots: "Разыгрываемые Лоты"
+    change_end_date: "Измените Время Окончание лота"
+    user: "Мой Профиль"
+    new_lot: "Новый Лот"
+    lot_session: "Текущие Розыгрыши"
   tags: "Теги: "
+  current_bargain:
+    comments: "Комментарии"
+    bidders: "Участники"
+    winner: "Победитель"
+    no_winner: "Нет Победителя"
+    open: "Открыть"
   lot:
+    link_to_bargain: "К Ставке"
+    current_price: "Цена"
     by: "Кем: "
-    descpription: "Описание"
+    description: "Описание"
     start_price: "Начальная цена: "
     time_created: "Время создания: "
     autopurchase_price: "Цена автовыкупа: "
@@ -29,7 +49,7 @@ ru:
     byn: "белорусских рублей"
     edit: "Изменить"
     delete: "Удалить"
-    success: "в процессе"
-    stopped: "остановлен"
-    expired: "закончен"
+    success: "В Процессе"
+    stopped: "Остановлен"
+    expired: "Закончен"
   date.order: ""

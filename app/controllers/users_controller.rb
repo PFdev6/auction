@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :found_user, only: [:show]
 	
 	def show
-		@user.lots = Lot.includes(:tags, :taggings, :lot, :current_bargain).where(user_id: @user.id)
+		@user.lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
 	end
 
 	def edit

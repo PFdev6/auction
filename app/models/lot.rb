@@ -16,6 +16,7 @@ class Lot < ApplicationRecord
 
   searchkick word_start: [:name, :user, :description], word_middle:[:name, :user, :description]
   scope :search_import, -> { includes(:tags, :user, :current_bargain, :taggings) }
+  
   def search_data
     {
       name: name,
