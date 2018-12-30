@@ -37,7 +37,7 @@ class LotsController < ApplicationController
 
   def update 
 		files = request.parameters[:lot][:files]
-		check_inprocces
+		check_inprocces(@lot)
 
     if @lot.update_attributes(lot_params) &&  @lot.check_time?
       @lot.load_imgs(files) if !files.nil?
@@ -50,11 +50,11 @@ class LotsController < ApplicationController
 
 	private 
 
-	def check_inprocces
+	def check_inprocces(lot)
 		if params[:lot][:inprocess].to_i == 0  
-			@lot.update_attributes(inprocess: false) 
+			lot.update_attributes(inprocess: false) 
 		else
-			@lot.update_attributes(inprocess: true) 		
+			lot.update_attributes(inprocess: true) 		
 		end
 	end
 

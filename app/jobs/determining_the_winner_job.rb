@@ -30,7 +30,7 @@ class DeterminingTheWinnerJob < ApplicationJob
       else
         puts 'played out'
         current_bargain.update_attributes(played_out: true)
-        Message.create(msg: 'Played Out', user_id: current_bargain.user, current_bargain: current_bargain)
+        Message.create(msg: 'Played Out', user: current_bargain.user, current_bargain: current_bargain)
         #msg!!!!
         current_bargain.users do |user|
           Message.create(msg: 'Your bid failed', user: user, current_bargain: current_bargain)
