@@ -1,22 +1,13 @@
 class UsersController < ApplicationController
+	before_action :found_user, only: [:like_it, :show]
 	
 	def show
-		@user = User.find(params[:id])
 		@user.lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
 	end
 
 	def edit
 	end
-
-
-	def like_it
-		user = User.find_by(id: params[:id])
-		user.update_attributes(likes: user.likes+1)
-		redirect_to root_path
-	end
-
-
-
+	
 	def win_lots
 		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
 	end
@@ -31,6 +22,11 @@ class UsersController < ApplicationController
 	end
 
 	private 
+
+	def found_user
+		@user = User.find(params[:id])
+	end 
+
 	def user_parms
 		params.require(:user).permit(:email, :first_name, :second_name, :avatar, :about_users, :nickname, :local)
 	end 
