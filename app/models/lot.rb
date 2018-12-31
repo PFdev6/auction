@@ -6,7 +6,7 @@ class Lot < ApplicationRecord
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name,:autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
-  has_attached_file :main_image, styles: { medium: '300x400>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :main_image, styles: { medium: "300x350>", thumb: "100x100>" }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
   has_attached_file :first_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'

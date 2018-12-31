@@ -17,8 +17,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a class="navbar-brand" href="<%=lots_path%>"> <%= t('main.main_page')%> </a>
-    <a class="badge badge-info active mr-sm-2" href="<%= main_news_index_path%>">  <%= t('news')%>  </a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active mr-sm-2"> <a class="badge badge-info active mr-sm-2" href="<%= main_news_index_path%>">  <%= t('news')%>  </a> </li>
       <% if user_signed_in?%>
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_path(current_user)%>"><%= t('main.user') %><span class="sr-only">(current)</span></a></li>
         <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a></li>
@@ -29,8 +29,8 @@
              <span id="count_notification" class="badge badge-light"></span>
             <%= t 'main.notification'%>
           </a>
-          <div class="dropdown-menu badge-dark" id="messages"  style="height: 500%; overflow-x: hidden; overflow-y: scroll;">  
-            <%= render @messages %>
+          <div class="dropdown-menu bg-dark" id="messages"  style="width: 300%; height: 500%; overflow-x: hidden; overflow-y: scroll;">  
+            <%= render @messages.includes(:current_bargain) %>
           </div>
         </li>
         </ul>
@@ -42,8 +42,8 @@
         <a class="badge badge-info mr-sm-2" href="<%=new_user_session_path%>"> <%= t('main.signin') %><span class="sr-only">(current)</span></a>
       <% end %>
     <%= form_tag('/search', method: :get) do |f| %>
-      <%= text_field_tag(:query) %>
-      <%= submit_tag("Search") %>
+      <%= text_field_tag :query  %>
+      <%= submit_tag 'Search', class: 'btn btn-outline-success'  %>
     <% end %>
   </div>
 </nav>

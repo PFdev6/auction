@@ -14,5 +14,10 @@
  * It is generally better to create a new file per style scope.
  *
  */
- @import "bootstrap";
+ //@import "bootstrap";
+ @import "material";
  @import 'date_wrapper';
+ 
+ .dropdown-menu::before {
+  background-color: #332d2d;
+}

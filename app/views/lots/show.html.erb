@@ -9,9 +9,9 @@
        
         <small>
           <div class="col-6 rounded-circle border border-primary">
-            <div class="col justify-content-center">
+            <div class="justify-content-center">
               <br/>
-              <%= image_tag @lot.user.avatar.url(:thumb), width:'50', height:'50' %>
+              <%= image_tag @lot.user.avatar.url(:thumb), class: 'rounded-circle', width:'50', height:'50' %>
               <%= link_to @lot.user.nickname, user_path(@lot.user) %> </p>
             </div>
           </div>

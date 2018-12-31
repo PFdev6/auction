@@ -17,8 +17,11 @@
 //= require_tree .
 //= require jquery3
 //= require popper
+//= require material
+//= require bootstrap
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+
 $(() => {
     $("#flashmsg").hide(3000)
 });   
