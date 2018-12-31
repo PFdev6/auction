@@ -1,6 +1,6 @@
 
 <div class="card border-info mb-1 " style="width: 16rem;">
- <%= image_tag lot.main_image.url(:medium), class: 'card-img-top'  %>
+ <%= image_tag lot.main_image.url(:medium), style: 'width: 16rem',class: 'center-block card-img-top p-1'  %>
   <div class="card-header">
     <%= lot.name %>
      <% if stopped?(lot) %>
