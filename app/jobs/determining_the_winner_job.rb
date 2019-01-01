@@ -1,14 +1,15 @@
 class DeterminingTheWinnerJob < ApplicationJob
   queue_as :default
   
-  after_perform do 
+  after_enqueue do 
     p '------------------------AFTERPERFORM-----------------------------'
     msgs = Message.where( 
       "created_at >= :five_minutes_ago",
       five_minutes_ago: Time.now - 5.minutes
       )
+    p msgs
     msgs.each do |msg|
-      BroadcastMessageJob.perform_now(msg)
+      BroadcastMessageJob.perform_later(msg)
     end
     
   end

@@ -6,13 +6,13 @@ class Lot < ApplicationRecord
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name,:autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
-  has_attached_file :main_image, styles: { medium: "300x350>", thumb: "100x100>" }, default_url: '/images/:style/missing.png'
+  has_attached_file :main_image, styles: { medium: "300x350>", thumb: "100x100>" }, default_url: '/images/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
-  has_attached_file :first_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :first_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/missing.png'
   validates_attachment_content_type :first_additional_image, content_type: /\Aimage\/.*\z/ 
   
-  has_attached_file :second_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :second_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/missing.png'
  	validates_attachment_content_type :second_additional_image, content_type: /\Aimage\/.*\z/
 
   searchkick word_start: [:name, :user, :description], word_middle:[:name, :user, :description]
@@ -27,7 +27,9 @@ class Lot < ApplicationRecord
   end
 
   before_destroy do
-    CurrentBargain.where(lot_id: self).delete_all
+    bargain = CurrentBargain.find_by(lot: self)
+    clear_job(bargain)
+    bargain.destroy
   end
 
   after_save do
@@ -42,6 +44,7 @@ class Lot < ApplicationRecord
       else
         bargain_id = current_bargain.id
       end
+
       id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain).provider_job_id
       current_bargain.update_attributes(delayed_job_id: id_job) 
     else 

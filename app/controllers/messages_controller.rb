@@ -6,12 +6,12 @@ class MessagesController < ApplicationController
   end
 
   def update
-    @message = Message.find(params[:id])
+    @message = Message.find_by(id: params[:id])
     if @message.present?
       user = @message.current_bargain.user
       user.update_attributes(likes: user.likes+1)
       @message.destroy
-  		redirect_to user
+  		return redirect_to user
     end
     redirect_to current_user
   end
