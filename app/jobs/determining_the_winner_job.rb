@@ -1,19 +1,6 @@
 class DeterminingTheWinnerJob < ApplicationJob
   queue_as :default
   
-  after_enqueue do 
-    p '------------------------AFTERPERFORM-----------------------------'
-    msgs = Message.where( 
-      "created_at >= :five_minutes_ago",
-      five_minutes_ago: Time.now - 5.minutes
-      )
-    p msgs
-    msgs.each do |msg|
-      BroadcastMessageJob.perform_later(msg)
-    end
-    
-  end
-  
   
   def perform(current_bargain)
     p '-----------------------------------------------------'
@@ -52,7 +39,6 @@ class DeterminingTheWinnerJob < ApplicationJob
         current_bargain.users.each do |user|
           Message.create(msg: 'Your bid failed', user: user, current_bargain: current_bargain) if user != winner
         end
-        return
       end
     end
   end 

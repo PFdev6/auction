@@ -1,12 +1,12 @@
 <div id="message" class="alert-dark border border-warning"> 
   <div class="row badge">
-    <span class="col-3"> <%= message.msg %> </span>
-    <span class="col-3">  <%= fa_icon 'trash' %> <%= link_to  t('lot.delete'), message_path(message), class:'badge badge-pill badge-info', method: :delete %>  </span>
+    <span class="col-lg-3"> <%= message.msg %> </span>
+    <span class="col-lg-3">  <%= fa_icon 'trash' %> <%= link_to  t('lot.delete'), message_path(message), class:'badge badge-pill badge-info', method: :delete %>  </span>
     <% if message.current_bargain_id.present? %>
-      <span class="col-3"> <%= link_to  t('bargain'), current_bargain_path(message.current_bargain), class: "badge badge-dark"%>  </span>    
+      <span class="col-lg-3"> <%= link_to  t('bargain'), current_bargain_path(message.current_bargain), class: "badge badge-dark"%>  </span>    
     <% end %>
     <% if message.msg == 'You win' %>
-      <span class="col-2">  <%= fa_icon 'thumbs-up' %> <%= link_to "Like", message_path(message), method: :patch, class:'badge border border-danger' %>  </span>
+      <span class="col-lg-2">  <%= fa_icon 'thumbs-up' %> <%= link_to "Like", message_path(message), method: :patch, class:'badge border border-danger' %>  </span>
     <% end %>
   </div>
 </div >

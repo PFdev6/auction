@@ -26,12 +26,6 @@ class Lot < ApplicationRecord
     }
   end
 
-  before_destroy do
-    bargain = CurrentBargain.find_by(lot: self)
-    clear_job(bargain)
-    bargain.destroy
-  end
-
   after_save do
     current_bargain = CurrentBargain.find_by(lot_id: self)
     if self.inprocess?
