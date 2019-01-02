@@ -16,14 +16,14 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="<%=lots_path%>"> <%= t('main.main_page')%> </a>
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active mr-sm-2"> <a class="badge badge-info active mr-sm-2" href="<%= main_news_index_path%>">  <%= t('news')%>  </a> </li>
+        <li class="nav-item active mr-sm-2"> <a class="navbar-brand" href="<%=lots_path%>"> <%= t('main.main_page')%> </a> </li>
+        <li class="nav-item active mt-sm-2 mr-sm-2"> <a class="badge badge-info active mr-sm-2" href="<%= main_news_index_path%>">  <%= t('news')%>  </a> </li>
       <% if user_signed_in?%>
-        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_path(current_user)%>"><%= t('main.user') %><span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=current_bargains_path%>"> <%= t('main.all_played_lots') %> <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active mr-sm-2"><a class="badge badge-info" href="<%=user_win_lots_path(current_user)%>"> <%= t('main.win_lots') %> <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mt-sm-2 mr-sm-2"><a class="badge badge-info" href="<%=user_path(current_user)%>"><%= t('main.user') %><span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mt-sm-2 mr-sm-2"><a class="badge badge-info" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mt-sm-2 mr-sm-2"><a class="badge badge-info" href="<%=current_bargains_path%>"> <%= t('main.all_played_lots') %> <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active mt-sm-2 mr-sm-2"><a class="badge badge-info" href="<%=user_win_lots_path(current_user)%>"> <%= t('main.win_lots') %> <span class="sr-only">(current)</span></a></li>
         <li class="nav-item dropdown">
           <a class="nav-item active mr-sm-2 badge badge-info nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <span id="count_notification" class="badge badge-light"></span>
@@ -59,7 +59,7 @@
       <div> 
 
       <div class="container">
-        <div class="badge badge-pill badge-warning"><%= t('tags')%> </div>
+        <div class="m-2 badge badge-pill badge-warning"><%= t('tags')%> </div>
         <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
           <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-secondary' %>
         <%end%>

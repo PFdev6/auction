@@ -3,7 +3,11 @@ class CurrentBargainsController < ApplicationController
   before_action :comments, :only => [:show]
 
   def index 
-    @current_bargain = CurrentBargain.includes(:lot).where(played_out: false).order(created_at: :desc)
+    @current_bargain = CurrentBargain
+    .includes(:lot)
+    .where(played_out: false)
+    .paginate(page: params[:page], per_page: 9)
+    .order(created_at: :desc)
 	end
 
   def show

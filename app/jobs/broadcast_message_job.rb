@@ -6,7 +6,7 @@ class BroadcastMessageJob < ApplicationJob
     msgs = choose_msgs
     p msgs
     msgs.each do |msg|
-      ActionCable.server.broadcast "notification_#{msg.user_id}", ApplicationController.renderer.render(msg)
+      ActionCable.server.broadcast "notification_#{msg.user_id}", render_message(msg)
     end
   end
   
@@ -17,7 +17,7 @@ class BroadcastMessageJob < ApplicationJob
   def choose_msgs
     msgs = Message.where( 
       "created_at >= :five_minutes_ago",
-      five_minutes_ago: Time.now - 3.minutes
+      five_minutes_ago: Time.now - 1.minutes
       )
   end
 end

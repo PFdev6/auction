@@ -5,7 +5,11 @@ class LotsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index 
-		@lots = Lot.includes(:current_bargain, :user, :tags, :taggings).where(["name LIKE ?","%#{params[:search]}%"]).paginate(page: params[:page], per_page: 8).order(created_at: :desc)
+		@lots = Lot
+		.includes(:current_bargain, :user, :tags, :taggings)
+		.where(["name LIKE ?","%#{params[:search]}%"])
+		.paginate(page: params[:page], per_page: 9)
+		.order(created_at: :desc)
 	end
 
 	def show 
@@ -16,19 +20,17 @@ class LotsController < ApplicationController
 	end
 
 	def create 
-		
 		#BroadcastMessageJob.set(wait_until: Time.now+ 200 ).perform_later(msg)
-
 	  @lot = current_user.lots.build(lot_params)
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
 		if create_lot?(files, @lot)
 			@lot.save
 			@lot.load_imgs(files)
-			BroadcastMessage.call(  params: [time: @lot.lot_end_date] )
+			BroadcastMessage.call(params: [time: @lot.lot_end_date])
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
-			render 'new',  danger: 'Lot didn\'t created'
+			render 'new', danger: 'Lot didn\'t created'
 		end
 	end
 
@@ -52,14 +54,22 @@ class LotsController < ApplicationController
 		end
 	end
 
-	private 
+	private
 
 	def current_lot
 		@lot = Lot.find(params[:id])
 	end
 
 	def lot_params
-		params.require(:lot).permit(:name, :description, :autopurchase_price, :start_price, :session_lot, :all_tags, :lot_end_date)
+		params.require(:lot).permit(
+			:name, 
+			:description,
+			:autopurchase_price,
+			:start_price, 
+			:session_lot,
+			:all_tags, 
+			:lot_end_date
+			)
 	end
 
 end
