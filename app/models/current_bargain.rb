@@ -1,4 +1,5 @@
 class CurrentBargain < ApplicationRecord
+  scope :in_process, -> { where(played_out: false) }  
   has_one :delayed_job, dependent: :delete
   has_many :messages, dependent: :delete_all
   belongs_to :user

@@ -5,7 +5,7 @@ class CurrentBargainsController < ApplicationController
   def index 
     @current_bargain = CurrentBargain
     .includes(:lot)
-    .where(played_out: false)
+    .in_process
     .paginate(page: params[:page], per_page: 9)
     .order(created_at: :desc)
 	end
@@ -15,7 +15,7 @@ class CurrentBargainsController < ApplicationController
 
   def comments
     @commentable = find_commentable
-    @comments = @commentable.comments.includes(:user).arrange(:order => :created_at)
+    @comments = @commentable.comments.includes(:user).arrange(order: :created_at)
     @comment = Comment.new
   end
 

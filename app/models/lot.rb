@@ -28,23 +28,23 @@ class Lot < ApplicationRecord
 
   after_save do
     current_bargain = CurrentBargain.find_by(lot_id: self)
+    clear_job(current_bargain)
     if self.inprocess?
-      clear_job(current_bargain)
-      
       if current_bargain.nil?
-        current_bargain = CurrentBargain.create(lot_id: self.id, user_id: self.user.id, current_price: self.start_price)
+        current_bargain = CurrentBargain.create(
+          lot_id: self.id, 
+          user_id: self.user.id, 
+          current_price: self.start_price
+        )
         bargain_id = current_bargain.id
         self.current_bargain_id = bargain_id
       else
-        bargain_id = current_bargain.id
-      end
-      BroadcastMessage.call(params: [time: current_bargain.lot.lot_end_date])
-      id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date)
-        .perform_later(current_bargain)
-        .provider_job_id
-      current_bargain.update_attributes(delayed_job_id: id_job) 
-    else 
-      clear_job(current_bargain)
+        #BroadcastMessage.call(bargain: current_bargain)
+        id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date)
+          .perform_later(current_bargain)
+          .provider_job_id
+        current_bargain.update_attributes(delayed_job_id: id_job)
+      end  
     end
   end
 
@@ -53,7 +53,11 @@ class Lot < ApplicationRecord
 
   def load_imgs(files)
     if(files)
-      self.update(main_image: files[0], first_additional_image: files[1], second_additional_image: files[2])
+      self.update(
+        main_image: files[0], 
+        first_additional_image: files[1], 
+        second_additional_image: files[2]
+        )
     end
   end
 

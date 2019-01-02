@@ -1,6 +1,6 @@
 class FilterLot < ApplicationRecord
   def search_lots
-		lots = Lot.includes(:current_bargain, :user, :tags, :taggings).all#.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+		lots = Lot.includes(:current_bargain, :user, :tags, :taggings).all #.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
 
     if user_name.present?
       user_search = User.find_by(["nickname LIKE ?","%#{user_name}%"])

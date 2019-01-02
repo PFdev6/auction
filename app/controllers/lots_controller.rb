@@ -20,14 +20,13 @@ class LotsController < ApplicationController
 	end
 
 	def create 
-		#BroadcastMessageJob.set(wait_until: Time.now+ 200 ).perform_later(msg)
 	  @lot = current_user.lots.build(lot_params)
     files = request.parameters[:lot][:files]
     files = [] if files.nil?
 		if create_lot?(files, @lot)
 			@lot.save
 			@lot.load_imgs(files)
-			BroadcastMessage.call(params: [time: @lot.lot_end_date])
+			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
 			render 'new', danger: 'Lot didn\'t created'
@@ -57,7 +56,7 @@ class LotsController < ApplicationController
 	private
 
 	def current_lot
-		@lot = Lot.find(params[:id])
+		@lot = Lot.includes(:user).find(params[:id])
 	end
 
 	def lot_params

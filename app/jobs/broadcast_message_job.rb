@@ -2,8 +2,9 @@ class BroadcastMessageJob < ApplicationJob
   queue_as :default
   self.queue_adapter = :async
 
-  def perform
-    msgs = choose_msgs
+  def perform(bargain)
+    msgs = choose_msgs(bargain)
+    p '--------------bargain--------------------qqqqqqqqqqqqqqqqqqqqqqqqqq'
     p msgs
     msgs.each do |msg|
       ActionCable.server.broadcast "notification_#{msg.user_id}", render_message(msg)
@@ -14,10 +15,9 @@ class BroadcastMessageJob < ApplicationJob
     ApplicationController.renderer.render(message)
   end
 
-  def choose_msgs
-    msgs = Message.where( 
-      "created_at >= :five_minutes_ago",
-      five_minutes_ago: Time.now - 1.minutes
-      )
+  def choose_msgs(bargain)
+    Message.where( 
+      current_bargain: bargain
+    )
   end
 end
