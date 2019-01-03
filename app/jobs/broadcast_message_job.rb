@@ -4,7 +4,6 @@ class BroadcastMessageJob < ApplicationJob
 
   def perform(bargain)
     msgs = choose_msgs(bargain)
-    p bargain #creating many msg 
     msgs.each do |msg|
       ActionCable.server.broadcast "notification_#{msg.user_id}", render_message(msg)
     end
@@ -15,6 +14,8 @@ class BroadcastMessageJob < ApplicationJob
   end
 
   def choose_msgs(bargain)
-    Message.where(current_bargain: bargain) #add time 
+    Message
+      .where(current_bargain: bargain)
+      .where( "created_at >= :minute_ago", minute_ago: Time.now - 1.minutes) 
   end
 end

@@ -56,7 +56,15 @@ en:
     all_played_lots: "Playable Lots"
     change_end_date: "change end date"
   tags: "Tags: "
+  current_bargain:
+    comments: "Comments"
+    bidders: "Bidders"
+    winner: "Winner"
+    no_winner: "No Winner"
+    open: "Open"
   lot:
+    change_end_date: "Change Date (+10 minutes)"
+    need_img: "Should be from 1 to 3 images"
     by: "by: "
     descpription: "Description"
     start_price: "Starting Bid: "

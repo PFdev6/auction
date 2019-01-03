@@ -38,6 +38,8 @@ ru:
     no_winner: "Нет Победителя"
     open: "Открыть"
   lot:
+    change_end_date: "Поменяйте дату окончание сделки (+10 minutes)"
+    need_img: "Должно быть от 1 до 3 картинок"
     link_to_bargain: "К Ставке"
     current_price: "Цена"
     by: "Кем: "

@@ -11,7 +11,6 @@ module Checkable
 
   def check_file_count(files)
     if files.size > 3 || files.size == 0 
-      flash[:notice] =  'Should be from 1 to 3 images'
       false
     else 
       true
@@ -24,9 +23,9 @@ module Checkable
   end
 
   def check_time?
-    if self.lot_end_date >= Time.now.utc
+    if self.lot_end_date >= Time.now + 600 # +10min
       return true
-    end
+    end 
     false
   end
 
