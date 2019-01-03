@@ -1,6 +1,6 @@
 <div class="media-body alert rounded border border-info">
-  <h4 class="media-heading">
-    <div class="row rounded border border-secondary">
+  <h4 class="m-2 media-heading">
+    <div class="row rounded border border-primary">
       <div class="col-lg-2">
         <%= image_tag comment.user.avatar.url(:thumb), width:'50', height:'50' %>
       </div>
@@ -15,7 +15,7 @@
   </div>
   <hr>
   <div class="actions">
-    <%= link_to t('Reply'), new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class: "badge badge-secondary" %>
+    <%= link_to t('Reply'), new_polymorphic_path([@commentable, Comment.new], :parent_id => comment), class: "badge badge-dark" %>
   </div>
   <%= nested_comments comment.children %>
 </div>

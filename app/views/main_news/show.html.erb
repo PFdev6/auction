@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @main_news.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= raw @main_news.description %>
-</p>
 <% if can? :create, @main_news%>
-  <%= link_to 'Edit', edit_main_news_path(@main_news), class: "badge badge-dark" %> 
-  <%= link_to 'Back', main_news_index_path, class: "badge badge-dark" %>
+  <%= link_to 'Edit', edit_main_news_path(@main_news), class: "m-1 badge badge-dark" %> 
 <% end %>
+<%= link_to 'Back', main_news_index_path, class: "m-1 badge badge-dark" %>
+
+<div class="p-2 m-1 rounded border border-dark">
+  <div class="m-2 p-1 rounded border border-primary">
+    <%= @main_news.title %>
+  </div>
+
+  <strong class="m-2"><%= t 'lot.description'%></strong>
+  <%= raw @main_news.description %>
+</div>

@@ -3,7 +3,11 @@ class CurrentBargainsController < ApplicationController
   before_action :comments, :only => [:show]
 
   def index 
-    @current_bargain = CurrentBargain.includes(:lot).where(played_out: false).order(created_at: :desc)
+    @current_bargain = CurrentBargain
+    .includes(:lot)
+    .in_process
+    .paginate(page: params[:page], per_page: 9)
+    .order(created_at: :desc)
 	end
 
   def show
@@ -11,18 +15,25 @@ class CurrentBargainsController < ApplicationController
 
   def comments
     @commentable = find_commentable
-    @comments = @commentable.comments.includes(:user).arrange(:order => :created_at)
+    @comments = @commentable.comments.includes(:user).arrange(order: :created_at)
     @comment = Comment.new
   end
 
   def update
-    new_price = request.parameters[:current_bargain][:current_price].to_i
-    result = UpdateCurrentBargain.call(
-                                        params: [new_price: new_price, current_bargain_id: params[:current_bargain_id]],
-                                        user: current_user
-                                      )
-    flash[:notice] = result.errors if result.errors
-    redirect_to result.current_bargain 
+    bargain = request.parameters[:current_bargain]
+    current_bargain = CurrentBargain.find(params[:current_bargain_id])
+    if(current_bargain.lot.inprocess) 
+      new_price = request.parameters[:current_bargain][:current_price].to_i
+      result = UpdateCurrentBargain.call(
+                                          params: [new_price: new_price, current_bargain_id: params[:current_bargain_id]],
+                                          user: current_user
+                                        )
+      flash[:notice] = result.errors if result.errors
+      redirect_to result.current_bargain 
+    else
+      flash[:notice] = 'Bargain was stopped'
+      redirect_to bargain 
+    end  
   end
 
   def edit
@@ -35,7 +46,7 @@ class CurrentBargainsController < ApplicationController
   end
 
   def cur_bargain 
-    @current_bargain = CurrentBargain.includes(:lot).find(params[:id])
+    @current_bargain = CurrentBargain.find(params[:id])
   end
   
   def current_bargain

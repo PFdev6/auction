@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   resources :main_news
   resources :lots
   resources :filter_lots
-  resources :messages, only:[:destroy]
+  resources :messages, only:[:destroy, :update]
   resources :tags, only:[:show, :destroy]
   resources :users do
-    get "win_lots"
-    get "like_it"
+    get 'win_lots'
   end
   authenticated :user, -> user { user.isadmin? } do
     mount Delayed::Web::Engine, at: '/jobs'

@@ -9,6 +9,8 @@
 
     <%= f.check_box :played_out, checked_value: true, unchecked_value: false %>
 
+    <%= f.check_box :new_lots, label: 'new?', checked_value: true, unchecked_value: false %>
+
     <%= f.submit t('main.ok') %>
     <%= link_to t('back'), :back, class: 'btn btn-outline-secondary' %>
   

@@ -1,4 +1,13 @@
 class CurrentBargain < ApplicationRecord
+  include Clearable
+
+  scope :in_process, -> { where(played_out: false) }  
+  has_many :messages, dependent: :delete_all
+  belongs_to :user
+  has_many :users
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  belongs_to :lot
+
   searchkick word_start: [:name, :user, :description], word_middle:[:name, :user, :description]
   scope :search_import, -> { includes(:users, :lot) }
   def search_data
@@ -8,9 +17,8 @@ class CurrentBargain < ApplicationRecord
       description: lot.description
     }
   end
-  belongs_to :user
-  has_many :users
-  has_one :delayed_job, :dependent => :destroy
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  belongs_to :lot
+
+  before_destroy do
+    Delayed::Job.find_by(id: self.delayed_job_id).delete
+  end 
 end

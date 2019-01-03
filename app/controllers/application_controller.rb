@@ -4,13 +4,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :get_messages
   
-
   def get_messages
     if(current_user)
       @messages = Message.where(user_id: current_user.id).order(created_at: :desc)
     end
 	end
-
 
   def set_locale
     return I18n.locale if current_user.nil? 
@@ -22,8 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
   end

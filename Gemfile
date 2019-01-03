@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'material-sass', '4.1.1'
+gem "font-awesome-rails"
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ckeditor'
 gem 'font-awesome-rails'
@@ -45,7 +47,6 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'delayed_job_active_record'
 
-gem 'bootstrap-toggle-rails'
 gem 'delayed-web'
 gem 'concurrent-ruby', require: 'concurrent'
 gem 'searchkick'

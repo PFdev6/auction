@@ -15,37 +15,41 @@ module LotsHelper
   end
 
   def stopped?(lot)
-    return false if(lot.inprocess)
+    return false if lot.inprocess
+    
     true
   end
 
   def process?(lot)
-    return false if lot.lot_end_date < Time.now
+    return true if lot.lot_end_date > Time.now
 
-    if(lot.current_bargain)
+    if lot.current_bargain 
       return false if lot.current_bargain.played_out
-      true
-    else 
-      true
     end
+    true
   end
 
   def expired?(lot)
-    return true if(lot.current_bargain.nil?)
+    return true if lot.current_bargain.id_user_winner.nil?
+    return true if lot.lot_end_date < Time.now
 
-    if(lot.current_bargain)
+    if lot.current_bargain
       return true if lot.current_bargain.played_out
-      false
-    else 
-      false
     end
+    false
   end
 
   def get_link_winner(current_bargain)
-    return content_tag(:div,t('current_bargain.no_winner'), class: "badge badge-dark") if current_bargain.nil?
+    return content_tag(:div, t('current_bargain.no_winner'), class: 'badge badge-dark') if current_bargain.id_user_winner.nil?
+   
     user_winner = User.find_by(id: current_bargain.id_user_winner)
     if user_winner
-      link_to(t('current_bargain.winner'), user_path(user_winner), class: "badge badge-dark")
+      link_to(t('current_bargain.winner'), user_path(user_winner), class: 'badge badge-dark')
     end
+  end
+
+  def is_there_winner?(current_bargain)
+    return true if can? :edit, current_bargain.lot && current_bargain.id_user_winner.nil?
+    false
   end
 end

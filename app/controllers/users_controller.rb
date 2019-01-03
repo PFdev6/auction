@@ -1,20 +1,16 @@
 class UsersController < ApplicationController
+	before_action :found_user, only: [:show]
 	
 	def show
-		@user = User.find(params[:id])
-		@user.lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
+		@lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
+		@lots = @lots.includes(:user).paginate(page: params[:page], per_page: 9).order('id DESC')
 	end
 
 	def edit
 	end
 
 	def win_lots
-		@current_bargain = CurrentBargain.where(id_user_winner: current_user, played_out: true)
-	end
-
-	def like_it
-		user = User.find_by(id: params[:user_id])
-		user.update_attributes(likes:user.likes+1)
+		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
 	end
 
 	def update 
@@ -27,6 +23,11 @@ class UsersController < ApplicationController
 	end
 
 	private 
+
+	def found_user
+		@user = User.find(params[:id])
+	end 
+
 	def user_parms
 		params.require(:user).permit(:email, :first_name, :second_name, :avatar, :about_users, :nickname, :local)
 	end 
