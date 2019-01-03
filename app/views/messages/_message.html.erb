@@ -1,7 +1,7 @@
-<div id="message" class="alert-dark border border-warning m-1"> 
+<div id="message" class="alert-dark border border-warning m-1 p-1"> 
   <div class="row badge">
     <span class="col-lg-3"> <%= message.msg %> </span>
-    <span class="col-lg-3 ml-sm-2">  <%= fa_icon 'trash' %> <%= link_to  t('lot.delete'), message_path(message), class:'badge badge-pill badge-info', method: :delete %>  </span>
+    <span class="col-lg-3 ml-sm-4">  <%= fa_icon 'trash' %> <%= link_to  t('lot.delete'), message_path(message), class:'badge badge-pill badge-info', method: :delete %>  </span>
     <% if message.current_bargain.present? %>
       <span class="col-lg-3 ml-sm-2"> <%= link_to  t('bargain'), current_bargain_path(message.current_bargain), class: "badge badge-dark"%>  </span>    
     <% end %>

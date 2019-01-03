@@ -21,7 +21,7 @@ module LotsHelper
   end
 
   def process?(lot)
-    return false if lot.lot_end_date < Time.now
+    return true if lot.lot_end_date > Time.now
 
     if lot.current_bargain 
       return false if lot.current_bargain.played_out

@@ -8,11 +8,13 @@
 	<div class="row">
 		<div class="col-lg-9">
 			<div class="card-columns"> 
-				<%= render @user.lots %>
+				<%= render @lots %>
 			</div>
 		</div>
 		<div class="col-lg-3">
 			<%= render @user%>
 		</div>
 	</div>
+	<%= will_paginate @lots, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
+
 <% end %>

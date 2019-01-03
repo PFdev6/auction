@@ -1,6 +1,7 @@
 class CurrentBargain < ApplicationRecord
+  include Clearable
+
   scope :in_process, -> { where(played_out: false) }  
-  has_one :delayed_job, dependent: :delete
   has_many :messages, dependent: :delete_all
   belongs_to :user
   has_many :users
@@ -16,4 +17,8 @@ class CurrentBargain < ApplicationRecord
       description: lot.description
     }
   end
+
+  before_destroy do
+    Delayed::Job.find_by(id: self.delayed_job_id).delete
+  end 
 end

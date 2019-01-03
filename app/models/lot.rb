@@ -32,18 +32,17 @@ class Lot < ApplicationRecord
     if self.inprocess?
       if current_bargain.nil?
         current_bargain = CurrentBargain.create(
-          lot_id: self.id, 
-          user_id: self.user.id, 
+          lot: self, 
+          user: self.user, 
           current_price: self.start_price
         )
-        bargain_id = current_bargain.id
-        self.current_bargain_id = bargain_id
+        self.current_bargain = current_bargain
       else
-        #BroadcastMessage.call(bargain: current_bargain)
+        BroadcastMessage.call(bargain: current_bargain)
         id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date)
           .perform_later(current_bargain)
           .provider_job_id
-        current_bargain.update_attributes(delayed_job_id: id_job)
+        current_bargain.update_attributes(delayed_job_id: id_job, played_out: false)
       end  
     end
   end

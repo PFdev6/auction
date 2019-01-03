@@ -1,6 +1,5 @@
 class DeterminingTheWinnerJob < ApplicationJob
   queue_as :default
-  attr_reader :current_bargain
 
   def perform(current_bargain)
     @current_bargain = current_bargain
@@ -10,16 +9,7 @@ class DeterminingTheWinnerJob < ApplicationJob
     p '-----------------------------------------------------'
   end
 
-  after_perform do |job|
-    p '---------JOB BARGAIN---------------------------'
-    p job.current_bargain
-    BroadcastMessage.call(bargain: job.current_bargain)
-  end
-
   private 
-  
-
-
   def determine_winner(current_bargain)
     current_bargain = CurrentBargain.find_by(id: current_bargain)
     CurrentBargain.transaction do   
@@ -32,7 +22,7 @@ class DeterminingTheWinnerJob < ApplicationJob
         puts current_bargain.lot.lot_end_date 'lot'
         current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1800)
         puts current_bargain.lot.lot_end_date 'lot +1000'
-        #BroadcastMessage.call(bargain: current_bargain)
+        #BroadcastMessage.call(bargain: current_bargain) add in callback after_update
         DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain)   
         new_message('30 minutes was added', current_bargain.user, current_bargain)
         current_bargain.users.each do |user|
