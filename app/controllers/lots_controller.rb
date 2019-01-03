@@ -29,8 +29,8 @@ class LotsController < ApplicationController
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
-			flash[:notice] = t('main.change_end_date') if !@lot.check_time?
-			flash[:notice] = t('lot.need_img') if !check_file_count(files)
+			flash[:error] = t('lot.change_end_date') if !@lot.check_time?
+			flash[:error] = t('lot.need_img') if !check_file_count(files)
 			render 'new', danger: 'Lot didn\'t created'
 		end
 	end

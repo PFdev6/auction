@@ -34,6 +34,14 @@ en:
   error_adding_comment: "Error adding comment"
   leave_comment: "Leave a comment..."
   complete: "Complete"
+  back: "Back"
+  filters: "Filter"
+  filter:
+    user_name: "User Name"
+    start_price: "From Start Price"
+    autopurchase_price: "From Autopurchase Price"
+    played_out: "Played out?"
+    new: "New?"
   user: 
     account: 'Account'
     fullname: 'Full Name'
