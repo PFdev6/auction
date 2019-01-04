@@ -16,9 +16,5 @@ class CurrentBargain < ApplicationRecord
       user: user.nickname,
       description: lot.description
     }
-  end
-
-  before_destroy do
-    Delayed::Job.find_by(id: self.delayed_job_id).delete
   end 
 end

@@ -45,9 +45,12 @@ class LotsController < ApplicationController
 
   def update 
 		files = request.parameters[:lot][:files]
-		check_inprocces(@lot)
+		
+		check_inprocces(@lot) if current_user.isadmin?
+		
     if @lot.update_attributes(lot_params) &&  @lot.check_time?
-      @lot.load_imgs(files) if !files.nil?
+			@lot.load_imgs(files) if !files.nil?
+			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
 			flash[:notice] = t('main.change_end_date') if !@lot.check_time?
