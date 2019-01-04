@@ -11,7 +11,7 @@ module CurrentBargainsHelper
       end
     else
       content_tag(:div, class: 'alert border border-danger') do
-        concat content_tag(:h1, t('current_bargain.no_winner'), class: 'col-lg-12', style:'font-family: Oswald;')
+        concat content_tag(:h2, t('current_bargain.no_winner'), class: 'col-lg-12', style:'font-family: Oswald;')
       end
     end
   end

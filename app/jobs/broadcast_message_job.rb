@@ -15,7 +15,7 @@ class BroadcastMessageJob < ApplicationJob
 
   def choose_msgs(bargain)
     Message
-      .where(current_bargain: bargain)
       .where( "created_at >= :minute_ago", minute_ago: Time.now - 1.minutes) 
+      .where(current_bargain: bargain)
   end
 end

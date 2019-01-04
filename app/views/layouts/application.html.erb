@@ -29,7 +29,7 @@
              <span id="count_notification" class="m-1 badge badge-light"></span>
             <%= t 'main.notification' %>
           </a>
-          <div class="dropdown-menu bg-dark" id="messages"  style="width: 300%; height: 500%; overflow-x: hidden; overflow-y: scroll;">  
+          <div class="dropdown-menu bg-dark" id="messages" style="width: 300%; height: 500%; overflow-x: hidden; overflow-y: scroll;">  
             <%= render @messages.includes(:current_bargain) %>
           </div>
         </li>
