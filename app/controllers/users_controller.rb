@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :found_user, only: [:show]
 	
 	def show
-		@lots = Lot.includes(:tags, :taggings, :current_bargain).where(user_id: @user.id)
+		@lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
 		@lots = @lots.includes(:user).paginate(page: params[:page], per_page: 9).order('id DESC')
 	end
 

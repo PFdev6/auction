@@ -16,7 +16,11 @@ class User < ApplicationRecord
     else
       user_with_email = self.find_by_email(auth.info.email)
       if user_with_email.present?
-        user = user_with_email
+        if user_with_email.provider == auth.provider
+          user = user_with_email
+        else
+          user = nil
+        end
       else
         user = self.new
         case auth.provider 

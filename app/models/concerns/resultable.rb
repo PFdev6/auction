@@ -11,6 +11,6 @@ module Resultable
 	end
 
 	def result_bargain(search_word)
-		CurrentBargain.includes(:lot).search(search_word)
+		CurrentBargain.preload(:lot).search(search_word)
 	end
 end

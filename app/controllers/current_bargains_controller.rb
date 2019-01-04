@@ -4,7 +4,7 @@ class CurrentBargainsController < ApplicationController
 
   def index 
     @current_bargain = CurrentBargain
-    .includes(:lot)
+    .includes(:lot, :user)
     .in_process
     .paginate(page: params[:page], per_page: 9)
     .order(created_at: :desc)

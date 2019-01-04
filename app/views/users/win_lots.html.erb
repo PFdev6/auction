@@ -1,5 +1,5 @@
 <div class="card-columns mt-2 col-lg-12">
-	<% @current_bargain.each do |bargain| %>
+	<% @current_bargain.preload(:user).each do |bargain| %>
 		<div class="m-1 p-1 card border-info mb-1" style="width: 20rem;" >
 			<%= image_tag bargain.lot.main_image.url(:medium), style: 'width: 19rem', class: 'card-img-top center-block p-1'%>
 			<div class="card-header"><%= bargain.lot.name %></div>
@@ -10,7 +10,7 @@
 				<a href="<%=lot_path(bargain.lot)%>" class="btn btn-info"> <%=t('current_bargain.open')%> </a>
 			</div>
 			<div class="card-footer text-muted">
-				<p> <%= t('lot.by') %> <%= bargain.lot.user.email %> </p>
+				<p> <%= t('lot.by') %> <%= bargain.user.email %> </p>
 			</div>
 		</div>
 	<% end %>
