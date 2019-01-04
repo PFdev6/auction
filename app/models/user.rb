@@ -7,26 +7,32 @@ class User < ApplicationRecord
   has_many :main_news, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+
   def self.from_omniauth(auth)
     user = self.where(provider: auth.provider, uid: auth.uid).first
+    
     if user.present?
-      user
+      user 
     else
       user_with_email = self.find_by_email(auth.info.email)
       if user_with_email.present?
-        user = nil
+        user = user_with_email
       else
         user = self.new
         case auth.provider 
           when 'facebook'
+            user.provider = auth.provider
+            user.uid = auth.uid
             user.email = auth.info.email
-            user.nickname = auth.info.name + add_id(user)
+            user.nickname = auth.info.name + rand(1..10000).to_s
             user.password = Devise.friendly_token[0,20]
             user.first_name = auth.info.name.split(' ')[0]
             user.second_name = auth.info.name.split(' ')[1]
           when 'github'
+            user.provider = auth.provider
+            user.uid = auth.uid
             user.email = auth.info.email
-            user.nickname = auth.info.name + add_id(user)
+            user.nickname = auth.info.name + rand(1..10000).to_s
             user.password = Devise.friendly_token[0,20]
             user.first_name = ''
             user.second_name = ''
@@ -37,7 +43,4 @@ class User < ApplicationRecord
     return user
   end 
 
-  def add_id(user)
-    '_' + user.id
-  end
 end

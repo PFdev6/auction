@@ -33,9 +33,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'bootstrap-datepicker-rails'
+gem "bootstrap_form", ">= 4.0.0"
+
 gem 'material-sass', '4.1.1'
 gem "font-awesome-rails"
+gem 'bootstrap', '~> 4.1.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ckeditor'
 gem 'font-awesome-rails'
@@ -43,6 +46,7 @@ gem 'material_icons'
 gem 'activeadmin'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'cancancan', '~> 2.0'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
@@ -53,8 +57,6 @@ gem 'concurrent-ruby', require: 'concurrent'
 gem 'searchkick'
 gem "daemons"
 gem "interactor", "~> 3.0"
-gem "bootstrap_form", ">= 4.0.0"
-gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'ancestry'
 gem 'omniauth', '~> 1.6', '>= 1.6.1'

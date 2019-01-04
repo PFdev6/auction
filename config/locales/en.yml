@@ -30,6 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  bargain_was_stopped: "Bargain Was Stopped"
   successfully_created_comment: "Successfully created comment"
   error_adding_comment: "Error adding comment"
   leave_comment: "Leave a comment..."
