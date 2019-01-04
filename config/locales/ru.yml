@@ -11,9 +11,9 @@ ru:
   filter:
     user_name: "Имя Пользователя"
     start_price: "От Начальной Цены "
-    autopurchase_price: "От цены автовыкупа"
-    played_out: "Разыгран?"
-    new: "Новый?"
+    autopurchase_price: "От Цены Автовыкупа"
+    played_out: "Разыграные?"
+    new: "Новые?"
   user: 
     edit: "Изменить"
     account: "Аккаунт"
@@ -26,6 +26,7 @@ ru:
     no_winner: "Нет ставок"
     played_out: "Разыгран"
   main: 
+    ok: "OK"
     create_news: "Создать Новость"
     main_page: "Главная страница"
     win_lots: "Выигрышные лоты"
