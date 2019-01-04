@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 9cb9131722dceb6263dc2becef61604194351b2a
+  branch: master
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -388,6 +396,7 @@ DEPENDENCIES
   elasticsearch-model
   elasticsearch-rails
   execjs
+  faker!
   font-awesome-rails
   interactor (~> 3.0)
   jbuilder (~> 2.5)

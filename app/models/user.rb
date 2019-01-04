@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "300x300>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "300x300>" }, default_url: "/images/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates :nickname, :email, :first_name, :second_name, presence: true   
   devise :confirmable, :database_authenticatable, :omniauthable, :recoverable, :rememberable, :registerable, :trackable, :validatable
@@ -38,6 +38,6 @@ class User < ApplicationRecord
   end 
 
   def add_id(user)
-  '_' + user.id
+    '_' + user.id
   end
 end
