@@ -1,12 +1,12 @@
 <div id="carousel" class="carousel slide" data-ride="carousel">
 	<br/>
 	<div class="carousel-inner">
-		<div class="carousel-item active">
-			<%= image_tag @lot.main_image(:medium),  style: 'width: 20rem; height: 18rem;', class: 'center-block d-block rounded' %>
+		<div class="carousel-item carouselimg active">
+			<%= image_tag @lot.main_image(:medium), class: 'center-block rounded' %>
 		</div>
 		<%get_imgdescr(@lot).each do |img| %>
-			<div class="carousel-item">
-				<%= image_tag img.url(:medium), class: 'd-block rounded',  style: 'width: 20rem;  height: 18rem;' %>
+			<div class="carousel-item carouselimg">
+				<%= image_tag img.url(:medium), class: 'rounded center-block' %>
 			</div>
 		<% end %>
 	</div>
