@@ -71,6 +71,7 @@ en:
     no_winner: "No Winner"
     open: "Open"
   lot:
+    your_price: "Your Price"
     change_end_date: "Change Date (+10 minutes)"
     need_img: "Should be from 1 to 3 images"
     by: "by: "

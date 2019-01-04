@@ -46,6 +46,7 @@ ru:
     no_winner: "Нет Победителя"
     open: "Открыть"
   lot:
+    your_price: "Ваша Цена"
     inprocess: "Разыгрывать?"
     tags: "Тэги"
     images: "Картинки"

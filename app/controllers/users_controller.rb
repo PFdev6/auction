@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	end
 
 	def win_lots
-		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true)
+		@current_bargain = CurrentBargain.includes(:lot).where(id_user_winner: current_user, played_out: true).paginate(page: params[:page], per_page: 9)
 	end
 
 	def update 
