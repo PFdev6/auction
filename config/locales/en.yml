@@ -36,6 +36,7 @@ en:
   leave_comment: "Leave a comment..."
   complete: "Complete"
   back: "Back"
+  bargain_was_updated: "Bargain was updated. Please update page."
   filters: "Filter"
   filter:
     user_name: "User Name"

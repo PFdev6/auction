@@ -256,6 +256,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    pg (0.18.4)
     popper_js (1.14.5)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -285,6 +286,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.2.1.1)
       actionpack (= 5.2.1.1)
       activesupport (= 5.2.1.1)
@@ -410,9 +416,11 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   paperclip (~> 6.0.0)
+  pg (~> 0.18.4)
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1, >= 5.2.1.1)
+  rails_12factor
   russian (~> 0.6.0)
   sass-rails (~> 5.0)
   searchkick

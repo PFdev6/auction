@@ -5,6 +5,7 @@ ru:
   news: "Новости"
   complete: "Успешно"
   successfully_created_comment: "Комментарий успешно создан"
+  bargain_was_updated: "Ставка обновлена. Пожалуйста обновите страницу."
   error_adding_comment: "Ошибка при создании комментария"
   leave_comment: "Оставьте комментарий..."
   back: "Назад"
