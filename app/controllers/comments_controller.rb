@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
     if @comment.msg.empty?
       flash[:error] = t 'comment_is_empty'      
       return redirect_to @commentable
-      
     end 
 
     if stopped?(params[:current_bargain_id])
