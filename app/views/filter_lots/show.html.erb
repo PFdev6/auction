@@ -1,9 +1,9 @@
 <span class='badge'><%= t 'result_searching'%></span>
-<% if @filter_lot.search_lots.empty? %>
+<% if @filter_lot.empty? %>
   <p> <%= t 'without_result' %> </p>
 <% else %>
-
   <div class="card-columns">
-    <%= render @filter_lot.search_lots %>
+    <%= render @filter_lot %>
   </div>
+  <%= will_paginate @filter_lot, renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
 <% end %>
