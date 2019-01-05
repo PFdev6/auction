@@ -56,6 +56,7 @@ en:
     no_winner: 'No Bet'
     played_out: 'Played Out'
   main: 
+    my_bids: 'My bids'
     win_lots: 'Win Lots'
     notification: 'Notifications'
     ok: "OK"

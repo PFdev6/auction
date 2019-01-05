@@ -30,6 +30,7 @@ ru:
     played_out: "Разыгран"
   main: 
     ok: "OK"
+    my_bids: 'Мои Ставки'
     create_news: "Создать Новость"
     main_page: "Главная страница"
     win_lots: "Выигрышные лоты"

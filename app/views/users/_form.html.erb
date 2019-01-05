@@ -25,14 +25,13 @@
     <%= f.file_field :avatar %>
   </div>
 
-  <div class="field">
+  <div class="mb-2 field">
     <label for="user_local"> <%=t('main.language')%> </label>
       <select class="form-control" id="user_local", name="user[local]">
         <option value="en" selected="selected">en</option>
         <option value="ru">ru</option>
       </select>
   </div>
-
 
   <div class="actions">
     <%= f.submit "Edit" %>

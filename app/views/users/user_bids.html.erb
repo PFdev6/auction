@@ -1,0 +1,14 @@
+<div class="card-columns mt-2 col-lg-12">
+	<% @current_bargain.each do |bargain| %>
+		<div class="m-1 p-1 card border-info mb-1" style="width: 20rem;" >
+			<%= image_tag bargain.lot.main_image.url(:medium), style: 'width: 19rem', class: 'card-img-top center-block p-1'%>
+			<div class="card-header"><%= bargain.lot.name %></div>
+			<div class="card-body">
+				<p class="card-text">  
+					<span class="badge badge-pill badge-success"> <%= t('lot.current_price') %>  <%= bargain.current_price %> <%= t('lot.byn') %> </span> 
+				</p>
+				<a href="<%=current_bargain_path(bargain)%>" class="btn btn-info"> <%=t('current_bargain.open')%> </a>
+			</div>
+		</div>
+	<% end %>
+</div>

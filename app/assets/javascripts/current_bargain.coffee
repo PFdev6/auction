@@ -16,7 +16,7 @@ App.update_notifications = App.cable.subscriptions.create { channel: "UpdateNoti
     alert.show()
     nowTime = new Date
     alert.text(data + ' ' + nowTime.toGMTString())
-   # $('#time_update').text(new Date)
+    $("#update_bargain").hide(10000)
 
   test: (message) ->
     console.log message   
