@@ -17,4 +17,8 @@ class CurrentBargain < ApplicationRecord
       description: lot.description
     }
   end 
+
+  after_update do
+    BroadcastUpdateBargain.call(bargain: self)
+  end
 end
