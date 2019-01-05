@@ -1,7 +1,7 @@
 class BroadcastMessage
   include Interactor
   def call
-    time_end = context.bargain.lot.lot_end_date + 15 #plus 15 second
+    time_end = context.bargain.lot.lot_end_date + 8 #plus 8 second
     if context.autopurchase_price.present?
       BroadcastMessageJob.set(wait_until: Time.now + 10).perform_later(context.bargain)
     else 

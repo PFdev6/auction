@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	
 	def show
 		@lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
-		@lots = @lots.includes(:user).paginate(page: params[:page], per_page: 9).order('id DESC')
+		@lots = @lots.includes(:user, :current_bargain).paginate(page: params[:page], per_page: 9).order('id DESC')
 	end
 
 	def edit

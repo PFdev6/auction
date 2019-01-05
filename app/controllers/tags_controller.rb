@@ -4,7 +4,7 @@ class TagsController  < ApplicationController
     if @tag.nil?
       nil
     else
-      @lots = @tag.lots    
+      @lots = @tag.lots.includes( :user, :tags, :taggings)    
     end
 	end
 end
