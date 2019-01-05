@@ -22,8 +22,7 @@ class LotsController < ApplicationController
 	def create 
 	  @lot = current_user.lots.build(lot_params)
     files = request.parameters[:lot][:files]
-		files = [] if files.nil?
-		
+    files = [] if files.nil?
 		if create_lot?(files, @lot)
 			@lot.save
 			@lot.load_imgs(files)

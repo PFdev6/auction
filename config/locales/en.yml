@@ -33,6 +33,7 @@ en:
   bargain_was_stopped: "Bargain Was Stopped"
   successfully_created_comment: "Successfully created comment"
   error_adding_comment: "Error adding comment"
+  comment_is_empty: "Comment Is Empty"
   leave_comment: "Leave a comment..."
   complete: "Complete"
   back: "Back"

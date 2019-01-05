@@ -3,16 +3,23 @@ class CommentsController < ApplicationController
 	def new
     @parent_id = params.delete(:parent_id)
     @commentable = find_commentable
-    @comment = Comment.new( parent_id: @parent_id, 
-                            commentable_id: @commentable.id,
-                            commentable_type: @commentable.class.to_s)
+    @comment = Comment.new( 
+      parent_id: @parent_id, 
+      commentable_id: @commentable.id,
+      commentable_type: @commentable.class.to_s
+      )
   end
   
   def create
     
     @commentable = find_commentable
 		@comment = @commentable.comments.build(comment_params)
-		@comment.user = current_user
+    @comment.user = current_user
+    if @comment.msg.empty?
+      flash[:error] = t 'comment_is_empty'      
+      return redirect_to @commentable
+      
+    end 
 
     if stopped?(params[:current_bargain_id])
       flash[:error] = t 'bargain_was_stopped'      

@@ -3,6 +3,7 @@ ru:
   Reply: "Ответить"
   title: "Заголовок"
   news: "Новости"
+  comment_is_empty: "Комментарий пустой"
   complete: "Успешно"
   successfully_created_comment: "Комментарий успешно создан"
   bargain_was_updated: "Ставка обновлена. Пожалуйста обновите страницу."
