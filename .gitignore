@@ -20,7 +20,7 @@
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
-
+/app/assets/images
 /node_modules
 /yarn-error.log
 /config/secrets.yml

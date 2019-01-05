@@ -30,10 +30,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  bargain_was_stopped: "Bargain Was Stopped"
   successfully_created_comment: "Successfully created comment"
   error_adding_comment: "Error adding comment"
   leave_comment: "Leave a comment..."
   complete: "Complete"
+  back: "Back"
+  filters: "Filter"
+  filter:
+    user_name: "User Name"
+    start_price: "From Start Price"
+    autopurchase_price: "From Autopurchase Price"
+    played_out: "Played out?"
+    new: "New?"
   user: 
     account: 'Account'
     fullname: 'Full Name'
@@ -56,7 +65,16 @@ en:
     all_played_lots: "Playable Lots"
     change_end_date: "change end date"
   tags: "Tags: "
+  current_bargain:
+    comments: "Comments"
+    bidders: "Bidders"
+    winner: "Winner"
+    no_winner: "No Winner"
+    open: "Open"
   lot:
+    your_price: "Your Price"
+    change_end_date: "Change Date (+10 minutes)"
+    need_img: "Should be from 1 to 3 images"
     by: "by: "
     descpription: "Description"
     start_price: "Starting Bid: "

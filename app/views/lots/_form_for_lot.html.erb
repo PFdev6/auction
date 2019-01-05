@@ -11,23 +11,23 @@
 
 <%= bootstrap_form_for @lot do |f| %>
 
-    <%= f.text_field :name %>
+    <%= f.text_field :name, label: t('lot.name') %>
 
-    <%= f.text_area :description %>
+    <%= f.text_area :description,  label: t('lot.description') %>
 
-    <%= f.datetime_select :lot_end_date,  wrapper: :date, input_html: {value: ' '} %>
+    <%= f.datetime_field :lot_end_date, min: Time.now.to_s(:db), value: "1984-05-12", wrapper: :date, input_html: {value: ' '},  label: t('lot.end_date') %>
   
-    <%= f.number_field :start_price,  min:0, max: '100000', step: '0.1'  %>
+    <%= f.number_field :start_price,  min:0, max: '100000', step: '0.1',  label: t('lot.start_price')  %>
     
-    <%= f.number_field :autopurchase_price,  min:0, max: '10000000', step: '0.1'  %>
+    <%= f.number_field :autopurchase_price,  min:0, max: '10000000', step: '0.1',  label: t('lot.autopurchase_price')  %>
 
 
-    <%= f.file_field :files, multiple: true %>
+    <%= f.file_field :files, multiple: true, label: t('lot.images') %>
 
-    <%= f.text_field :all_tags %>
+    <%= f.text_field :all_tags,  label: t('lot.tags') %>
     
     <% if current_user.isadmin? %>
-      <%= f.check_box :inprocess, checked_value: true, unchecked_value: false %>
+      <%= f.check_box :inprocess, checked_value: true, unchecked_value: false, label: t('lot.inpricess') %>
     <% end %>
     
     <div class="actions">

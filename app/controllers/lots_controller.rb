@@ -22,13 +22,16 @@ class LotsController < ApplicationController
 	def create 
 	  @lot = current_user.lots.build(lot_params)
     files = request.parameters[:lot][:files]
-    files = [] if files.nil?
+		files = [] if files.nil?
+		
 		if create_lot?(files, @lot)
 			@lot.save
 			@lot.load_imgs(files)
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
+			flash[:error] = t('lot.change_end_date') if !@lot.check_time?
+			flash[:error] = t('lot.need_img') if !check_file_count(files)
 			render 'new', danger: 'Lot didn\'t created'
 		end
 	end
@@ -43,9 +46,12 @@ class LotsController < ApplicationController
 
   def update 
 		files = request.parameters[:lot][:files]
-		check_inprocces(@lot)
+		
+		check_inprocces(@lot) if current_user.isadmin?
+		
     if @lot.update_attributes(lot_params) &&  @lot.check_time?
-      @lot.load_imgs(files) if !files.nil?
+			@lot.load_imgs(files) if !files.nil?
+			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
 			flash[:notice] = t('main.change_end_date') if !@lot.check_time?

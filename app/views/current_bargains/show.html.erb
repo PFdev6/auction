@@ -4,6 +4,9 @@
 	</div>
 <% end %>
 
+	<div class="alert alert-warning hidden_update" id="update_bargain">
+	</div>
+
 <div class="container">
 	<div class="row p-4">
 	<div class="col-lg-5">
@@ -45,10 +48,7 @@
 			<% if current_user.present? %>
 				<div class="badge col-lg-12">
 					<% if current_user != @current_bargain.user  && !@current_bargain.played_out  %>
-						<%= bootstrap_form_for(@current_bargain)  do |f| %>
-							<%= f.number_field(:current_price, min: '1', step: '1', max: '1000000' )%>	
-							<%= f.submit "Add" %>
-						<% end %>
+						<%= render 'form_add'%>
 					<% elsif @current_bargain.played_out%> 
 						<%= get_winner_info(@current_bargain.id_user_winner)%>
 					<% end %>

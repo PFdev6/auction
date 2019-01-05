@@ -26,6 +26,10 @@ class Lot < ApplicationRecord
     }
   end
 
+  before_destroy do
+    clear_job(self.current_bargain)
+  end
+
   after_save do
     current_bargain = CurrentBargain.find_by(lot_id: self)
     clear_job(current_bargain)

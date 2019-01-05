@@ -9,10 +9,10 @@
        
         <small>
           <div class="col-6 rounded-circle border border-primary">
-            <div class="justify-content-center">
+            <div class="center-block">
               <br/>
-              <%= image_tag @lot.user.avatar.url(:thumb), class: 'rounded-circle', width:'50', height:'50' %>
-              <%= link_to @lot.user.nickname, user_path(@lot.user) %> </p>
+              <%= image_tag @lot.user.avatar.url(:thumb), class: 'rounded-circle center-block', width:'50', height:'50' %>
+              <%= link_to @lot.user.nickname, user_path(@lot.user), class: 'center-block' %> </p>
             </div>
           </div>
 
@@ -21,7 +21,7 @@
           <% end %>
 
           <% if is_there_winner?(@lot.current_bargain) %>
-            <%= link_to  t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
+            <%= link_to t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
           <% end %>
 
           <% if can? :delete, @lot && @lot.current_bargain.nil?%> 

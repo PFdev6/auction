@@ -49,7 +49,7 @@ module LotsHelper
   end
 
   def is_there_winner?(current_bargain)
-    return true if can? :edit, current_bargain.lot && current_bargain.id_user_winner.nil?
+    return true if current_bargain.id_user_winner.nil? && current_bargain.lot.lot_end_date < Time.now 
     false
   end
 end

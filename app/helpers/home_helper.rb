@@ -19,7 +19,7 @@ module HomeHelper
   def get_links_burgains(bargains)
     content_tag(:div,  class: 'col-lg-12', width: '100%') do
       bargains.each do |bargain|
-        concat content_tag(:div, link_to("Name: #{bargain.lot.name}, created at: #{bargain.created_at.strftime('%R %d/%m/%Y')}", current_bargain_path(bargain)), class:'btn col-lg-12  border border-danger', width: '100%')
+        concat content_tag(:div, link_to("Bargain: #{bargain.id}, created at: #{bargain.created_at.strftime('%R %d/%m/%Y')}", current_bargain_path(bargain)), class:'btn col-lg-12  border border-danger', width: '100%')
       end
     end
   end
