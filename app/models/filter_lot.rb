@@ -20,8 +20,8 @@ class FilterLot < ApplicationRecord
     end
 
     if new_lots.present?
-     lots = lots.order('created_at desc') if new_lots == true 
-     lots = lots.order('created_at asc') if new_lots == false 
+     lots = lots.sort_by{ |lot| lot.created_at }.reverse if new_lots == true 
+     lots = lots.sort_by{ |lot| lot.created_at } if new_lots == false 
     end
     lots
   end 
