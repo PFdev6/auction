@@ -1,6 +1,17 @@
 <div class="col-lg-12">
+		<% if @current_bargain.empty? %>
+		<div class="ml-5 alert alert-success">
+			<h1 class="alert-heading"> <%= t 'no_bids_yet' %> </h1>
+			<div class="row pr-2">
+				<a class="col-lg-4 ml-2 btn btn-light" href="<%=user_path(current_user)%>"> <%= t('main.user') %> <span class="sr-only">(current)</span></a>
+				<a class="col-lg-3 ml-2 btn btn-light" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a>
+				<a class="col-lg-3 ml-2 pr-1 btn btn-light" href="<%=lots_path%>"> <%= t('all_lots') %> <span class="sr-only">(current)</span></a>
+			</div>
+		</div>
+		<% else %>
     <div class="row m-2">
         <%= render  @current_bargain %>
     </div>
+		<% end%>
     <%= will_paginate @current_bargain , renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
 </div>

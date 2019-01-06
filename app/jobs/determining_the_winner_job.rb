@@ -10,6 +10,7 @@ class DeterminingTheWinnerJob < ApplicationJob
   end
 
   private 
+  
   def determine_winner(current_bargain)
     current_bargain = CurrentBargain.find_by(id: current_bargain)
     CurrentBargain.transaction do   
@@ -24,7 +25,6 @@ class DeterminingTheWinnerJob < ApplicationJob
         puts current_bargain.lot.lot_end_date 'lot +1000'
         DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain)   
         BroadcastMessage.call(bargain: current_bargain)
-        
         new_message('30 minutes was added', current_bargain.user, current_bargain)
         current_bargain.users.each do |user|
           puts user.name

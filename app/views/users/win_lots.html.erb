@@ -1,18 +1,29 @@
-<div class="card-columns mt-2 col-lg-12">
-	<% @current_bargain.preload(:user).each do |bargain| %>
-		<div class="m-1 p-1 card border-info mb-1" style="width: 20rem;" >
-			<%= image_tag bargain.lot.main_image.url(:medium), style: 'width: 19rem', class: 'card-img-top center-block p-1'%>
-			<div class="card-header"><%= bargain.lot.name %></div>
-			<div class="card-body">
-				<p class="card-text">  
-					<span class="badge badge-pill badge-success"> <%= t('lot.your_price') %>  <%= bargain.current_price %> <%= t('lot.byn') %> </span> 
-				</p>
-				<a href="<%=lot_path(bargain.lot)%>" class="btn btn-info"> <%=t('current_bargain.open')%> </a>
-			</div>
-			<div class="card-footer text-muted">
-				<p> <%= t('lot.by') %> <%= bargain.user.email %> </p>
-			</div>
+<% if @current_bargain.empty? %>
+	<div class="ml-5 alert alert-success">
+		<h1 class="alert-heading"> <%= t 'no_bids_yet' %> </h1>
+		<div class="row pr-2">
+			<a class="col-lg-5 ml-2 btn btn-light" href="<%=current_bargains_path%>"> <%= t('main.all_played_lots') %> <span class="sr-only">(current)</span></a>
+			<a class="col-lg-3 ml-2 btn btn-light" href="<%=new_lot_path%>"> <%= t('main.new_lot') %> <span class="sr-only">(current)</span></a>
+			<a class="col-lg-3 ml-2 pr-1 btn btn-light" href="<%=lots_path%>"> <%= t('all_lots') %> <span class="sr-only">(current)</span></a>
 		</div>
-	<% end %>
-	<%= will_paginate @current_bargain , renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
-</div>
+	</div>
+<% else %>
+	<div class="card-columns mt-2 col-lg-12">
+		<% @current_bargain.preload(:user).each do |bargain| %>
+			<div class="m-1 p-1 card border-info mb-1" style="width: 20rem;" >
+				<%= image_tag bargain.lot.main_image.url(:medium), style: 'width: 19rem', class: 'card-img-top center-block p-1'%>
+				<div class="card-header"><%= bargain.lot.name %></div>
+				<div class="card-body">
+					<p class="card-text">  
+						<span class="badge badge-pill badge-success"> <%= t('lot.your_price') %>  <%= bargain.current_price %> <%= t('lot.byn') %> </span> 
+					</p>
+					<a href="<%=lot_path(bargain.lot)%>" class="btn btn-info"> <%=t('current_bargain.open')%> </a>
+				</div>
+				<div class="card-footer text-muted">
+					<p> <%= t('lot.by') %> <%= bargain.user.email %> </p>
+				</div>
+			</div>
+		<% end %>
+		<%= will_paginate @current_bargain , renderer: 'BootstrapPaginationHelper::LinkRenderer'  %>
+	</div>
+<% end %>

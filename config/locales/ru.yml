@@ -1,10 +1,13 @@
 ru:
+  status: "Статус: " 
   bargain_was_stopped: "Ставка Остановлена"
   Reply: "Ответить"
   title: "Заголовок"
   news: "Новости"
+  comment_is_empty: "Комментарий пустой"
   complete: "Успешно"
   successfully_created_comment: "Комментарий успешно создан"
+  bargain_was_updated: "Ставка обновлена. Пожалуйста обновите страницу."
   error_adding_comment: "Ошибка при создании комментария"
   leave_comment: "Оставьте комментарий..."
   back: "Назад"
@@ -28,6 +31,7 @@ ru:
     played_out: "Разыгран"
   main: 
     ok: "OK"
+    my_bids: 'Мои Ставки'
     create_news: "Создать Новость"
     main_page: "Главная страница"
     win_lots: "Выигрышные лоты"

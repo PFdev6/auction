@@ -1,14 +1,13 @@
-
-<div class="m-1 card border-info mb-1 " style="width: 16rem;">
- <%= image_tag lot.main_image.url(:medium), style: 'width: 16rem',class: 'center-block card-img-top p-1'  %>
+<div class="card border-info m-1 " style="width: 15rem;">
+ <%= image_tag lot.main_image.url(:medium), style: 'width: 15rem',class: 'center-block card-img-top p-1'  %>
   <div class="card-header">
     <%= lot.name %>
-     <% if stopped?(lot) %>
-        <span class="badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
+    <% if stopped?(lot) %>
+        <span class="m-1 badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
     <% elsif process?(lot) %>
-        <span class="badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>
+        <span class="m-1 badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>
     <% elsif expired?(lot)%>
-        <span class="badge badge-pill badge-danger"><%= t('lot.expired')%></span> 
+        <span class="m-1 badge badge-pill badge-danger"><%= t('lot.expired')%></span> 
         <%= get_link_winner(lot.current_bargain) %>
     <% end %>
   </div>

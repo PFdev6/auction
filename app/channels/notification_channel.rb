@@ -4,10 +4,6 @@ class NotificationChannel < ApplicationCable::Channel
     stream_from "notification_#{current_user.id}"
   end
 
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
-  end
-
   def notify(data)
     p "------------------------#{data}-------------------------"
     Message.create(msg: data['message'], user_id: data['user'])

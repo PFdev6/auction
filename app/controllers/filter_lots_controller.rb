@@ -5,13 +5,13 @@ class FilterLotsController < ApplicationController
 	end
 
   def show
-    @filter_lot = FilterLot.find(params[:id])
+    @filter_lot = FilterLot.find(params[:id]).search_lots
 	end
 
   def create
     @filter_lot = FilterLot.create(filter_params)
     redirect_to @filter_lot
-	end
+  end
 
 	private 
   

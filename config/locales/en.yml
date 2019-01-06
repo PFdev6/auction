@@ -30,12 +30,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  status: "Status:" 
   bargain_was_stopped: "Bargain Was Stopped"
   successfully_created_comment: "Successfully created comment"
   error_adding_comment: "Error adding comment"
+  comment_is_empty: "Comment Is Empty"
   leave_comment: "Leave a comment..."
   complete: "Complete"
   back: "Back"
+  bargain_was_updated: "Bargain was updated. Please update page."
   filters: "Filter"
   filter:
     user_name: "User Name"
@@ -54,6 +57,7 @@ en:
     no_winner: 'No Bet'
     played_out: 'Played Out'
   main: 
+    my_bids: 'My bids'
     win_lots: 'Win Lots'
     notification: 'Notifications'
     ok: "OK"

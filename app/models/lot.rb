@@ -1,12 +1,12 @@
 class Lot < ApplicationRecord
-  include Clearable, Checkable
+  include Clearable
 
   belongs_to :user
   has_one :current_bargain, dependent: :delete
   has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
   validates :name, :autopurchase_price, :description, :start_price, :lot_end_date, presence: true 
-  has_attached_file :main_image, styles: { medium: "300x350>", thumb: "100x100>" }, default_url: '/images/missing.png'
+  has_attached_file :main_image, styles: { medium: "300x350>", thumb: "100x100>" }, default_url: ':style/missing.png'
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
   
   has_attached_file :first_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/missing.png'
@@ -15,11 +15,12 @@ class Lot < ApplicationRecord
   has_attached_file :second_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/missing.png'
  	validates_attachment_content_type :second_additional_image, content_type: /\Aimage\/.*\z/
 
-  searchkick word_start: [:name, :user, :description], word_middle:[:name, :user, :description]
+  searchkick word_start: [:name, :user,:tags, :description], word_middle:[:name, :user, :description]
   scope :search_import, -> { includes(:tags, :user, :current_bargain, :taggings) }
   
   def search_data
     {
+      tags: tags.each{|tag| tag.name },
       name: name,
       user: user.nickname,
       description: description
@@ -43,7 +44,8 @@ class Lot < ApplicationRecord
         self.current_bargain = current_bargain
       else
         BroadcastMessage.call(bargain: current_bargain)
-        id_job = DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date)
+        id_job = DeterminingTheWinnerJob
+          .set(wait_until: current_bargain.lot.lot_end_date)
           .perform_later(current_bargain)
           .provider_job_id
         current_bargain.update_attributes(delayed_job_id: id_job, played_out: false)

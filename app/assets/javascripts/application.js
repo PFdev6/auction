@@ -20,7 +20,6 @@
 //= require material
 //= require bootstrap
 //= require bootstrap-sprockets
-//= require bootstrap-datepicker
 
 $(() => {
     $("#flashmsg").hide(3000)

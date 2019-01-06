@@ -31,16 +31,16 @@
 					</div>
 				</div>
 				<div  class="row m-2">
-					<div class="col-lg-7">		
+					<div class="col-lg-6">		
 						<%= link_to t('lot.description'), lot_path(@current_bargain.lot), class: 'm-1 border border-danger rounded '%>
 						<%= link_to t('lot.user'), user_path(@current_bargain.user), class: 'm-1 border border-danger rounded '%>
 					</div>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-6">
 					<ul>
-						<li> 	<%= t('lot.start_price')%> <%= @current_bargain.lot.start_price %> </li>	
-						<li> 	<%= t('lot.autopurchase_price')%> <%= @current_bargain.lot.autopurchase_price %> </li>	
-						<li> 	<%= t('lot.current_price')%> <%= @current_bargain.current_price %> </li>	
+						<li> 	<%= t('lot.start_price')%> <span class="text-success"> <%= @current_bargain.lot.start_price %> </span> </li>	
+						<li> 	<%= t('lot.autopurchase_price')%> <span class="text-success"> <%= @current_bargain.lot.autopurchase_price %> </span> </li>	
+						<li> 	<%= t('lot.current_price')%> <span class="text-success"> <%= @current_bargain.current_price %> </span> </li>	
 					</ul>
 				</div>
 			</div>
@@ -58,9 +58,11 @@
 		</div>
 	</div>
 	<br/>
-	<div class="col-lg-12">
-		<h2> <%= t('current_bargain.comments')%>: </h2>
-		<%= render "comments/form" %>
-		<%= nested_comments @comments %>
-	</div> 
+	<% if current_user.present?%>
+		<div class="col-lg-12">
+			<h2> <%= t('current_bargain.comments')%>: </h2>
+			<%= render "comments/form" %>
+			<%= nested_comments @comments %>
+		</div> 
+	<% end %>
 </div>

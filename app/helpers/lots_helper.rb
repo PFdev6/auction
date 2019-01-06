@@ -1,6 +1,7 @@
 module LotsHelper
   def get_all_tag(tags, classes)
-    max = tags.sort_by(&:count).last
+    tags = tags.sort_by(&:count).reverse[0..4]
+    max = tags.first
     tags.each do |tag|
       index = tag.count.to_f / max.count * (classes.size-1)
       yield(tag, classes[index.round])
@@ -14,18 +15,22 @@ module LotsHelper
     imgs
   end
 
+  def show_filter?
+    return true if @lots.count > 2
+    false
+  end
+
   def stopped?(lot)
     return false if lot.inprocess
-    
     true
   end
 
   def process?(lot)
-    return true if lot.lot_end_date > Time.now
-
     if lot.current_bargain 
       return false if lot.current_bargain.played_out
     end
+    return true if lot.lot_end_date > Time.now
+
     true
   end
 

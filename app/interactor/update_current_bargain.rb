@@ -9,6 +9,7 @@ class UpdateCurrentBargain
     CurrentBargain.transaction do
       current_price = current_bargain.current_price
       if new_price >= current_bargain.lot.autopurchase_price
+        current_bargain.users << user
         Delayed::Job.find_by(id: current_bargain.delayed_job_id).destroy
         id_job = DeterminingTheWinnerJob.perform_later(current_bargain).provider_job_id
         BroadcastMessage.call(bargain: current_bargain, autopurchase_price: true)

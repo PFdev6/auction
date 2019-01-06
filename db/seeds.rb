@@ -6,14 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# User.create!(
-#   email: 'admin@admin.com', 
-#   password: 'password',
-#   password_confirmation: 'password', 
-#   nickname: 'Admin', first_name:'Admin', 
-#   second_name:'Admin', 
-#   avatar: ''
-#   ) if Rails.env.development?
+User.create!(
+  email: 'admin@admin.com', 
+  password: 'password',
+  password_confirmation: 'password', 
+  nickname: 'Admin', first_name:'Admin', 
+  second_name:'Admin', 
+  confirmed_at: Time.now,
+  avatar: '',
+  isadmin: true
+  ) if Rails.env.development?
 
 30.times do
   User.create(

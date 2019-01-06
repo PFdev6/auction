@@ -25,13 +25,13 @@ class CurrentBargainsController < ApplicationController
     if(current_bargain.lot.inprocess) 
       new_price = request.parameters[:current_bargain][:current_price].to_i
       result = UpdateCurrentBargain.call(
-                                          params: [new_price: new_price, current_bargain_id: params[:current_bargain_id]],
-                                          user: current_user
-                                        )
+        params: [new_price: new_price, current_bargain_id: params[:current_bargain_id]],
+        user: current_user
+      )
       flash[:notice] = result.errors if result.errors
       redirect_to result.current_bargain 
     else
-      flash[:notice] = 'Bargain was stopped'
+      flash[:notice] = t 'bargain_was_stopped'
       redirect_to bargain 
     end  
   end
