@@ -1,4 +1,5 @@
 ru:
+  status: "Статус: " 
   bargain_was_stopped: "Ставка Остановлена"
   Reply: "Ответить"
   title: "Заголовок"

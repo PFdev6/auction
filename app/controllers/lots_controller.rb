@@ -13,14 +13,13 @@ class LotsController < ApplicationController
 	def show 
 	end
 
-	def new 
+	def new
 		@lot = current_user.lots.build
 	end
 
 	def create 
 	  @lot = current_user.lots.build(lot_params)
 		files = request.parameters[:lot][:files]
-		
 		files = [] if files.nil?
 		if ComparisonService.create_lot?(files, @lot) #create_lot?(files, @lot)
 			@lot.save
