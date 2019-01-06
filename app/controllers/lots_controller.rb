@@ -5,7 +5,7 @@ class LotsController < ApplicationController
 	def index 
 		@lots = Lot
 		.includes(:user, :tags, :current_bargain, :taggings)
-		.where(["name LIKE ?","%#{params[:search]}%"])
+		.where(["name LIKE ?", "%#{params[:search]}%"])
 		.paginate(page: params[:page], per_page: 9)
 		.order(created_at: :desc)
 	end
@@ -19,8 +19,9 @@ class LotsController < ApplicationController
 
 	def create 
 	  @lot = current_user.lots.build(lot_params)
-    files = request.parameters[:lot][:files]
-    files = [] if files.nil?
+		files = request.parameters[:lot][:files]
+		
+		files = [] if files.nil?
 		if ComparisonService.create_lot?(files, @lot) #create_lot?(files, @lot)
 			@lot.save
 			@lot.load_imgs(files)
@@ -51,7 +52,7 @@ class LotsController < ApplicationController
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
-			flash[:notice] = t('main.change_end_date') if !ComparisonService.check_time?(params[:lot][:lot_end_date])
+			flash[:notice] = t('main.change_end_date') if !ComparisonService.check_time?(params[:lot][:lot_end_date].to_time)
 			render 'edit', danger: 'Lot didn\'t updated'
 		end
 	end

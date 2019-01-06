@@ -57,13 +57,12 @@
           <% end %>
         </div>
       <div> 
-
-      <div class="container">
-        <div class="m-2 badge badge-pill badge-warning"><%= t('tags')%> </div>
+      <div class="m-2 badge badge-pill badge-warning"><%= t('tags')%> </div>
         <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
           <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-info' %>
         <%end%>
-        <%= yield %>
+      <div class="container">
+        <%= yield %>        
       </div>
   </body>
 </html>

@@ -36,10 +36,9 @@ gem 'bootstrap-datepicker-rails'
 gem "bootstrap_form", ">= 4.0.0"
 
 gem 'pg'
-
+gem 'sassc-rails', '>= 2.0.0'
 gem 'material-sass', '4.1.1'
 gem "font-awesome-rails"
-gem 'bootstrap', '~> 4.1.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ckeditor'
 gem 'font-awesome-rails'
@@ -48,6 +47,8 @@ gem 'activeadmin'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'cancancan', '~> 2.0'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'momentjs-rails', '>= 2.9.0'
+
 
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'

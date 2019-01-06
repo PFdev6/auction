@@ -15,9 +15,13 @@ module LotsHelper
     imgs
   end
 
+  def show_filter?
+    return true if @lots.count > 2
+    false
+  end
+
   def stopped?(lot)
     return false if lot.inprocess
-    
     true
   end
 

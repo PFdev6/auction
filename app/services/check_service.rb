@@ -6,4 +6,5 @@ class CheckService
 			lot.update_attributes(inprocess: true) 		
 		end
 	end
+
 end

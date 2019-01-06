@@ -6,7 +6,6 @@
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *= require rails_bootstrap_forms
  *= require material_icons
- *= require bootstrap-datepicker
  *= require font-awesome
  *= require material_icons_unicode
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
@@ -17,25 +16,27 @@
  */
  @import "material";
  @import 'date_wrapper';
- 
+
  .dropdown-menu::before {
   background-color: #332d2d;
 }
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hidden_update 
-{ 
-  display: none; 
-}
-
 
 .carouselimg {
   margin-left: 10%;
   width: 18rem;
   height: 25rem;
 }
-  
+
+.center-alert {
+  margin-left: 50%;
+}
+
+.hidden_update { 
+  display: none; 
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -5,7 +5,7 @@ class FilterLotsController < ApplicationController
 	end
 
   def show
-    @filter_lot = FilterLot.find(params[:id]).search_lots.paginate(page: params[:page], per_page: 9)
+    @filter_lot = FilterLot.find(params[:id]).search_lots
 	end
 
   def create

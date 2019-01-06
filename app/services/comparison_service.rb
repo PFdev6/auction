@@ -6,7 +6,7 @@ class ComparisonService
   end
 
   def self.update_lot?(lot, time)
-    return true if check_time?(time) && lot.current_bargain.id_user_winner.nil? && lot.current_bargain.played_out == false
+    return true if check_time?(time) && lot.current_bargain.id_user_winner.nil? && lot.current_bargain.played_out == true
     false
   end
 
