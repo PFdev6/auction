@@ -4,7 +4,7 @@ class LotsController < ApplicationController
 
 	def index 
 		@lots = Lot
-		.includes(:current_bargain, :user, :tags, :taggings)
+		.includes(:user, :tags, :taggings)
 		.where(["name LIKE ?","%#{params[:search]}%"])
 		.paginate(page: params[:page], per_page: 9)
 		.order(created_at: :desc)

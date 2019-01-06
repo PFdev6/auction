@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-datepicker-rails'
 gem "bootstrap_form", ">= 4.0.0"
 
+gem 'pg'
+
 gem 'material-sass', '4.1.1'
 gem "font-awesome-rails"
 gem 'bootstrap', '~> 4.1.3'
@@ -77,7 +79,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg', '~> 0.18.4'
+ # gem 'pg', '~> 0.18.4'
   gem 'rails_12factor'
 end 
 
@@ -85,7 +87,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem "letter_opener"
-  gem 'sqlite3'
+ # gem 'sqlite3'
   gem 'pry-rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
