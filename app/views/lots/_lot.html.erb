@@ -28,7 +28,7 @@
   </div>
     <div class="card-footer text-muted">
       <p> <%= t('lot.by') %> <%= link_to lot.user.nickname, user_path(lot.user), class: 'btn btn-outline-info' %> </p>
-      <%= raw lot.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'badge badge-secondary' }.join(' ') %>
+      <%= raw lot.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'm-1 badge badge-secondary' }.join(' ') %>
   </div>
 </div>
 
