@@ -3,7 +3,6 @@ App.update_notifications = App.cable.subscriptions.create { channel: "UpdateNoti
   connected: ->
     if location.href.search('current_bargain') == -1
       console.log 'dis' 
-      @perform 'unsubscribed'
     else
       console.log location.href.search('current_bargain')
 
@@ -16,7 +15,6 @@ App.update_notifications = App.cable.subscriptions.create { channel: "UpdateNoti
     alert.show()
     nowTime = new Date
     alert.text(data + ' ' + nowTime.toGMTString())
-    $("#update_bargain").hide(10000)
 
   test: (message) ->
     console.log message   

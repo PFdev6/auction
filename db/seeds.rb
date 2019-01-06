@@ -12,6 +12,7 @@ User.create!(
   password_confirmation: 'password', 
   nickname: 'Admin', first_name:'Admin', 
   second_name:'Admin', 
+  onfirmed_at: Time.now,
   avatar: '',
   isadmin: true
   ) if Rails.env.development?

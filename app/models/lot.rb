@@ -15,11 +15,12 @@ class Lot < ApplicationRecord
   has_attached_file :second_additional_image, styles: { medium: '300x500>', thumb: '100x100>' }, default_url: '/images/missing.png'
  	validates_attachment_content_type :second_additional_image, content_type: /\Aimage\/.*\z/
 
-  searchkick word_start: [:name, :user, :description], word_middle:[:name, :user, :description]
+  searchkick word_start: [:name, :user,:tags, :description], word_middle:[:name, :user, :description]
   scope :search_import, -> { includes(:tags, :user, :current_bargain, :taggings) }
   
   def search_data
     {
+      tags: tags.each{|tag| tag.name },
       name: name,
       user: user.nickname,
       description: description

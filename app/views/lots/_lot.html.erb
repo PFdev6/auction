@@ -3,11 +3,11 @@
   <div class="card-header">
     <%= lot.name %>
      <% if stopped?(lot) %>
-        <span class="badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
+        <span class="m-1 badge badge-pill badge-warning"> <%= t('lot.stopped') %> </span>
     <% elsif process?(lot) %>
-        <span class="badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>
+        <span class="m-1 badge badge-pill badge-success"> <%= t('lot.in_process') %> </span>
     <% elsif expired?(lot)%>
-        <span class="badge badge-pill badge-danger"><%= t('lot.expired')%></span> 
+        <span class="m-1 badge badge-pill badge-danger"><%= t('lot.expired')%></span> 
         <%= get_link_winner(lot.current_bargain) %>
     <% end %>
   </div>
