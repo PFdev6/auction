@@ -1,11 +1,11 @@
 <div class="media-body alert rounded border border-info">
   <h4 class="m-2 media-heading">
     <div class="row rounded border border-dark">
-      <div class="col-lg-2">
-        <%= image_tag comment.user.avatar.url(:thumb), width:'50', height:'50' %>
+      <div class="col-lg-1">
+        <%= image_tag comment.user.avatar.url(:thumb), width:'50', height:'50', class:'p-1' %>
       </div>
-      <div class="col-lg-3">
-        <%= link_to comment.user.nickname, user_path(comment.user) %> </p>
+      <div class="col-lg-2">
+        <%= link_to comment.user.nickname, user_path(comment.user), class: 'mt-1 badge badge-dark' %> </p>
       </div>
     </div>
   </h4>

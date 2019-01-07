@@ -24,6 +24,7 @@
 $(() => {
     $("#flashmsg").hide(3000)
 });   
+
 $(() => {
     var n = $("#messages").children().length;
     $("#count_notification").text(n)
