@@ -6,7 +6,7 @@
     <%= f.number_field :autopurchase_price,  min: 0, max: '10000000', step: '0.1', label: t('filter.autopurchase_price')  %>
     <%= f.check_box :played_out, checked_value: true, unchecked_value: false, label: t('filter.played_out') %>
     <%= f.check_box :new_lots, label: 'new?', checked_value: true, unchecked_value: false, label: t('filter.new') %>
-    <%= f.submit t('main.ok') %>
+    <%= f.submit t('main.ok'), class: 'btn btn-info' %>
     <%= link_to t('back'), :back, class: 'btn btn-outline-secondary', label: t('back') %>
 <% end %>
 </div>

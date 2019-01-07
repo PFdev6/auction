@@ -1,6 +1,6 @@
 <div class="media-body alert rounded border border-info">
   <h4 class="m-2 media-heading">
-    <div class="row rounded border border-primary">
+    <div class="row rounded border border-dark">
       <div class="col-lg-2">
         <%= image_tag comment.user.avatar.url(:thumb), width:'50', height:'50' %>
       </div>
@@ -10,7 +10,7 @@
     </div>
   </h4>
     <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
-  <div class="p-2 rounded border border-secondary">
+  <div class="p-2 rounded border border-primary">
       <%= simple_format comment.msg %>
   </div>
   <hr>

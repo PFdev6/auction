@@ -1,5 +1,5 @@
 <div class="m-2 container">
-  <div class="rounded border border-dark">
+  <div class="col-lg-10 rounded border border-dark">
     <div class="row w-200 p-5">
       <div class="col-lg-4">
   
@@ -19,7 +19,7 @@
             <%= link_to  t('lot.link_to_bargain'), current_bargain_path(@lot.current_bargain),class: "badge badge-dark" %>
           <% end %>
 
-          <% if is_there_winner?(@lot.current_bargain) || (can? :edit, @lot)  %>
+          <% if is_there_winner?(@lot.current_bargain) && (can? :edit, @lot)  %>
             <%= link_to t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
           <% end %>
 
