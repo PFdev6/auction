@@ -47,22 +47,19 @@
     <% end %>
   </div>
 </nav>
-    <div class="container main">
-      <div class="row">
-        <div class="col-md-12" id="flashmsg"> 
-          <% flash.each do |name, message| %>
-            <div class="alert">
-              <%= message %>
-            </div>
-          <% end %>
+    <div class="col-lg-12" id="flashmsg"> 
+      <% flash.each do |name, message| %>
+        <div class="alert">
+          <%= message %>
         </div>
-      <div> 
-      <div class="m-2 badge badge-pill badge-warning"><%= t('tags')%> </div>
-        <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
-          <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-info' %>
-        <%end%>
-      <div class="container">
-        <%= yield %>        
-      </div>
+      <% end %>
+    </div> 
+    <div class="m-2 badge badge-pill badge-warning"><%= t('tags')%> </div>
+      <% get_all_tag(Tag.counts, %w(tag1, tag2, tag3, tag4, tag5)) do |tag, css_class|%>
+        <%= link_to tag.name, tag_path(tag.name), class: 'badge badge-info' %>
+      <%end%>
+    <div class="main container">
+      <%= yield %>        
+    </div>
   </body>
 </html>

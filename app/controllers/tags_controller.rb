@@ -2,10 +2,9 @@ class TagsController  < ApplicationController
 	def show
     @tag = Tag.find_by(name: params[:id])
     if @tag.nil?
-      d
       nil
     else
-      @lots = @tag.lots.includes( :user, :tags, :taggings)    
+      @lots = @tag.lots.includes( :current_bargain, :user, :tags, :taggings)    
     end
 	end
 end

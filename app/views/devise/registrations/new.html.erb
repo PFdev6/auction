@@ -1,53 +1,55 @@
-<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <h1 class="badge "><%= t('main.signup') %></h1>
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= fa_icon provider %> <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'badge badge-pill' %>
+<div class="col-lg-6">
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <h1 class="badge "><%= t('main.signup') %></h1>
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= fa_icon provider %> <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'badge badge-pill' %>
+      <% end -%>
     <% end -%>
-  <% end -%>
- <%= devise_error_messages! %>
+  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.text_field :nickname %>
-  </div>
+    <div class="field">
+      <%= f.text_field :nickname %>
+    </div>
 
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "new-password", help: "Must be at least 6 characters long" %>
-  </div>
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "new-password", help: "Must be at least 6 characters long" %>
+    </div>
 
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
 
-  <div class="field">
-    <%= f.text_field :first_name %>
-    <%= f.text_field :second_name, label: t('last_name') %>
-  </div>
+    <div class="field">
+      <%= f.text_field :first_name %>
+      <%= f.text_field :second_name, label: t('last_name') %>
+    </div>
 
-  <div class="field">
-    <%= f.text_area :about_users, placeholder: "Describe about you..." %>
-  </div>
+    <div class="field">
+      <%= f.text_area :about_users, placeholder: "Describe about you..." %>
+    </div>
 
-  <div class="field">
-    <%= f.file_field :avatar %>
-  </div>
+    <div class="field">
+      <%= f.file_field :avatar %>
+    </div>
 
-  <div class="m-2 field">
-    <label for="user_local"> <%=t('main.language')%> </label>
-      <select class="form-control" id="user_local", name="user[local]">
-        <option value="en" selected="selected">en</option>
-        <option value="ru">ru</option>
-      </select>
-  </div>
-  
-  <br/>
+    <div class="m-2 field">
+      <label for="user_local"> <%=t('main.language')%> </label>
+        <select class="form-control" id="user_local", name="user[local]">
+          <option value="en" selected="selected">en</option>
+          <option value="ru">ru</option>
+        </select>
+    </div>
+    
+    <br/>
 
-  <div class="actions">
-    <%= f.submit "Sign up", class: 'ml-2 btn btn-success' %>
-    <%= render "devise/shared/links" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "Sign up", class: 'ml-2 btn btn-success' %>
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+</div>

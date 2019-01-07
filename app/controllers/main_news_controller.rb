@@ -1,4 +1,5 @@
 class MainNewsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_main_news, only: [:show, :edit, :update, :destroy]
 
   def index

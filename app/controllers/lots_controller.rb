@@ -1,4 +1,5 @@
 class LotsController < ApplicationController
+	load_and_authorize_resource
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
 
@@ -52,6 +53,7 @@ class LotsController < ApplicationController
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
+			flash[:error] = t('lot.sp_more_than_ap') if !ComparisonService.check_price?(@lot)
 			flash[:notice] = t('main.change_end_date') if !ComparisonService.check_time?(params[:lot][:lot_end_date].to_time)
 			render 'edit', danger: 'Lot didn\'t updated'
 		end
