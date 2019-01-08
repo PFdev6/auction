@@ -18,9 +18,11 @@
           <% if @lot.current_bargain %>
             <%= link_to  t('lot.link_to_bargain'), current_bargain_path(@lot.current_bargain),class: "badge badge-dark" %>
           <% end %>
-          <% if is_there_winner?(@lot.current_bargain) && (can? :edit, @lot) || current_user.isadmin?  %>
-            <%= link_to t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
-          <% end %>
+          <% if current_user%>
+            <% if is_there_winner?(@lot.current_bargain) && (can? :edit, @lot) || current_user.isadmin?  %>
+              <%= link_to t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
+            <% end %>
+          <%end %>
 
           <% if can? :delete, @lot && @lot.current_bargain.nil?%> 
             <%= link_to  t('lot.delete'), lot_path(@lot),class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %>
