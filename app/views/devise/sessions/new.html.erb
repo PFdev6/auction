@@ -1,26 +1,28 @@
-<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <h1 class="badge "><%= t('main.signin') %></h1>
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-     <%= fa_icon provider %> <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'badge badge-pill' %>
+<div class="col-lg-6">
+  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h1 class="badge "><%= t('main.signin') %></h1>
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= fa_icon provider %> <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'badge badge-pill' %>
+      <% end -%>
     <% end -%>
-  <% end -%>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
     <div class="field">
-      <%= f.check_box :remember_me %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in", class: 'ml-2 btn btn-success' %>
-    <%= render "devise/shared/links" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+      </div>
+    <% end -%>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: 'ml-2 btn btn-success' %>
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+</div> 

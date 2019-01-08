@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
+	load_and_authorize_resource
 	before_action :found_user, only: [:show]
 	
 	def show
+		newlots = params[:newlots]
 		@lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
 		@lots = @lots.preload(:user, :current_bargain)
 			.paginate(page: params[:page], per_page: 9)
-			.order('id DESC')
+		@lots = SortByDateService.sort(@lots, newlots)
 	end
 
 	def edit

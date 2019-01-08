@@ -1,13 +1,14 @@
 <%= stylesheet_link_tag 'users' %>
-
-<% if @user.lots.nil?%>
+<% if @lots.nil?%>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<%= t('user.lots_empty')%>
 		</div>
 	</div>
 <% else %>
-	<div class="row">
+	<%= link_to "NEW", user_path(@user, newlots: true), controller: 'users', query:"old", class:'btn btn-outline-warning' %>
+	<%= link_to "OLD", user_path(@user, newlots: false), controller: 'users', query:"new", class:'btn btn-outline-danger' %>
+	<div class="row mt-1">
 		<div class="col-lg-9">
 			<div class="card-columns"> 
 				<%= render @lots %>

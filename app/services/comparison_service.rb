@@ -1,12 +1,12 @@
 class ComparisonService
 
   def self.create_lot?(files, lot)
-    return true if check_file_count(files) && lot.valid? && check_time?(lot.lot_end_date)
+    return true if check_price?(lot) && check_file_count(files) && lot.valid? && check_time?(lot.lot_end_date)
     false
   end
 
   def self.update_lot?(lot, time)
-    return true if check_time?(time) && lot.current_bargain.id_user_winner.nil? && lot.current_bargain.played_out == true
+    return true if check_price?(lot) && check_time?(time) && lot.current_bargain.id_user_winner.nil? && lot.current_bargain.played_out == true
     false
   end
 
@@ -16,6 +16,11 @@ class ComparisonService
     else 
       true
     end      
+  end
+
+  def self.check_price?(lot)
+    return true if lot.start_price < lot.autopurchase_price
+    false
   end
 
   def self.check_time?(lot_end_date)

@@ -1,13 +1,15 @@
 class LotsController < ApplicationController
+	load_and_authorize_resource
 	before_action :current_lot, only: [:edit, :update, :show, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
 
-	def index 
+	def index
+		newlots = params[:newlots]
 		@lots = Lot
 		.includes(:user, :tags, :current_bargain, :taggings)
 		.where(["name LIKE ?", "%#{params[:search]}%"])
 		.paginate(page: params[:page], per_page: 9)
-		.order(created_at: :desc)
+		@lots = SortByDateService.sort(@lots, newlots)
 	end
 
 	def show 
@@ -27,6 +29,7 @@ class LotsController < ApplicationController
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
+			flash[:error] = t('lot.sp_more_than_ap') if !ComparisonService.check_price?(@lot)
 			flash[:error] = t('lot.change_end_date') if !ComparisonService.check_time?(@lot.lot_end_date)
 			flash[:error] = t('lot.need_img') if !ComparisonService.check_file_count(files)
 			render 'new', danger: 'Lot didn\'t created'
@@ -51,8 +54,10 @@ class LotsController < ApplicationController
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
-			flash[:notice] = t('main.change_end_date') if !ComparisonService.check_time?(params[:lot][:lot_end_date].to_time)
-			render 'edit', danger: 'Lot didn\'t updated'
+			flash[:error] = t('lot.sp_more_than_ap') if !ComparisonService.check_price?(@lot)
+			flash[:error] = t('main.change_end_date') if !ComparisonService.check_time?(params[:lot][:lot_end_date].to_time)
+			flash[:error] = 'Lot didn\'t updated'
+			render 'edit'
 		end
 	end
 

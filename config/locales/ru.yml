@@ -52,6 +52,7 @@ ru:
     no_winner: "Нет Победителя"
     open: "Открыть"
   lot:
+    sp_more_than_ap: "Начальная Цена Больше Чем Цена Автовыкупа"
     your_price: "Ваша Цена"
     inprocess: "Разыгрывать?"
     tags: "Тэги"
@@ -66,7 +67,7 @@ ru:
     start_price: "Начальная цена: "
     time_created: "Время создания: "
     autopurchase_price: "Цена автовыкупа: "
-    end_date: "Время окончания"
+    end_date: "Время окончания: "
     byn: "белорусских рублей"
     edit: "Изменить"
     delete: "Удалить"

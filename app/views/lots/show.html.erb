@@ -1,5 +1,5 @@
 <div class="m-2 container">
-  <div class="rounded border border-secondary">
+  <div class="col-lg-10 rounded border border-dark">
     <div class="row w-200 p-5">
       <div class="col-lg-4">
   
@@ -8,20 +8,21 @@
         </div>
        
         <small>
-          <div class="col-lg-10 rounded border border-primary">
+          <div class="col-lg-10 p-1 rounded border border-primary">
             <div class="center-block">
               <%= image_tag @lot.user.avatar.url(:thumb), class: 'rounded-circle center-block', width:'50', height:'50' %>
-              <%= link_to @lot.user.nickname, user_path(@lot.user), class: 'center-block' %>
+              <%= link_to @lot.user.nickname, user_path(@lot.user), class: 'col-lg-9 center-block badge badge-dark ml-4 mt-1' %>
             </div>
           </div>
 
           <% if @lot.current_bargain %>
             <%= link_to  t('lot.link_to_bargain'), current_bargain_path(@lot.current_bargain),class: "badge badge-dark" %>
           <% end %>
-
-          <% if is_there_winner?(@lot.current_bargain) || (can? :edit, @lot)  %>
-            <%= link_to t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
-          <% end %>
+          <% if current_user%>
+            <% if is_there_winner?(@lot.current_bargain) && (can? :edit, @lot) || current_user.isadmin?  %>
+              <%= link_to t('lot.edit'), edit_lot_path(@lot), class: "badge badge-dark"  %>
+            <% end %>
+          <%end %>
 
           <% if can? :delete, @lot && @lot.current_bargain.nil?%> 
             <%= link_to  t('lot.delete'), lot_path(@lot),class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -55,7 +56,7 @@
       
       <div class="col-lg-1"></div>
       
-      <div class="col-lg-7 rounded border border-danger">
+      <div class="col-lg-7 rounded border border-dark">
         <%= render 'lot_carousel' %>
         <h3 class="m-2"> 
           <span class="badge badge-light center-block"><%= t('lot.description') %> </span>

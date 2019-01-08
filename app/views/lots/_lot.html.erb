@@ -1,4 +1,4 @@
-<div class="card border-info m-1 " style="width: 15rem;">
+<div class="card border-info m-1 " style=" width: 15rem;">
  <%= image_tag lot.main_image.url(:medium), style: 'width: 15rem',class: 'center-block card-img-top p-1'  %>
   <div class="card-header">
     <%= lot.name %>
@@ -28,7 +28,7 @@
   </div>
     <div class="card-footer text-muted">
       <p> <%= t('lot.by') %> <%= link_to lot.user.nickname, user_path(lot.user), class: 'btn btn-outline-info' %> </p>
-      <%= raw lot.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'badge badge-secondary' }.join(' ') %>
+      <%= raw lot.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'm-1 badge badge-secondary' }.join(' ') %>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 <% if @current_bargain.empty? %>
-	<div class="ml-5 alert alert-success">
+	<div class="alert alert-success">
 		<h1 class="alert-heading"> <%= t 'no_bids_yet' %> </h1>
 		<div class="row pr-2">
 			<a class="col-lg-5 ml-2 btn btn-light" href="<%=current_bargains_path%>"> <%= t('main.all_played_lots') %> <span class="sr-only">(current)</span></a>

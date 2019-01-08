@@ -76,6 +76,7 @@ en:
     no_winner: "No Winner"
     open: "Open"
   lot:
+    sp_more_than_ap: "Start Price More Than Autopurchase Price"
     your_price: "Your Price"
     change_end_date: "Change Date (+10 minutes)"
     need_img: "Should be from 1 to 3 images"
@@ -86,7 +87,7 @@ en:
     autopurchase_price: "Autopurchase price: "
     resale_value: "Est. Resale Value: "
     time_created: "Time of creation: "
-    end_date: "End date"
+    end_date: "End date: "
     byn: "BYN"
     edit: "Edit"
     delete: "Delete"

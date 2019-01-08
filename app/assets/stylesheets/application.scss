@@ -14,15 +14,33 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
  @import "material";
  @import 'date_wrapper';
 
- .dropdown-menu::before {
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.like-to-user {
+  cursor: pointer;
+}
+
+.deletemsg {
+  cursor: pointer;
+}
+
+.dropdown-menu::before {
   background-color: #332d2d;
 }
 
+#flashmsg {
+  margin-left: 30%; 
+  margin-right: 30%;
+}
+
 .carouselimg {
-  margin-left: 10%;
+  margin-left: 14%;
   width: 18rem;
   height: 25rem;
 }

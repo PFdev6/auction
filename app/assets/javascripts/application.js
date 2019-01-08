@@ -21,11 +21,17 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 
+$.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
 $(() => {
     $("#flashmsg").hide(3000)
 });   
+
 $(() => {
     var n = $("#messages").children().length;
     $("#count_notification").text(n)
 });
-

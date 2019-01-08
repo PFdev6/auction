@@ -10,7 +10,6 @@ class DeterminingTheWinnerJob < ApplicationJob
   end
 
   private 
-  
   def determine_winner(current_bargain)
     current_bargain = CurrentBargain.find_by(id: current_bargain)
     CurrentBargain.transaction do   
@@ -54,6 +53,7 @@ class DeterminingTheWinnerJob < ApplicationJob
     if(current_bargain.lot.lot_end_date < current_bargain.updated_at && current_bargain.updated_at <  five_second_to + 5)
       return true
     end
+
     return false
   end 
 
