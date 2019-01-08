@@ -19,3 +19,5 @@ App.update_notifications = App.cable.subscriptions.create { channel: "UpdateNoti
   test: (message) ->
     console.log message   
     @perform 'test', message: message
+  
+  

@@ -21,6 +21,12 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 
+$.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
 $(() => {
     $("#flashmsg").hide(3000)
 });   
@@ -30,3 +36,80 @@ $(() => {
     $("#count_notification").text(n)
 });
 
+$( ($) => {
+    $('.like-to-user').click( function() {
+        var msg = $(this)
+        $.ajax({
+            url: '/messages/' + $(msg).attr('data-message_id'),
+            type: 'POST',
+            data: { _method: 'PATCH' },
+            success: (data) => {
+                console.log($(msg).parent().parent().parent().hide())
+                var n = $("#messages").children().length-1;
+                console.log(n)
+                $("#count_notification").text(n)  
+                if(!data.plike)
+                {
+                    alert('You already put like')
+                }
+            } 
+        })
+    })
+});   
+
+
+$( ($) => {
+    $('.deletemsg').click( function() {
+        console.log($(this).attr('data-message_id'))
+        var msg = $(this)
+        $.ajax({
+            url: '/messages/' + $(msg).attr('data-message_id'),
+            type: 'POST',
+            data: { _method: 'DELETE' },
+            success: () => {
+                console.log($(msg).parent().parent().parent().hide())
+                var n = $("#messages").children().length-1;
+                console.log(n)
+                $("#count_notification").text(n)  
+            } 
+        })
+    })
+});   
+
+$( function( ) {
+    $('#new-lot').click(function() {
+          console.log('EEEEEEEE');
+          $.ajax({
+        url: '/users/' + $(this).attr('data-user_id'),
+        type: 'GET',
+        format: 'js',
+        data: {
+          newlot: true, 
+          id: $(this).attr('data-user_id')
+        },
+        success: function(data) {
+          console.log('EEEEEEEE');
+        }
+      });
+    });
+  });
+
+  $( function( ) {
+    $('#old-lot').click(function() {
+        console.log('EEEEEEEE');
+      
+        $.ajax({
+        url: '/users/' + $(this).attr('data-user_id'),
+        type: 'GET',
+        format: 'js',
+        data: {
+          newlot: false,
+          id: $(this).attr('data-user_id')
+        },
+        success: function(data) {
+          console.log('EEEEEEEE');
+        }
+      });
+    });
+  });
+  

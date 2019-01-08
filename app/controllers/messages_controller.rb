@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   def destroy 
     @message = Message.includes(:current_bargain, :user).find(params[:id])
     @message.destroy
-    redirect_to root_path
+    render json: { success: true }
   end
 
   def update
@@ -11,8 +11,8 @@ class MessagesController < ApplicationController
       user = @message.current_bargain.user
       user.update_attributes(likes: user.likes+1)
       @message.destroy
-  		return redirect_to user
+      return render json: { success: true, plike: true }
     end
-    redirect_to current_user
+    render json: { success: true, plike: false }
   end
 end

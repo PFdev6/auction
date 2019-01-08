@@ -22,7 +22,15 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
- .dropdown-menu::before {
+.like-to-user {
+  cursor: pointer;
+}
+
+.deletemsg {
+  cursor: pointer;
+}
+
+.dropdown-menu::before {
   background-color: #332d2d;
 }
 
