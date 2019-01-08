@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users do
     get 'win_lots'
     get 'user_bids'
+    post 'sort_by_date'
   end
   authenticated :user, -> user { user.isadmin? } do
     mount Delayed::Web::Engine, at: '/jobs'

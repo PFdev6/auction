@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'users' %>
-<button id="old-lot" type="button" class="btn btn-outline-warning" data-user_id="<%= @user.id%>"  >OLD</button>
-<button id="new-lot" type="button" class="btn btn-outline-danger" data-user_id="<%= @user.id%>" >NEW</button>
+
+<%= link_to "NEW", user_path(@user, newlots: true), controller: 'users', query:"old", class:'btn btn-outline-warning' %>
+<%= link_to "OLD", user_path(@user, newlots: false), controller: 'users', query:"new", class:'btn btn-outline-danger' %>
+
 <% if @user.lots.nil?%>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">

@@ -3,17 +3,15 @@ class UsersController < ApplicationController
 	before_action :found_user, only: [:show]
 	
 	def show
-		newlot = params[:newlot]
+		newlots = params[:newlots]
 		@lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
 		@lots = @lots.preload(:user, :current_bargain)
 			.paginate(page: params[:page], per_page: 9)
-			.order('id ASC')
-		if(newlot.present?)
-			if newlot == "true"
+		if(newlots.present?)
+			if newlots == 'true'
 				@lots = @lots.order('created_at DESC')
-				format.html { render @lots }
 			end
-			if newlot == "false"
+			if newlots == 'false'
 				@lots = @lots.order('created_at ASC') 
 			end
 		end
