@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Lot, type: :model do
-  context "Checking validation for lot" do
+  context 'Checking validation for lot' do
     it 'Validate without attributes' do
       lot = Lot.new(
         user: nil,

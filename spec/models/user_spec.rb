@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context "Checking validation for user" do
+  context 'Checking validation for user' do
     it 'Validate without attributes' do
       user = User.new(
         nickname: '',

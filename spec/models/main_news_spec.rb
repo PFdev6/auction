@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MainNews, type: :model do
-  context "Checking validation for main_news" do
+  context 'Checking validation for main_news' do
     it 'Validate without attributes' do
       news = MainNews.new(
         user: nil,
