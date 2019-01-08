@@ -8,11 +8,10 @@
         </div>
        
         <small>
-          <div class="col-lg-10 rounded border border-primary">
-            
+          <div class="col-lg-10 p-1 rounded border border-primary">
             <div class="center-block">
               <%= image_tag @lot.user.avatar.url(:thumb), class: 'rounded-circle center-block', width:'50', height:'50' %>
-              <%= link_to @lot.user.nickname, user_path(@lot.user), class: 'center-block badge badge-dark mb-1' %>
+              <%= link_to @lot.user.nickname, user_path(@lot.user), class: 'col-lg-9 center-block badge badge-dark ml-4 mt-1' %>
             </div>
           </div>
 

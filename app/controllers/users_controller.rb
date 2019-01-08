@@ -7,14 +7,7 @@ class UsersController < ApplicationController
 		@lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
 		@lots = @lots.preload(:user, :current_bargain)
 			.paginate(page: params[:page], per_page: 9)
-		if(newlots.present?)
-			if newlots == 'true'
-				@lots = @lots.order('created_at DESC')
-			end
-			if newlots == 'false'
-				@lots = @lots.order('created_at ASC') 
-			end
-		end
+		@lots = SortByDateService.sort(@lots, newlots)
 	end
 
 	def edit

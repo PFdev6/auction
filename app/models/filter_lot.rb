@@ -1,6 +1,6 @@
 class FilterLot < ApplicationRecord
   def search_lots
-		lots = Lot.includes(:current_bargain, :user, :tags, :taggings).all #.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+		lots = Lot.includes(:current_bargain, :user, :tags, :taggings).all 
 
     if user_name.present?
       user_search = User.find_by(["nickname LIKE ?","%#{user_name}%"])
@@ -15,10 +15,6 @@ class FilterLot < ApplicationRecord
       lots = lots.select do |lot|
         lot.current_bargain.played_out == played_out
       end
-    end
-    if new_lots.present?
-     lots = lots.sort_by{ |lot| lot.created_at }.reverse if new_lots == true 
-     lots = lots.sort_by{ |lot| lot.created_at } if new_lots == false 
     end
     lots
   end 
