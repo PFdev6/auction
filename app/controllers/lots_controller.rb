@@ -51,6 +51,7 @@ class LotsController < ApplicationController
 	end
 
 	def update
+		return redirect_to @lot, danger: 'Bargain is stopped' unless @lot.inprocess
 		files = request.parameters[:lot][:files]
 		if current_user.isadmin?
 			CheckService.check_inprocces(@lot, params[:lot][:inprocess]) 
@@ -66,6 +67,7 @@ class LotsController < ApplicationController
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully updated'
 		else
+			flash[:error] = t('lot.lot_stopped') unless @lot.inprocess 
 			flash[:error] = t('lot.sp_more_than_ap') unless ComparisonService.check_price?(@lot)
 			flash[:error] = t('main.change_end_date') unless ComparisonService.check_time?(params[:lot][:lot_end_date].to_time)
 			flash[:error] = 'Lot didn\'t updated'

@@ -6,6 +6,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js">
+    </script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -35,16 +37,16 @@
         </li>
         </ul>
 
-        <%= link_to t('main.logout'), destroy_user_session_path, :method => :delete, class: 'nav-item active mr-sm-2 badge badge-info' %>
+        <%= link_to t('main.logout'), destroy_user_session_path, :method => :delete, class: 'nav-item active mr-sm-5 badge badge-info' %>
       <% else %>
         </ul> 
         <a class="badge badge-info mr-sm-2" href="<%=new_user_registration_path%>"><%= t('main.signup') %> <span class="sr-only">(current)</span></a>
-        <a class="badge badge-info mr-sm-2" href="<%=new_user_session_path%>"> <%= t('main.signin') %><span class="sr-only">(current)</span></a>
+        <a class="badge badge-info mr-sm-5" href="<%=new_user_session_path%>"> <%= t('main.signin') %><span class="sr-only">(current)</span></a>
       <% end %>
-    <%= form_tag('/search', method: :get) do |f| %>
-      <%= text_field_tag :query  %>
-      <%= submit_tag 'Search', class: 'btn btn-outline-success'  %>
-    <% end %>
+      <%= form_tag('/search', method: :get, class: 'row mr-1') do |f| %>
+        <%= text_field_tag :query,nil%>
+        <%= submit_tag 'Search', class: 'col-lg-2 btn  btn-outline-success'  %>
+      <% end %>
   </div>
 </nav>
     <div class="col-lg-6" id="flashmsg"> 

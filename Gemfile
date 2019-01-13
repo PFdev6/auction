@@ -71,6 +71,7 @@ gem 'execjs'
 gem 'date_wrapper'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 gem "paperclip", "~> 6.0.0"
 
