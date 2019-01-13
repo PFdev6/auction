@@ -1,7 +1,6 @@
 json.main_news do
   json.array!(@main_news) do |news|
-    json.title news.title
-    json.url main_news_path(news)
+    json.name news.title
   end
 end
 

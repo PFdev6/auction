@@ -4,9 +4,15 @@ var options = {
   theme: "round",
   theme: "dark",
   list: {
-		maxNumberOfElements: 3,
+		maxNumberOfElements: 5,
 		match: {
 			enabled: true
+		}
+	},
+	template: {
+		type: "links",
+		fields: {
+				link: "url"
 		}
 	},
 	getValue: "name"

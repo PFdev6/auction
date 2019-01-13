@@ -52,6 +52,7 @@ class LotsController < ApplicationController
 
 	def update
 		return redirect_to @lot, danger: 'Bargain is stopped' unless @lot.inprocess
+		
 		files = request.parameters[:lot][:files]
 		if current_user.isadmin?
 			CheckService.check_inprocces(@lot, params[:lot][:inprocess]) 

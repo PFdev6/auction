@@ -19,13 +19,11 @@
 //= require_tree .
 //= require popper
 //= require material
-//= require bootstrap
 //= require bootstrap-sprockets
 
 $( document ).on('turbolinks:load', function() {
   $("input#query").easyAutocomplete(options);
 })
-
 
 $.ajaxSetup({
   headers: {
@@ -34,10 +32,11 @@ $.ajaxSetup({
 });
 
 $(() => {
-  $("#flashmsg").hide(3000)
+  $("#flashmsg").hide(2500)
 });   
 
-$( ($) => {
+$(($) => {
+  
   $('.like-to-user').click( function() {
     var msg = $(this)
     console.log($(msg).parent().parent().parent().hide())
@@ -58,7 +57,7 @@ $( ($) => {
   })
 });   
 
-$( ($) => {
+$(($) => {
   $('.deletemsg').click( function() {
     var msg = $(this)
     console.log($(msg).parent().parent().parent().hide())

@@ -3,8 +3,7 @@ module LotsHelper
     tags = tags.sort_by(&:count).reverse[0..4]
     max = tags.first
     tags.each do |tag|
-      index = tag.count.to_f / max.count * (classes.size-1)
-      yield(tag, classes[index.round])
+      yield(tag)
     end
   end
 
@@ -17,11 +16,13 @@ module LotsHelper
 
   def show_filter?
     return true if @lots.length > 2
+    
     false
   end
 
   def stopped?(lot)
     return false if lot.inprocess
+    
     true
   end
 
@@ -55,6 +56,7 @@ module LotsHelper
 
   def is_there_winner?(current_bargain)
     return true if current_bargain.id_user_winner.nil? && current_bargain.lot.lot_end_date < Time.now 
+    
     false
   end
 end

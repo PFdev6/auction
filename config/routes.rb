@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'lots#index'
   resources :main_news
   resources :lots
-  resources :filter_lots
+  #resources :filter_lots
   resources :messages, only: %i[destroy update]
   resources :tags, only: %i[show destroy]
   resources :users do

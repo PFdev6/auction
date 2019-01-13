@@ -15,7 +15,7 @@ class ComparisonService
   def self.check_file_count(files)
     if files.size > 3 || files.size == 0 
       false
-    else 
+    else
       true
     end
   end
@@ -28,7 +28,6 @@ class ComparisonService
 
   def self.check_time?(lot_end_date)
     return false if lot_end_date.nil?
-
     return true if lot_end_date >= Time.now + 600 # +10min
 
     false
