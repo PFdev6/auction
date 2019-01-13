@@ -8,48 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-<script>
-$( ($) => {
-    $('.like-to-user').click( function() {
-        var msg = $(this)
-        $.ajax({
-            url: '/messages/' + $(msg).attr('data-message_id'),
-            type: 'POST',
-            data: { _method: 'PATCH' },
-            success: (data) => {
-                console.log($(msg).parent().parent().parent().hide())
-                var n = $("#messages").children().length-1;
-                console.log(n)
-                $("#count_notification").text(n)  
-                if(!data.plike)
-                {
-                    alert('You already put like')
-                }
-            } 
-        })
-    })
-});   
-
-
-$( ($) => {
-    $('.deletemsg').click( function() {
-        console.log($(this).attr('data-message_id'))
-        var msg = $(this)
-        $.ajax({
-            url: '/messages/' + $(msg).attr('data-message_id'),
-            type: 'POST',
-            data: { _method: 'DELETE' },
-            success: () => {
-                console.log($(msg).parent().parent().parent().hide())
-                var n = $("#messages").children().length-1;
-                console.log(n)
-                $("#count_notification").text(n)  
-            } 
-        })
-    })
-});   
-
-</script>
 
   <body>
 

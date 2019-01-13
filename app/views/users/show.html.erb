@@ -6,8 +6,8 @@
 		</div>
 	</div>
 <% else %>
-	<%= link_to "NEW", user_path(@user, newlots: true), controller: 'users', query:"old", class:'btn btn-outline-warning' %>
-	<%= link_to "OLD", user_path(@user, newlots: false), controller: 'users', query:"new", class:'btn btn-outline-danger' %>
+	<%= link_to 'NEW', user_path(@user, sort: 'new_lots'), controller: 'users', query:"old", class:'btn btn-outline-warning' %>
+	<%= link_to 'OLD', user_path(@user, sort: 'old_lots'), controller: 'users', query:"new",  class:'btn btn-outline-danger' %>
 	<div class="row mt-1">
 		<div class="col-lg-9">
 			<div class="card-columns"> 

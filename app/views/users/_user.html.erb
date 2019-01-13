@@ -9,6 +9,9 @@
         <% if current_user == user %>
           <li class="list-group-item"> <a class="badge badge-info" href="<%=user_user_bids_path(current_user)%>"> <%= t('main.my_bids') %> <span class="sr-only">(current)</span></a></li>
         <% end %>
+        <% if can? :delete, @user && !@user.isadmin %> 
+          <li class="list-group-item"> <%= link_to  t('lot.delete'), user_path(@user), class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+        <% end %>
         <% if can? :edit, @user%>
           <li class="list-group-item"> <%= link_to  t('user.edit'), edit_user_path(user) %> </li>
         <% end %>

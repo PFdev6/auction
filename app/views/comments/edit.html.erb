@@ -1,0 +1,8 @@
+<h1> Edit Comment </h1>
+  <% if current_user == @current_comment.user %>
+    <%= render 'form_edit'%>
+  <% else %>
+    <div class="alert">  
+      <% t 'error' %>
+    </div>
+  <% end %>

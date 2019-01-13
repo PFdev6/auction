@@ -22,16 +22,55 @@
 //= require bootstrap-sprockets
 
 $.ajaxSetup({
-    headers: {
-      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 $(() => {
-    $("#flashmsg").hide(3000)
+  $("#flashmsg").hide(3000)
+});   
+
+$( ($) => {
+  $('.like-to-user').click( function() {
+    var msg = $(this)
+    console.log($(msg).parent().parent().parent().hide())
+    var n = $("#messages").children().length-1;
+    console.log(n)
+    $("#count_notification").text(n)  
+    $.ajax({
+      url: '/messages/' + $(msg).attr('data-message_id'),
+      type: 'POST',
+      data: { _method: 'PATCH' },
+      success: (data) => {
+        if(!data.plike)
+        {
+          alert('You already put like')
+        }
+      } 
+    })
+  })
+});   
+
+$( ($) => {
+  $('.deletemsg').click( function() {
+    var msg = $(this)
+    console.log($(msg).parent().parent().parent().hide())
+    var n = $("#messages").children().length-1;
+    $("#count_notification").text(n)  
+    console.log($(this).attr('data-message_id'))
+    $.ajax({
+      url: '/messages/' + $(msg).attr('data-message_id'),
+      type: 'POST',
+      data: { _method: 'DELETE' },
+      success: () => {
+        console.log('Complete')
+      } 
+    })
+  })
 });   
 
 $(() => {
-    var n = $("#messages").children().length;
-    $("#count_notification").text(n)
+  var n = $("#messages").children().length;
+  $("#count_notification").text(n)
 });

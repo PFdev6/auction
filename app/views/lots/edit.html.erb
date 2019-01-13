@@ -1,3 +1,11 @@
-<div class="col-lg-4">
-  <%= render 'form_for_lot'%>
+<div class="col-lg-6">
+	<% if current_user.isadmin?%>
+		<%= link_to "STOP LOT", edit_lot_path(@lot, inprocess: 0), controller: 'lots', class:'m-1 btn btn-danger' %>
+		<%= link_to "RESTORE LOT", edit_lot_path(@lot, inprocess: 1), controller: 'lots', class:'m-1 btn btn-success' %>
+    <%= render 'form_for_lot'%>
+	<% elsif is_there_winner?(@lot.current_bargain) %>
+    <%= render 'form_for_lot'%>
+  <% else %>
+		<%= render 'edit_form' %>
+  <% end %>
 </div>

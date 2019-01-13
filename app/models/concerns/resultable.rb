@@ -1,6 +1,7 @@
 module Resultable
   include ActiveSupport::Concern
-  private
+	
+	private
 
 	def result_lot(search_word)
 		Lot.search(search_word)

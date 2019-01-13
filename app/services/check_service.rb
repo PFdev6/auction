@@ -3,8 +3,7 @@ class CheckService
 		if inprocess.to_i == 0
 			lot.update_attributes(inprocess: false) 
 		else
-			lot.update_attributes(inprocess: true) 		
+			lot.update_attributes(inprocess: true)
 		end
 	end
-
 end

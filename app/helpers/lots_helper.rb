@@ -16,7 +16,7 @@ module LotsHelper
   end
 
   def show_filter?
-    return true if @lots.count > 2
+    return true if @lots.length > 2
     false
   end
 

@@ -1,1 +1,13 @@
-<%= render new_filter_lot_path %>
+<%= form_tag lots_url, method: :get, class: 'm-1 form-group' do %>
+  <%= label_tag(:user_name)%>
+  <%= text_field_tag :user_name, nil ,class:'m-1 form-control' %>
+  <%= label_tag(:start_price)%>
+  <%= number_field_tag :start_price, nil ,class:'m-1 form-control',  min: '0', max: '100000', step: '0.1' %>
+  <%= label_tag(:autopurchase_price)%>
+  <%= number_field_tag :autopurchase_price, nil ,class:'m-1 form-control', min: '0', max: '10000000', step: '0.1'%>
+  <%= label_tag(:played_out)%>
+  <%= check_box_tag :played_out, nil , class:'mb-3 form-control', checked_value: true, unchecked_value: false %>
+  <br/>
+  <%= submit_tag t('main.ok'), class: 'btn btn-info' %>
+  <%= link_to t('back'), :back, class: 'btn btn-outline-secondary', label: t('back') %>
+<% end %>

@@ -1,16 +1,16 @@
 class CurrentBargainsController < ApplicationController
-  before_action :cur_bargain, only: [:show]
-  before_action :comments, :only => [:show]
+  before_action :cur_bargain, only: :show
+  before_action :comments, only: :show
 
   def index 
     @current_bargain = CurrentBargain
-    .includes(:lot, :user)
-    .in_process
-    .paginate(page: params[:page], per_page: 9)
-    .order(created_at: :desc)
+      .includes(:lot, :user).in_process
+      .paginate(page: params[:page], per_page: 9)
+      .order(created_at: :desc)
 	end
 
   def show
+    
   end
 
   def comments
@@ -20,19 +20,21 @@ class CurrentBargainsController < ApplicationController
   end
 
   def update
-    bargain = request.parameters[:current_bargain]
     current_bargain = CurrentBargain.find(params[:current_bargain_id])
     if(current_bargain.lot.inprocess) 
-      new_price = request.parameters[:current_bargain][:current_price].to_i
+      new_price = current_bargain.current_price + 1
       result = UpdateCurrentBargain.call(
-        params: [new_price: new_price, current_bargain_id: params[:current_bargain_id]],
+        params: [
+          new_price: new_price, 
+          current_bargain_id: params[:current_bargain_id]
+        ],
         user: current_user
       )
       flash[:notice] = result.errors if result.errors
       redirect_to result.current_bargain 
     else
       flash[:notice] = t 'bargain_was_stopped'
-      redirect_to bargain 
+      redirect_to current_bargain
     end  
   end
 

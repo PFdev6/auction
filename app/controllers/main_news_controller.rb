@@ -1,9 +1,12 @@
 class MainNewsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_main_news, only: [:show, :edit, :update, :destroy]
+  before_action :set_main_news, only: %i[show edit update destroy]
 
   def index
-    @main_news = MainNews.all.includes(:user).order(created_at: :desc)
+    @main_news = MainNews
+      .all
+      .includes(:user)
+      .order(created_at: :desc)
   end
 
   def show

@@ -10,6 +10,7 @@ class DeterminingTheWinnerJob < ApplicationJob
   end
 
   private 
+  
   def determine_winner(current_bargain)
     current_bargain = CurrentBargain.find_by(id: current_bargain)
     CurrentBargain.transaction do   
@@ -20,8 +21,11 @@ class DeterminingTheWinnerJob < ApplicationJob
       elsif add_time?(current_bargain)      
         puts 'add time'
         puts current_bargain.lot.lot_end_date 'lot'
-        current_bargain.lot.update_attributes(lot_end_date: current_bargain.lot.lot_end_date + 1800)
-        puts current_bargain.lot.lot_end_date 'lot +1000'
+        current_bargain.lot.update_attributes(
+          lot_end_date: current_bargain.lot.lot_end_date + 1800,
+          id_user_winner: nil
+        )
+        puts current_bargain.lot.lot_end_date 'lot +1800'
         DeterminingTheWinnerJob.set(wait_until: current_bargain.lot.lot_end_date).perform_later(current_bargain)   
         BroadcastMessage.call(bargain: current_bargain)
         new_message('30 minutes was added', current_bargain.user, current_bargain)
@@ -53,8 +57,7 @@ class DeterminingTheWinnerJob < ApplicationJob
     if(current_bargain.lot.lot_end_date < current_bargain.updated_at && current_bargain.updated_at <  five_second_to + 5)
       return true
     end
-
-    return false
+    false
   end 
 
 end

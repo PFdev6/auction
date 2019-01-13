@@ -1,0 +1,11 @@
+<%= bootstrap_form_for @lot do |f| %>
+    <%= f.hidden_field :id %>
+    <%= f.text_field :name, label: t('lot.name') %>
+    <%= f.text_area :description,  label: t('lot.description') %>
+    <%= f.file_field :files, multiple: true, label: t('lot.images') %>
+    <%= f.text_field :all_tags,  label: t('lot.tags') %>
+    <div class="actions">
+      <%= f.submit 'update', class: 'btn btn-info' %>
+      <%= link_to t('back'), :back, class: 'btn btn-outline-info' %>
+    </div>
+<% end %>

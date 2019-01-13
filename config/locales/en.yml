@@ -30,6 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  alert_edit: "Only after the bet has not been played."
   status: "Status:" 
   bargain_was_stopped: "Bargain Was Stopped"
   successfully_created_comment: "Successfully created comment"
