@@ -5,7 +5,7 @@ class LotsController < ApplicationController
 	before_action :authenticate_user!, except: %i[index show]
 
 	def index
-		newlots = params[:newlots]
+		#newlots = params[:newlots]
 		@lots = Lot
 			.includes(:user, :tags, :current_bargain, :taggings)
 		@lots = SearchLotsService.sort(@lots, params)
