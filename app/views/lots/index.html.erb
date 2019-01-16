@@ -1,7 +1,9 @@
 <div class= "row">
 	<div class="col-lg-8 mt-1">
-		<%= link_to "NEW", lots_path(newlots: true), controller: 'lots', class:'btn btn-outline-warning' %>
-		<%= link_to "OLD", lots_path(newlots: false), controller: 'lots', class:'btn btn-outline-danger' %>
+		<%= link_to 'NEW', lots_path(sort: 'new_lots'), controller: 'lots', class:'btn btn-outline-warning' %>
+		<%= link_to 'OLD', lots_path(sort: 'old_lots'), controller: 'lots', class:'btn btn-outline-danger' %>
+		<%= link_to 'TOP', lots_path(sort: 'top'), controller: 'lots', class:'btn btn-outline-success' %>
+		<%= link_to 'BY USERS', lots_path(sort: 'by_users'), controller: 'lots', class:'btn btn-outline-primary' %>
 		<div class="row">
 			<%= render @lots %>
 		</div>

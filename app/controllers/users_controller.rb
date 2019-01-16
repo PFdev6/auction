@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
 	load_and_authorize_resource
-	before_action :found_user, only: [:show]
+	before_action :found_user, only: %i[show destroy]
 	
 	def show
-		newlots = params[:newlots]
 		@lots = Lot.includes(:tags, :taggings).where(user_id: @user.id)
 		@lots = @lots.preload(:user, :current_bargain)
 			.paginate(page: params[:page], per_page: 9)
-		@lots = SortByDateService.sort(@lots, newlots)
+		@lots = SortByDateService.sort(@lots, params)
+	end
+
+	def destroy
+		@user.destroy unless @user.isadmin
+		redirect_to lots_path, success: 'User successfully destroyed'
 	end
 
 	def edit
@@ -23,7 +27,6 @@ class UsersController < ApplicationController
 		@current_bargain = GetUserBids
 			.call(user: current_user)
 			.result
-			#.paginate(page: params[:page], per_page: 9)
 	end
 
 	def update 

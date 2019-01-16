@@ -1,4 +1,3 @@
 <%= bootstrap_form_for(@current_bargain)  do |f| %>
-  <%= f.number_field(:current_price, min: '1', step: '1', max: '1000000', label: t('current_bargain.add_bids') )%>	
-  <%= f.submit "Add",  class: 'btn btn-info' %>
+  <%= f.submit "+1 BYN",  class: 'btn btn-info' %>
 <% end %>

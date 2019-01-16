@@ -1,0 +1,7 @@
+<%= bootstrap_form_for [ @current_comment.commentable, @current_comment] do |f| %>
+    <p>
+      <%= f.text_area :msg, hide_label: true, placeholder: "Leave a comment..." %>
+      <br/>
+      <%= f.submit 'OK', class: 'btn btn-info' %>
+    </p>
+<% end %>

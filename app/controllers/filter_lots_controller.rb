@@ -1,5 +1,4 @@
 class FilterLotsController < ApplicationController
-
   def new
     @filter_lot = FilterLot.new
 	end

@@ -6,6 +6,7 @@ class Ability
     if user.present?
       can :manage, User, id: user.id
       can :manage, Lot, user_id: user.id, inprocess: true
+      can :manage, Comment, user_id: user.id
       can :read, CurrentBargain, user_id: user.id
       can :read, MainNews, user_id: user.id
     end

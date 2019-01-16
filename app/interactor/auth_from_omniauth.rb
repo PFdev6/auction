@@ -15,23 +15,18 @@ class AuthFromOmniauth
         end
       else
         user = User.new
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.nickname = auth.info.name + rand(1..10000).to_s
+        user.password = Devise.friendly_token[0,20]
         case auth.provider 
           when 'facebook'
-            user.provider = auth.provider
-            user.uid = auth.uid
-            user.email = auth.info.email
-            user.nickname = auth.info.name + rand(1..10000).to_s
-            user.password = Devise.friendly_token[0,20]
             user.first_name = auth.info.name.split(' ')[0]
             user.second_name = auth.info.name.split(' ')[1]
           when 'github'
-            user.provider = auth.provider
-            user.uid = auth.uid
-            user.email = auth.info.email
-            user.nickname = auth.info.name + rand(1..10000).to_s
-            user.password = Devise.friendly_token[0,20]
-            user.first_name = ''
-            user.second_name = ''
+            user.first_name = 'git'
+            user.second_name = 'git'
         end
         user.save
       end

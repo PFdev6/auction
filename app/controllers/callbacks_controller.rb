@@ -1,6 +1,6 @@
 class CallbacksController < Devise::OmniauthCallbacksController 
   def omniauth_all
-    @user = AuthFromOmniauth.call(auth: request.env["omniauth.auth"]).user
+    @user = AuthFromOmniauth.call(auth: request.env['omniauth.auth']).user
     if @user && @user.persisted? 
       sign_in_and_redirect @user, event: :authentication
     else

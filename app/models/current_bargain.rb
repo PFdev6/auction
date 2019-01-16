@@ -5,11 +5,11 @@ class CurrentBargain < ApplicationRecord
   has_many :messages, dependent: :delete_all
   belongs_to :user
   has_many :users
-  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :comments, :as => :commentable, dependent: :destroy
   belongs_to :lot
 
   searchkick word_start: [:name, :user, :description],
-    word_middle:[:name, :user, :description],
+    word_middle: [:name, :user, :description],
     text_end: [:name, :user, :description]
 
   scope :search_import, -> { includes(:users, :lot) }
