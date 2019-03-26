@@ -49,7 +49,7 @@ gem 'cancancan', '~> 2.0'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'momentjs-rails', '>= 2.9.0'
 
-
+gem 'factory_bot_rails'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'delayed_job_active_record'
@@ -102,7 +102,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'factory_girl_rails'
+  gem "factory_bot_rails"
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome

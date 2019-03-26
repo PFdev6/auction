@@ -16,7 +16,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'Validate with attributes' do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       lot = Lot.new( 
         user_id: user.id,
         name: 'test', 

@@ -13,7 +13,7 @@ RSpec.describe MainNews, type: :model do
     end
 
     it 'Validate with attributes' do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       news = MainNews.new( 
         user_id: user.id,
         title: 'test',

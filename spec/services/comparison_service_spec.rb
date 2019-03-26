@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ComparisonService do
-  let (:lot) { FactoryGirl.create(:lot) }
+  let (:lot) { FactoryBot.create(:lot) }
   let (:true_files) { %w(file1.img file2.img file3.img) }
   let (:false_files) { %w(file1.img file2.img file3.img file4.img) }
   let (:empty_files) { [] }

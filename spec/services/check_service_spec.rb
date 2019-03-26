@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CheckService do
-  let(:lot) { FactoryGirl.create(:lot) }
+  let(:lot) { FactoryBot.create(:lot) }
   describe '.check_inprocces' do
     context 'Lot inprocess?' do 
       it 'it is should be false' do

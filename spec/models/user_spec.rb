@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'Validate with attributes' do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       user.valid?
       expect(user).to be_valid
     end
