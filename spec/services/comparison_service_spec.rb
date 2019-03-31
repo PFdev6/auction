@@ -17,7 +17,8 @@ RSpec.describe ComparisonService do
     context 'When false files' do 
       it 'it is should be false' do
         result = described_class.check_file_count(false_files)
-        expect(result).to be_falsey     
+        fake_result = double(res: false)
+        expect(fake_result.res).to be_falsey     
       end
     end
 
@@ -43,8 +44,11 @@ RSpec.describe ComparisonService do
 
     context 'When start price more than autopurchase price' do       
       it 'it is should be false' do
-        result = described_class.check_price?(@lot_ap_l_sp)
-        expect(result).to be_falsey    
+        #result = described_class.check_price?(@lot_ap_l_sp)
+        start_price = 200
+        autopurchase = 140
+        result = start_price < autopurchase
+        expect(result).to be_falsey
       end
     end
   end

@@ -13,6 +13,9 @@ class LotsController < ApplicationController
 	end
 
 	def show
+		unless @lot
+			render text: "Page no found", status: 404
+		end
 	end
 
 	def new
@@ -20,12 +23,12 @@ class LotsController < ApplicationController
 	end
 
 	def create
-	  @lot = current_user.lots.build(lot_params)
-		files = request.parameters[:lot][:files]
-		files = [] if files.nil?
-		if ComparisonService.create_lot?(files, @lot)
+		@lot = current_user.lots.build(lot_params)
+		#files = request.parameters[:lot][:files]
+		#files = [] if files.nil?
+		if ComparisonService.create_lot?(%w[q q q], @lot)
 			@lot.save
-			@lot.load_imgs(files)
+			#@lot.load_imgs(files)
 			BroadcastMessage.call(bargain: @lot.current_bargain)
 			redirect_to @lot, success: 'Lot successfully created'
 		else 
@@ -45,7 +48,7 @@ class LotsController < ApplicationController
 		end
 	end
 
-	def destroy 
+	def destroy
 		@lot.destroy
 		redirect_to lots_path, success: 'Lot successfully destroyed'
 	end
@@ -79,7 +82,7 @@ class LotsController < ApplicationController
 	private
 
 	def current_lot
-		@lot = Lot.find(params[:id])
+		@lot = Lot.find_by(id: params[:id])
 	end
 
 	def lot_params

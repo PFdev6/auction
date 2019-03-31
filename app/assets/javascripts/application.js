@@ -12,7 +12,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require cable
-//= require ckeditor/init
 //= require activestorage
 //= require turbolinks
 //= require jquery.easy-autocomplete
