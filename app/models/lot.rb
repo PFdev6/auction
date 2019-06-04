@@ -1,5 +1,39 @@
+# string "name"
+# text "description"
+# decimal "start_price"
+# string "main_image_file_name"
+# string "main_image_content_type"
+# integer "main_image_file_size"
+# datetime "main_image_updated_at"
+# datetime "lot_end_date"
+# datetime "created_at", null: false
+# datetime "updated_at", null: false
+# integer "user_id"
+# string "first_additional_image_file_name"
+# string "first_additional_image_content_type"
+# integer "first_additional_image_file_size"
+# datetime "first_additional_image_updated_at"
+# string "second_additional_image_file_name"
+# string "second_additional_image_content_type"
+# integer "second_additional_image_file_size"
+# datetime "second_additional_image_updated_at"
+# integer "current_bargain_id"
+# decimal "autopurchase_price"
+# boolean "inprocess", default: true
+# index ["current_bargain_id"], name: "index_lots_on_current_bargain_id"
 class Lot < ApplicationRecord
   include Clearable
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings do
+    mappings dynamic: false do
+      indexes :description, type: :text, analyzer: :english
+      indexes :name, type: :string, analyzer: :english
+      indexes :autopurchase_price, type: :decimal
+      indexes :start_price, type: :decimal
+    end
+  end
 
   belongs_to :user
   has_one :current_bargain, dependent: :delete
@@ -63,5 +97,4 @@ class Lot < ApplicationRecord
       Tag.where(name: name.strip).first_or_create!
     end
   end
-
 end
