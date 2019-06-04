@@ -25,9 +25,10 @@ class Lot < ApplicationRecord
   include Clearable
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  __elasticsearch__.client = Elasticsearch::Client.new :log => true
 
   settings do
-    mappings dynamic: false do
+    mappings dynamic: true do
       indexes :description, type: :text, analyzer: :english
       indexes :name, type: :string, analyzer: :english
       indexes :autopurchase_price, type: :decimal
@@ -96,5 +97,14 @@ class Lot < ApplicationRecord
     self.tags = names.split(',').map do |name|
       Tag.where(name: name.strip).first_or_create!
     end
+  end
+
+  def as_indexed_json(options={})
+    {
+        name: self.name,
+        description: self.description,
+        autopurchase_price: self.autopurchase_price,
+        start_price: self.start_price
+      }.as_json
   end
 end

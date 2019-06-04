@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'aws-sdk', '~> 3'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootstrap-datepicker-rails'
 gem "bootstrap_form", ">= 4.0.0"

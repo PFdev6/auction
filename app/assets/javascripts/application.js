@@ -18,6 +18,7 @@
 //= require_tree .
 //= require popper
 //= require material
+//= require bootstrap
 //= require bootstrap-sprockets
 
 $( document ).on('turbolinks:load', function() {
