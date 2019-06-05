@@ -48,12 +48,11 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'cancancan', '~> 2.0'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'momentjs-rails', '>= 2.9.0'
-
 gem 'factory_bot_rails'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'delayed_job_active_record'
-
+gem 'graphql'
 gem 'delayed-web'
 gem 'concurrent-ruby', require: 'concurrent'
 gem 'searchkick'
@@ -114,3 +113,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'graphiql-rails', group: :development
