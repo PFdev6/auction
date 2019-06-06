@@ -13,8 +13,8 @@ class UpdateCurrentBargain
         id_job = DeterminingTheWinnerJob.perform_later(current_bargain).provider_job_id
         BroadcastMessage.call(bargain: current_bargain, autopurchase_price: true)
         current_bargain.update_attributes(
-          current_price: new_price, 
-          id_user_winner: user.id, 
+          current_price: new_price,
+          id_user_winner: user.id,
           played_out: true, 
           delayed_job_id: id_job
         )        

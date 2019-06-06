@@ -25,7 +25,7 @@ class Lot < ApplicationRecord
     if self.inprocess?
       if current_bargain.nil?
         current_bargain = CurrentBargain.create(
-          lot: self, 
+          lot: self,
           user: self.user, 
           current_price: self.start_price
         )

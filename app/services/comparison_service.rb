@@ -13,7 +13,7 @@ class ComparisonService
   end
 
   def self.check_file_count(files)
-    if files.size > 3 || files.size == 0 
+    if files.size > 3 || files.size == 0
       false
     else
       true
