@@ -17,7 +17,7 @@ User.create!(
   isadmin: true
   ) if Rails.env.development?
 
-30.times do
+1000.times do
   User.create(
     nickname: Faker::App.name,
     email: Faker::Internet.email,
