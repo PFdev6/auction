@@ -71,8 +71,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'execjs'
 gem 'date_wrapper'
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
+gem 'elasticsearch-model', '~> 7.0.0.pre'
+gem 'elasticsearch-rails', '~> 7.0.0.pre'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 gem "paperclip", "~> 6.0.0"
