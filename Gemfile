@@ -108,6 +108,8 @@ group :test do
   gem 'rspec'       # for rspec-core, rspec-expectations, rspec-mocks
   gem 'rspec-mocks' # for rspec-mocks only
   gem 'selenium-webdriver'
+  gem 'watir-rails'
+  gem 'watir-rspec'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
