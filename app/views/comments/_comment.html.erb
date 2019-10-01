@@ -7,7 +7,7 @@
         </div>
       <% else %>
       <div class="col-lg-1 alert-info">
-        <%= image_tag comment.user.avatar.url(:thumb), width:'50', height:'50', class:'p-1' %>
+        <%= image_tag comment.user.avatar.url(:medium), width:'50', height:'50', class:'p-1' %>
       </div>
       <div class="col-lg-11 alert-info">
         <%= link_to comment.user.nickname, user_path(comment.user), class: 'mt-1 badge badge-dark' %> 
