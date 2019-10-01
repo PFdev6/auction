@@ -34,7 +34,7 @@ class LotsController < ApplicationController
 		else 
 			flash[:error] = t('lot.sp_more_than_ap') unless ComparisonService.check_price?(@lot)
 			flash[:error] = t('lot.change_end_date') unless ComparisonService.check_time?(@lot.lot_end_date)
-			flash[:error] = t('lot.need_img') unless ComparisonService.check_file_count(files)
+			#flash[:error] = t('lot.need_img') unless ComparisonService.check_file_count(files)
 			render 'new', danger: 'Lot didn\'t created'
 		end
 	end
