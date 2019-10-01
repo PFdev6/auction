@@ -1,11 +1,14 @@
 class User < ApplicationRecord
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "200x200>" }, default_url: ":style/missing.png"
+  
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ':style/missing.png'
+  
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates :nickname, 
     :email, 
     :first_name, 
     :second_name,
     presence: true   
+  
   devise :confirmable, 
     :database_authenticatable, 
     :omniauthable, 
@@ -14,6 +17,7 @@ class User < ApplicationRecord
     :registerable, 
     :trackable, 
     :validatable
+
   has_many :lots, dependent: :destroy
   has_many :main_news, dependent: :destroy
   has_many :messages, dependent: :destroy
