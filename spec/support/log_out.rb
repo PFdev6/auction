@@ -9,8 +9,9 @@ module Support
       @browser.send sym, *args, block
     end
 
-		def call
-      @browser.button(class: %w[nav-item active mr-sm-5 badge badge-info]).click
+    def call
+      @browser.cookies.clear
+      @browser.refresh
       @browser
     end
   end

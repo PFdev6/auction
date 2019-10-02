@@ -12,13 +12,6 @@ RSpec.describe 'CreateBid', type: :feature do
 	end
 	
 	context 'with correct fields' do
-		subject(:create_lot) do 
-			new_lot = NewLotPage.new(@browser)
-			new_lot.fill_fields_correct_data
-			new_lot.create_lot
-			new_lot.current_url
-		end
-
 		it 'should create bids' do
 			expect do 
 				new_lot = NewLotPage.new(@browser)
