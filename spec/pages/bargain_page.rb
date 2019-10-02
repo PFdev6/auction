@@ -8,8 +8,8 @@ class BargainPage
     @bargain_id = bargain_id
   end
 
-  def method_missing(sym, *args, &amp;block)
-    @browser.send sym, *args, &amp;block
+  def method_missing(sym, *args, &block)
+    @browser.send sym, *args, &block
   end
 
   def visit
