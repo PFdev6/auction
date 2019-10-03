@@ -5,7 +5,7 @@ FactoryBot.define do
     autopurchase_price { 200 }
     lot_end_date { Time.new('2000') }
     description { 'description' }
-    
+
     after(:create) do |obj|
       obj.current_bargain_id = obj.current_bargain.id
       obj.save
@@ -13,4 +13,4 @@ FactoryBot.define do
 
     association :user
   end
-end 
+end

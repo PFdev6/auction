@@ -7,15 +7,17 @@ RSpec.describe 'CreateBid', type: :feature do
 
   before(:all) do
     @user = create(:user)
-    Support::SignIn.new(@browser, { email: @user.email, password: 'qwe123' })
+    Support::SignIn.new(browser, { email: @user.email, password: 'qwe123' })
                    .call
   end
 
   context 'with correct fields' do
+    let(:user) { @user }
+
     it 'should create bids' do
 
       expect do
-        new_lot = NewLotPage.new(@browser)
+        new_lot = NewLotPage.new(browser)
         new_lot.fill_fields_correct_data
         new_lot.create_lot
         wait_until(1)
@@ -23,7 +25,7 @@ RSpec.describe 'CreateBid', type: :feature do
     end
 
     it 'should create bids' do
-      expect(@browser.url).to eq [root_url, 'lots', @user.lots.first.id].join('/')
+      expect(browser.url).to eq [root_url, 'lots', user.lots.first.id].join('/')
     end
   end
 end
