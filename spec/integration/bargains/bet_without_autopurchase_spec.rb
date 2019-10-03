@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 require 'pry'
 
-RSpec.describe 'Bet', type: :feature do
+RSpec.describe 'BetWithoutAutopurchase', type: :feature do
 	let(:root_url) { 'http://localhost:3000' }
 
 	before(:all) do
