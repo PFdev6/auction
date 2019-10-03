@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 require 'pry'
 
-RSpec.describe 'CreateAndBet', type: :feature do
+RSpec.describe 'Bet', type: :feature do
 	let(:root_url) { 'http://localhost:3000' }
 
 	before(:all) do
@@ -16,15 +16,19 @@ RSpec.describe 'CreateAndBet', type: :feature do
 									 .call
 	end
 	
-	context 'with correct fields' do
-		before do
+	context 'bet w/o autopurchase' do
+		subject(:bet) do
 			bid_id = @lot.id
 			bargain_page = BargainPage.new(browser, bid_id)
-			browser = bargain_page.do_bid
+			bargain_page.do_bid
+		end
+
+		before do
+			bet
 			wait_until(1)
 		end
 
-		let!(:bid) { @lot.reload.current_bargain }
+		let!(:bid) { @current_bargain.reload }
 
 		it 'changes coast of bid' do
 			expect(bid.current_price).not_to eq @lot.start_price
