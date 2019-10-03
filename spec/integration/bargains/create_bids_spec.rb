@@ -6,8 +6,8 @@ RSpec.describe 'CreateBid', type: :feature do
 	let(:root_url) { 'http://localhost:3000' }
 
 	before(:all) do
-		user = User.first
-		Support::SignIn.new(@browser, { email: user.email, password: 'qwe123' })
+		@user = create(:user)
+		Support::SignIn.new(@browser, { email: @user.email, password: 'qwe123' })
 									 .call
 	end
 	
@@ -17,12 +17,12 @@ RSpec.describe 'CreateBid', type: :feature do
 				new_lot = NewLotPage.new(@browser)
 				new_lot.fill_fields_correct_data
 				new_lot.create_lot
-				sleep 1
+				wait_until(1)
 			end.to change { Lot.count }.by(1)
 		end
 
 		it 'should create bids' do
-			expect(@browser.url).to eq [root_url, 'lots', Lot.count].join('/') 
+			expect(@browser.url).to eq [root_url, 'lots', @user.lots.first.id].join('/') 
 		end
 	end
 end
