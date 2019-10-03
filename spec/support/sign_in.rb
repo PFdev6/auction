@@ -9,10 +9,6 @@ module Support
       @password = user_data[:password]
     end
 
-    def method_missing(sym, *args, &block)
-      @browser.send sym, *args, block
-    end
-
     def call
       @browser.text_field(id: 'user_email').set(email);
       @browser.text_field(id: 'user_password').set(password);

@@ -3,39 +3,39 @@ require 'spec_helper'
 require 'pry'
 
 RSpec.describe 'BetWithoutAutopurchase', type: :feature do
-	let(:root_url) { 'http://localhost:3000' }
+  let(:root_url) { 'http://localhost:3000' }
 
-	before(:all) do
-		user = create(:user)
-		@lot = create(:lot, user: user)
-		@current_bargain = @lot.current_bargain
+  before(:all) do
+    user = create(:user)
+    @lot = create(:lot, user: user)
+    @current_bargain = @lot.current_bargain
 
-		@new_user = create(:user)
+    @new_user = create(:user)
 
-		Support::SignIn.new(browser, { email: @new_user.email, password: 'qwe123' })
-									 .call
-	end
+    Support::SignIn.new(browser, { email: @new_user.email, password: 'qwe123' })
+                   .call
+  end
 
-	context 'bet w/o autopurchase' do
-		subject(:bet) do
-			bid_id = @lot.id
-			bargain_page = BargainPage.new(browser, bid_id)
-			bargain_page.do_bid
-		end
+  context 'bet w/o autopurchase' do
+    subject(:bet) do
+      bid_id = @lot.id
+      bargain_page = BargainPage.new(browser, bid_id)
+      bargain_page.do_bid
+     end
 
-		before do
+    before do
       bet
-			wait_until(1)
-		end
+      wait_until(1)
+    end
 
-		let!(:bid) { @current_bargain.reload }
+    let!(:bid) { @current_bargain.reload }
 
-		it 'changes coast of bid' do
-			expect(bid.current_price).not_to eq @lot.start_price
-		end
+    it 'changes coast of bid' do
+      expect(bid.current_price).not_to eq @lot.start_price
+    end
 
-		it 'potential winner is new user' do
-			expect(browser.link(:href, "/users/#{@new_user.id}").exists?).to be_truthy
-		end
-	end
+    it 'potential winner is new user' do
+      expect(browser.link(:href, "/users/#{@new_user.id}").exists?).to be_truthy
+    end
+  end
 end
