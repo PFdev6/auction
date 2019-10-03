@@ -3,29 +3,29 @@
     <div class="row rounded border border-dark">
       <% if comment.user.nil? %>
         <div class="col-lg-12 alert-danger">
-          <%= t 'user.nil'%> 
+          <%= t 'user.nil'%>
         </div>
       <% else %>
       <div class="col-lg-1 alert-info">
         <%= image_tag comment.user.avatar.url(:medium), width:'50', height:'50', class:'p-1' %>
       </div>
       <div class="col-lg-11 alert-info">
-        <%= link_to comment.user.nickname, user_path(comment.user), class: 'mt-1 badge badge-dark' %> 
+        <%= link_to comment.user.nickname, user_path(comment.user), class: 'mt-1 badge badge-dark' %>
       </div>
       <% end %>
     </div>
   </h4>
     <%= comment.updated_at.strftime('%b %d, %Y at %H:%M') %>
-  <div class="p-2 rounded border border-primary alert-success">
+  <div id="<%= comment.id %>" class="p-2 rounded border border-primary alert-success">
       <%= simple_format comment.msg %>
   </div>
 
   <div class="m-1 actions">
-    <%= link_to t('Reply'), new_polymorphic_path([@commentable, Comment.new], parent_id: comment), class: "badge badge-dark" %>
-    <% if can? :delete, comment%> 
+    <%= link_to t('Reply'), new_polymorphic_path([@commentable, Comment.new], parent_id: comment), class: "badge badge-dark", id: "comment_id_#{comment.id}" %>
+    <% if can? :delete, comment%>
       <%= link_to  t('lot.delete'), polymorphic_path([@commentable, comment], parent_id: comment), class: "badge badge-dark",  method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-    <% if can? :edit, comment%> 
+    <% if can? :edit, comment%>
       <%= link_to  t('lot.edit'), edit_polymorphic_path([@commentable, comment], parent_id: comment), class: "badge badge-dark"%>
     <% end %>
     <hr>
