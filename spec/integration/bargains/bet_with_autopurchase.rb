@@ -31,6 +31,8 @@ RSpec.describe 'BetWithAutopurchase', type: :feature do
       BargainPage.new(browser, bid_id)
     end
 
+    let(:winner) { @winner }
+
     before do
       bet_page
       wait_until(1)
@@ -39,7 +41,7 @@ RSpec.describe 'BetWithAutopurchase', type: :feature do
     let!(:bid) { @current_bargain.reload }
 
     it 'shows winner' do
-      expect(browser.link(:href, "/users/#{@winner.id}").exists?).to be_truthy
+      expect(browser.link(:href, "/users/#{winner.id}").exists?).to be_truthy
     end
 
     it 'can\'t bet' do
