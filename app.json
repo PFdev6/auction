@@ -1,0 +1,10 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "bundle install && bundle exec rails db:create && bundle exec rails db:schema:load",
+        "test": "bundle exec rspec"
+      }
+    }
+  }
+}

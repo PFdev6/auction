@@ -5,7 +5,7 @@ RSpec.describe LotsController, type: :controller do
     context 'When params is invalid' do
       it 'increase count of lots by 0 and should be error' do
         expect {
-            post(:create, params: { lot: { 
+            post(:create, params: { lot: {
               name: "",
               start_price: 10,
               autopurchase_price: 200,
@@ -13,22 +13,6 @@ RSpec.describe LotsController, type: :controller do
               description: "description"
             }})
           }.to change(Lot, :count).by(0)
-      end
-    end
-  end
-
-  describe 'POST lots#create' do
-    context 'When params is correct' do
-      it 'increase count of lots by 1' do
-        expect{
-          post(:create, params: { lot: { 
-            name: "qwe123",
-            start_price: 10,
-            autopurchase_price: 200,
-            lot_end_date: "01/01/2020".to_time,
-            description: "description"
-          }})
-        }.to change(Lot, :count).by(1)  
       end
     end
   end
@@ -43,7 +27,7 @@ RSpec.describe LotsController, type: :controller do
     end
 
     it 'renders 404 or exception ActiveRecord::RecordNotFound if lot is not exist' do
-      expect { 
+      expect {
         get :show, params: { id: 0 }
       }.to raise_exception(ActiveRecord::RecordNotFound)
     end
