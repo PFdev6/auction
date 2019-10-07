@@ -51,24 +51,5 @@ RSpec.describe LotsController, type: :controller do
       end
     end
   end
-
-  describe 'EDIT lots#edit' do
-    context 'When user sign in' do
-      it 'should redirect to index' do
-        user = FactoryBot.create(:user)
-        user.lots << Lot.last
-        sign_in user
-        get :edit, params: { id: user.lots.last }
-        expect(response).to render_template('edit')
-      end
-    end
-
-    context 'When user is not sign in' do
-      it 'should error in render' do
-        get :edit, params: { id: Lot.last.id }
-        expect(response).to_not render_template('edit')
-      end
-    end
-  end
 end
 
