@@ -1,6 +1,7 @@
 language: ruby
 dist: xenial
-
+services:
+  - postgresql
 before_install:
   - gem install rubygems-update && update_rubygems
   - yes | rvm @global do gem install bundler -v 1.17.3 || true
