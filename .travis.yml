@@ -17,10 +17,4 @@ before_script:
   - RAILS_ENV=test bundle exec rails s -d
   - RAILS_ENV=test bundle exec rspec
   - kill `cat tmp/pids/server.pid`
-deploy:
-  provider: heroku
-  api_key:
-    secure: KEY
-  app: Auction
-  on:
-    repo: PFdev6/Auction
+
