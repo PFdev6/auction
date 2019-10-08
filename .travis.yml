@@ -2,6 +2,7 @@ language: ruby
 cache:
   - bundler
 before_script:
+  - gem i bundler -v 1.17.3
   - bundle install
   - cp lib/database_jenkins.yml config/database.yml
   - RAILS_ENV=test bundle exec rails db:create
