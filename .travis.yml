@@ -1,0 +1,18 @@
+language: ruby
+cache:
+  - bundler
+before_script:
+  - bundle install
+  - cp lib/database_jenkins.yml config/database.yml
+  - RAILS_ENV=test bundle exec rails db:create
+  - RAILS_ENV=test bundle exec rails db:schema:load
+  - RAILS_ENV=test bundle exec rails s -d
+  - RAILS_ENV=test bundle exec rspec
+  - kill `cat tmp/pids/server.pid`
+deploy:
+  provider: heroku
+  api_key:
+    secure: KEY
+  app: Auction
+  on:
+    repo: PFdev6/Auction
