@@ -1,6 +1,13 @@
 language: ruby
+dist: xenial
+
+before_install:
+  - gem install rubygems-update && update_rubygems
+  - yes | rvm @global do gem install bundler -v 1.17.3 || true
 cache:
-  - bundle
+  bundler: true
+  directories:
+    - node_modules
 before_script:
   - bundle install
   - cp lib/database_jenkins.yml config/database.yml
